@@ -4,6 +4,7 @@ import android.graphics.drawable.Icon
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -60,9 +61,10 @@ fun PlayerPage(navController: NavController) {
                     isVerticalGradient = true
                 )
             ),
+        verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(56.dp))
+//        Spacer(modifier = Modifier.height(56.dp))
 
         Button(
             onClick = {  },
@@ -90,12 +92,14 @@ fun PlayerPage(navController: NavController) {
             )
         }
 
-        Spacer(modifier = Modifier.height(100.dp))
+//        Spacer(modifier = Modifier.height(100.dp))
 
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceAround,
+            verticalAlignment = Alignment.CenterVertically
         ){
-            Spacer(modifier = Modifier.width(22.dp))
+//            Spacer(modifier = Modifier.width(22.dp))
             Column(
                 modifier = Modifier
                     .width(175.dp)
@@ -112,7 +116,7 @@ fun PlayerPage(navController: NavController) {
                 }
             }
 
-            Spacer(modifier = Modifier.width(8.dp))
+//            Spacer(modifier = Modifier.width(8.dp))
 
             Column(
                 modifier = Modifier
@@ -234,7 +238,7 @@ fun PlayerPage(navController: NavController) {
             contentDescription = "players"
         )
 
-        Spacer(modifier = Modifier.height(32.dp))
+//        Spacer(modifier = Modifier.height(32.dp))
 
         Button(
             onClick = {

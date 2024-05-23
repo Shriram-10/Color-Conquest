@@ -24,9 +24,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -101,9 +103,7 @@ fun HomePage(navController: NavController) {
             color = Color.Black
         )
 
-        Spacer(
-            modifier = Modifier.height(100.dp)
-        )
+        Spacer(modifier = Modifier.height(100.dp))
 
         Image(painter = painterResource(id = R.drawable.players),
             contentDescription = "Players")
@@ -167,10 +167,14 @@ fun HomePage(navController: NavController) {
             }
         }
 
-        Spacer(
-            modifier = Modifier.height(36.dp)
-        )
+        Spacer(modifier = Modifier.height(36.dp))
 
         Text(text = "Made with \uD83D\uDC9A by Shriram Umapathy")
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HomePagePreview() {
+    HomePage(navController = NavController(LocalContext.current))
 }
