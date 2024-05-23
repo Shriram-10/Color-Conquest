@@ -47,16 +47,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GamePage(navController: NavController) {
 
     var exitDialog by remember { mutableStateOf(false) }
-    val name = if(pointsTotal[1]== 0) player1Name.value else player2Name.value
 
     if(exitDialog) {
         AlertDialog(onDismissRequest = {
@@ -186,16 +187,20 @@ fun GamePage(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = ColoringBG[thisPlayer.value])
+            .background(color = ColoringBG[thisPlayer.value]),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ){
-        Spacer(modifier = Modifier.height(24.dp))
+//        Spacer(modifier = Modifier.height(2.dp))
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
         ){
             Column(
-                modifier = Modifier.width(330.dp)
+                modifier = Modifier.height(84.dp),
+                verticalArrangement = Arrangement.Bottom,
             ){
-                Spacer(modifier = Modifier.height(30.dp))
+//                Spacer(modifier = Modifier.height(30.dp))
 
                 Row{
                     Button(
@@ -279,8 +284,8 @@ fun GamePage(navController: NavController) {
             }
 
             Column(
-                modifier = Modifier.width(60.dp),
-                horizontalAlignment = Alignment.End,
+                modifier = Modifier.width(84.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
             ){
                 Box (
                     contentAlignment = Alignment.Center
@@ -309,19 +314,17 @@ fun GamePage(navController: NavController) {
                         fontSize = 28.sp,
                         color = Color.Gray
                     )
-
                 }
-
-                Spacer(modifier = Modifier.width(24.dp))
             }
         }
 
         Spacer(modifier = Modifier.height(120.dp))
 
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
         ){
-            Spacer(modifier = Modifier.width(17.dp))
+//            Spacer(modifier = Modifier.width(17.dp))
 
             LazyVerticalGrid(
                 modifier = Modifier.width(375.dp),
@@ -477,4 +480,10 @@ fun GamePage(navController: NavController) {
             DisplayWinner(navController = navController)
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GamePagePreview() {
+    GamePage(navController = rememberNavController())
 }

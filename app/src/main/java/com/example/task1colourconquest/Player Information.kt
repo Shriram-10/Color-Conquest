@@ -61,7 +61,7 @@ fun PlayerPage(navController: NavController) {
                     isVerticalGradient = true
                 )
             ),
-        verticalArrangement = Arrangement.SpaceAround,
+        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 //        Spacer(modifier = Modifier.height(56.dp))
@@ -92,7 +92,7 @@ fun PlayerPage(navController: NavController) {
             )
         }
 
-//        Spacer(modifier = Modifier.height(100.dp))
+        Spacer(modifier = Modifier.height(120.dp))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -121,7 +121,8 @@ fun PlayerPage(navController: NavController) {
             Column(
                 modifier = Modifier
                     .width(175.dp)
-                    .height(245.dp)
+                    .height(245.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ){
                 Spacer(modifier = Modifier.height(22.dp))
                 Card(modifier = Modifier
@@ -233,12 +234,14 @@ fun PlayerPage(navController: NavController) {
             }
         }
 
+        Spacer(modifier = Modifier.height(16.dp))
+
         Image(
             painter = painterResource(id = R.drawable.players),
             contentDescription = "players"
         )
 
-//        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
         Button(
             onClick = {
@@ -262,6 +265,7 @@ fun PlayerPage(navController: NavController) {
                 color = Color.White
             )
         }
+
     }
 }
 
