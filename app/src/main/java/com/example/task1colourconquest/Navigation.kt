@@ -1,7 +1,10 @@
 package com.example.task1colourconquest
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -15,40 +18,43 @@ fun Navigation() {
 
     NavHost(navController = navController,
         startDestination = Screen.HomePage.route) {
-        composable(route = Screen.HomePage.route) {
+        composable(
+            route = Screen.HomePage.route,
+            enterTransition = {slideInHorizontally { it }},
+            popEnterTransition = {slideInHorizontally { it }}
+        ) {
             HomePage(navController = navController)
         }
-        composable(route = Screen.ModesPage.route) {
-            AnimatedVisibility(
-                visible = pageNo.value == 2,
-                enter = slideInHorizontally {
-                    it / 2
-                },
-            ) {
+        composable(
+            route = Screen.ModesPage.route,
+            enterTransition = {slideInHorizontally { it }},
+//            exitTransition = {slideOutHorizontally { it }},
+            popEnterTransition = {slideInHorizontally { it }},
+//            popExitTransition = {slideOutHorizontally { it }}
+        ) {
                 ModesPage(navController = navController)
-            }
         }
-        composable(route = Screen.PlayerInformation.route) {
-            AnimatedVisibility(
-                visible = pageNo.value == 3,
-                enter = slideInHorizontally {
-                    it / 2
-                },
-            ){
+        composable(
+            route = Screen.PlayerInformation.route,
+            enterTransition = {slideInHorizontally { it }},
+//            exitTransition = {slideOutHorizontally { it }},
+            popEnterTransition = {slideInHorizontally { it }},
+//            popExitTransition = {slideOutHorizontally { it }}
+        ) {
                 PlayerPage(navController = navController)
-            }
         }
-        composable(route = Screen.GamePage.route) {
-            AnimatedVisibility(
-                visible = pageNo.value == 4,
-                enter = slideInHorizontally {
-                    it / 2
-                },
-            ){
+        composable(
+            route = Screen.GamePage.route,
+            enterTransition = {slideInHorizontally { it }},
+//            exitTransition = {slideOutHorizontally { it }},
+            popEnterTransition = {slideInHorizontally { it }},
+//            popExitTransition = {slideOutHorizontally { it }}
+        ) {
                 GamePage(navController = navController)
-            }
         }
-        composable(route = Screen.GameResult.route) {
+        composable(
+            route = Screen.GameResult.route,
+        ) {
             DisplayWinner(navController = navController)
         }
     }
