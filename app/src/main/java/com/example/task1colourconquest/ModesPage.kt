@@ -53,7 +53,7 @@ fun ModesPage(navController: NavController){
         val colors = infiniteTransition.animateColor(
             Color(0xFFED6A5E),
             Color(0xFF0FA6F7),
-            animationSpec = infiniteRepeatable(tween(500),
+            animationSpec = infiniteRepeatable(tween(200),
                 repeatMode = RepeatMode.Reverse
             )
         ).value

@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 fun allowClick(i: Int){
-    if ((counter.value == 0 || counter.value == 1) || playerCover[thisPlayer.value][i]){
+    if (((counter.value == 0 || counter.value == 1 ) && !playerCover[otherPlayer.value][i]) || playerCover[thisPlayer.value][i]){
         counter.value++
         increment(i, 0)
     }
@@ -32,7 +32,7 @@ fun increment(i: Int, caller: Int){
             genList(i)
     }
 
-    pointsSum(counter.value)
+    pointsSum()
     if ((pointsTotal[0] == 0 || pointsTotal[1] == 0) && counter.value > 6) {
         resultDeterminer()
     }
@@ -102,8 +102,6 @@ fun genList(i: Int){
         surroundFiltered.remove(surroundFiltered[1])
     } else if(i == (r.value - 1) * c.value) {
         surroundFiltered.remove(surroundFiltered[1])
-    } else if(i == r.value * c.value - 1) {
-        surroundFiltered.remove(surroundFiltered[2])
     }
     expand(surroundFiltered)
 }
@@ -114,7 +112,7 @@ fun expand(surround: MutableList<Int>){
     }
 }
 
-fun pointsSum(counter:Int){
+fun pointsSum(){
     pointsTotal[0] = 0
     pointsTotal[1] = 0
 
