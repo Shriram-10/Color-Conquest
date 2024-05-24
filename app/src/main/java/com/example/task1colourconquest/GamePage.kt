@@ -1,9 +1,14 @@
 package com.example.task1colourconquest
 
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,7 +23,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CutCornerShape
@@ -26,26 +30,18 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -343,6 +339,7 @@ fun GamePage(navController: NavController) {
                                 .fillMaxWidth(),
                             contentAlignment = Alignment.Center
                         ){
+
                             Button(
                                 modifier = Modifier
                                     .fillMaxSize(),
@@ -360,12 +357,18 @@ fun GamePage(navController: NavController) {
                             ){
 
                             }
+                            
+                            val sizeCircle by animateFloatAsState(
+                                targetValue = if (sizeOfCircle[i] || sizeOfOtherCircle[i]) 0.8f else 0f,
+                                animationSpec = tween(durationMillis = 2000)
+                            )
 
                             Button (
                                 onClick = {
                                     clicked[i] = true
                                 },
-                                modifier = Modifier.fillMaxSize(0.8f),
+                                modifier = Modifier
+                                    .fillMaxSize(sizeCircle),
                                 shape = RoundedCornerShape(percent = 50),
                                 colors = ButtonDefaults.buttonColors(
                                     containerColor = colorCircle[i],

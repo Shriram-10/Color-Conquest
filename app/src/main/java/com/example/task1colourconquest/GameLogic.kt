@@ -18,6 +18,7 @@ fun increment(i: Int, caller: Int){
         if (!playerCover[thisPlayer.value][i] && !playerCover[otherPlayer.value][i]){
             playerPoints[thisPlayer.value][i] += 1
         } else if (playerCover[otherPlayer.value][i]){
+            sizeOfCircle[i] = !sizeOfCircle[i]
             playerPoints[thisPlayer.value][i] = playerPoints[otherPlayer.value][i] + 1
             playerPoints[otherPlayer.value][i] = 0
         } else if (playerCover[thisPlayer.value][i]){
@@ -47,10 +48,8 @@ fun coverTracker(i: Int){
         playerCover[otherPlayer.value][i] = false
         colorChanger(i)
     } else if (playerPoints[thisPlayer.value][i] > 3){
-        playerCover[thisPlayer.value][i] = true
-        playerCover[otherPlayer.value][i] = false
-        colorChanger(i)
         playerCover[thisPlayer.value][i] = false
+        colorChanger(i)
     }
 }
 

@@ -8,7 +8,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.graphics.Color
 
-var pageNo = mutableStateOf(1)
+var colorOfTile = mutableStateOf(false)
+//    mutableStateListOf(
+//    false,false,false,false,false,
+//    false,false,false,false,false,
+//    false,false,false,false,false,
+//    false,false,false,false,false,
+//    false,false,false,false,false,
+//)
 
 var winner = mutableStateOf(-1)
 
@@ -90,3 +97,5 @@ var player1Name = mutableStateOf("")
 var player2Name = mutableStateOf("")
 
 var winnerName = mutableStateOf("")
+var sizeOfOtherCircle = playerCover[if (counter.value % 2 == 0) 1 else 0]
+var sizeOfCircle = playerCover[if (counter.value % 2 == 0) 0 else 1]
