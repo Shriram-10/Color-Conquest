@@ -16,9 +16,14 @@ val provider = GoogleFont.Provider(
 )
 
 val fontName = GoogleFont("Leckerli One")
+val fontName2 = GoogleFont("Bungee Static")
 
 val fontFamily = FontFamily(
     Font(googleFont = fontName, fontProvider = provider),
+)
+
+val fontFamily2 = FontFamily(
+    Font(googleFont = fontName2, fontProvider = provider),
 )
 
 // Set of Material typography styles to start with

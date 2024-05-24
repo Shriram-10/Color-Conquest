@@ -2,6 +2,7 @@ package com.example.task1colourconquest
 
 sealed class Screen(val route: String) {
     object HomePage : Screen("home_page")
+    object ModesPage : Screen("modes_page")
     object PlayerInformation : Screen("player_info")
     object GamePage : Screen("game_page")
     object GameResult : Screen("game_result")

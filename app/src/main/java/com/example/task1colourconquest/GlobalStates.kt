@@ -8,7 +8,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.graphics.Color
 
-var winDialog = mutableStateOf(false)
+var pageNo = mutableStateOf(1)
 
 var winner = mutableStateOf(-1)
 

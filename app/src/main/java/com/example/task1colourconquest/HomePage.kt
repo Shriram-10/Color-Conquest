@@ -124,7 +124,7 @@ fun HomePage(navController: NavController) {
                     containerColor = Color(0xFF0FA6F7)
                 ),
                 onClick = {
-                    navController.navigate(Screen.PlayerInformation.route)
+                    navController.navigate(Screen.ModesPage.route)
                 },
                 shape = RoundedCornerShape(
                     topStartPercent = 50,
