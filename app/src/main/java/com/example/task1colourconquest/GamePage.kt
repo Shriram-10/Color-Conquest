@@ -98,7 +98,7 @@ fun GamePage(navController: NavController) {
                             navController.navigate(Screen.HomePage.route)
                             counter.value = 0
                             for(b in 0..1){
-                                for(t in 0 .. r.value * c.value){
+                                for(t in 0..<r.value * c.value){
                                     playerPoints[b][t] = 0
                                 }
                             }
@@ -106,13 +106,15 @@ fun GamePage(navController: NavController) {
                             pointsTotal[0] = 0
                             pointsTotal[1] = 0
                             for(i in 0 .. 1) {
-                                for (j in 0..24) {
+                                for (j in 0..<r.value * c.value) {
                                     colorTile[j] = Color(0xFFF2E6D1)
                                     playerCover[i][j] = false
                                 }
                             }
                             thisPlayer.value = 1
                             otherPlayer.value = 0
+                            player1Name.value = ""
+                            player2Name.value = ""
                         },
                         modifier = Modifier
                             .height(40.dp)
@@ -140,7 +142,24 @@ fun GamePage(navController: NavController) {
 
                     Button(
                         onClick = {
-
+                            counter.value = 0
+                            for(b in 0..1){
+                                for(t in 0..<r.value * c.value){
+                                    playerPoints[b][t] = 0
+                                }
+                            }
+                            backgroundColor.value = Color(0xFFED6A5E)
+                            pointsTotal[0] = 0
+                            pointsTotal[1] = 0
+                            for(i in 0 .. 1) {
+                                for (j in 0..<r.value * c.value) {
+                                    colorTile[j] = Color(0xFFF2E6D1)
+                                    playerCover[i][j] = false
+                                }
+                            }
+                            thisPlayer.value = 1
+                            otherPlayer.value = 0
+                            exitDialog = false
                         },
                         modifier = Modifier
                             .height(40.dp)
@@ -157,7 +176,7 @@ fun GamePage(navController: NavController) {
                         shape = RoundedCornerShape(10)
                     ) {
                         Text(
-                            text = "Exit",
+                            text = "Reset Grid",
                             fontWeight = FontWeight.Bold,
                             fontSize = 16.sp,
                             color = Color.White
@@ -187,7 +206,6 @@ fun GamePage(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ){
-//        Spacer(modifier = Modifier.height(2.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
@@ -196,7 +214,6 @@ fun GamePage(navController: NavController) {
                 modifier = Modifier.height(84.dp),
                 verticalArrangement = Arrangement.Bottom,
             ){
-//                Spacer(modifier = Modifier.height(30.dp))
 
                 Row{
                     Button(
@@ -241,7 +258,7 @@ fun GamePage(navController: NavController) {
                                     )
                                 ),
                         modifier = Modifier
-                            .width(IntrinsicSize.Min)
+                            .width(IntrinsicSize.Max)
                             .height(56.dp)
                             .clip(
                                 shape = RoundedCornerShape(
@@ -268,7 +285,7 @@ fun GamePage(navController: NavController) {
                         ){
 
                             Text(
-                                text = player2Name.value.uppercase(),
+                                text = if (player2Name.value != "") player2Name.value.uppercase() else "PLAYER 2",
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 28.sp,
                                 color = Color(0xFF0FA6F7),
@@ -320,7 +337,6 @@ fun GamePage(navController: NavController) {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ){
-//            Spacer(modifier = Modifier.width(17.dp))
 
             LazyVerticalGrid(
                 modifier = Modifier.width(375.dp),
@@ -411,7 +427,7 @@ fun GamePage(navController: NavController) {
                         ),
                 modifier = Modifier
                     .height(56.dp)
-                    .width(IntrinsicSize.Min)
+                    .width(IntrinsicSize.Max)
                     .clip(
                         shape = RoundedCornerShape(
                             topStartPercent = 10,
@@ -436,7 +452,7 @@ fun GamePage(navController: NavController) {
                     contentAlignment = Alignment.Center
                 ){
                     Text(
-                        text = player1Name.value.uppercase(),
+                        text = if (player1Name.value != "") player1Name.value.uppercase() else "PLAYER 1",
                         fontWeight = FontWeight.Bold,
                         fontSize = 28.sp,
                         color = Color(0xFFED6A5E)

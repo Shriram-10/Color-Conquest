@@ -1,5 +1,10 @@
 package com.example.task1colourconquest
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,6 +21,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,11 +39,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.task1colourconquest.ui.theme.fontFamily
+import kotlinx.coroutines.delay
 
 @Composable
 fun HomePage(navController: NavController) {
 
     var enterGame by remember { mutableStateOf(false) }
+    var trueAsEntering by remember { mutableStateOf(false) }
+    LaunchedEffect(key1 = Unit) {
+        delay(500)
+        trueAsEntering = true
+    }
 
     if (enterGame) {
         AlertDialog(
@@ -87,21 +99,32 @@ fun HomePage(navController: NavController) {
     ) {
         Spacer(modifier = Modifier.height(60.dp))
 
-        Text(
-            text = "COLOR",
-            style = TextStyle(brush = Brush.verticalGradient(colors = gradientColorList2)),
-            fontFamily = fontFamily,
-            fontSize = 64.sp,
-            color = Color.Black
-        )
+        AnimatedVisibility(
+            visible = trueAsEntering,
+            enter = slideInVertically() + fadeIn(),
+            exit = slideOutVertically() + fadeOut()
+        ){
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ){
+                Text(
+                    text = "COLOR",
+                    style = TextStyle(brush = Brush.verticalGradient(colors = gradientColorList2)),
+                    fontFamily = fontFamily,
+                    fontSize = 64.sp,
+                    color = Color.Black
+                )
 
-        Text(
-            text = "CONQUEST",
-            style = TextStyle(brush = Brush.verticalGradient(colors = gradientColorList3)),
-            fontFamily = fontFamily,
-            fontSize = 64.sp,
-            color = Color.Black
-        )
+                Text(
+                    text = "CONQUEST",
+                    style = TextStyle(brush = Brush.verticalGradient(colors = gradientColorList3)),
+                    fontFamily = fontFamily,
+                    fontSize = 64.sp,
+                    color = Color.Black
+                )
+            }
+        }
 
         Spacer(modifier = Modifier.height(100.dp))
 

@@ -21,6 +21,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,9 +35,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.delay
 
 @Composable
 fun DisplayWinner(navController: NavController) {
+    var causeDelay by remember {mutableStateOf(false)}
+    LaunchedEffect(Unit){
+        delay(1000)
+        causeDelay = false
+    }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -100,7 +108,26 @@ fun DisplayWinner(navController: NavController) {
 
                 Button(
                     onClick = {
-                        navController.navigate(Screen.PlayerInformation.route)
+                        counter.value = 0
+                        for(b in 0..1){
+                            for(t in 0..<r.value * c.value){
+                                playerPoints[b][t] = 0
+                            }
+                        }
+                        backgroundColor.value = Color(0xFFED6A5E)
+                        pointsTotal[0] = 0
+                        pointsTotal[1] = 0
+                        for(i in 0 .. 1) {
+                            for (j in 0..<r.value * c.value) {
+                                colorTile[j] = Color(0xFFF2E6D1)
+                                playerCover[i][j] = false
+                            }
+                        }
+                        thisPlayer.value = 1
+                        otherPlayer.value = 0
+                        winner.value = -1
+                        navController.navigate(Screen.GamePage.route)
+
                     },
                     modifier = Modifier
                         .width(275.dp),
@@ -122,6 +149,25 @@ fun DisplayWinner(navController: NavController) {
                 Button(
                     onClick = {
                         navController.navigate(Screen.HomePage.route)
+                        counter.value = 0
+                        for(b in 0..1){
+                            for(t in 0..<r.value * c.value){
+                                playerPoints[b][t] = 0
+                            }
+                        }
+                        backgroundColor.value = Color(0xFFED6A5E)
+                        pointsTotal[0] = 0
+                        pointsTotal[1] = 0
+                        for(i in 0 .. 1) {
+                            for (j in 0..<r.value * c.value) {
+                                colorTile[j] = Color(0xFFF2E6D1)
+                                playerCover[i][j] = false
+                            }
+                        }
+                        thisPlayer.value = 1
+                        otherPlayer.value = 0
+                        player1Name.value = ""
+                        player2Name.value = ""
                     },
                     modifier = Modifier
                         .width(275.dp),
@@ -142,8 +188,8 @@ fun DisplayWinner(navController: NavController) {
     }
 }
 
-//@Preview(showBackground = true)
-//@Composable
-//fun GreetingPreview() {
-//    DisplayWinner("William", navController = )
-//}
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    DisplayWinner(navController = rememberNavController())
+}

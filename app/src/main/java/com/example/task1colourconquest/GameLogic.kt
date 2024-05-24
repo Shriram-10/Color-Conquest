@@ -48,8 +48,10 @@ fun coverTracker(i: Int){
         playerCover[otherPlayer.value][i] = false
         colorChanger(i)
     } else if (playerPoints[thisPlayer.value][i] > 3){
-        playerCover[thisPlayer.value][i] = false
+        playerCover[thisPlayer.value][i] = true
+        playerCover[otherPlayer.value][i] = false
         colorChanger(i)
+        playerCover[thisPlayer.value][i] = false
     }
 }
 
@@ -124,10 +126,10 @@ fun pointsSum(){
 fun resultDeterminer(){
     if (pointsTotal[0] == 0) {
         winner.value = 1
-        winnerName.value = player1Name.value
+        winnerName.value = if (player1Name.value != "") player1Name.value else "PLAYER 1"
     } else if (pointsTotal[1] == 0) {
         winner.value = 0
-        winnerName.value = player2Name.value
+        winnerName.value = if (player2Name.value != "") player2Name.value else "PLAYER 2"
     } else {
         winner.value = -1
     }
