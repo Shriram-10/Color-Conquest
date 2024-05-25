@@ -644,11 +644,9 @@ fun HackerSettings(navController: NavController){
                                                     } else if (mins.value.toInt() > 15 || secs.value.toInt() > 59){
                                                         showWarning2.value = true
                                                     }
+
                                                     displayString = displayString(mins.value, secs.value)
-                                                    mins1.value = mins.value.toInt()
-                                                    mins2.value = mins.value.toInt()
-                                                    secs1.value = secs.value.toInt()
-                                                    secs2.value = secs.value.toInt()
+
                                                     showTimerDialog.value = false
                                                 },
                                                 modifier = Modifier.height(48.dp),

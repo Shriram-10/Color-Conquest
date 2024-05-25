@@ -104,8 +104,7 @@ var mode = mutableStateOf(1)
 
 var mins = mutableStateOf("")
 var secs = mutableStateOf("")
-var time1 = mutableStateOf(0.0)
-var time2 = mutableStateOf(0.0)
+
 var chooseHandicap = mutableStateOf(false)
 var showDropDown = mutableStateOf(false)
 var showTimerDialog = mutableStateOf(false)
@@ -118,5 +117,4 @@ var mins2 = mutableStateOf(0)
 var secs2 = mutableStateOf(0)
 
 var timedOrNot = mutableStateOf(false)
-var askTimer = mutableStateOf(true)
 var displayChooseTime = mutableStateOf(false)

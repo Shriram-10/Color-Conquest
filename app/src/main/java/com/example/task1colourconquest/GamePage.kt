@@ -51,12 +51,23 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.task1colourconquest.ui.theme.fontFamily
 import com.example.task1colourconquest.ui.theme.fontFamily2
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.util.Timer
+import java.util.TimerTask
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GamePage(navController: NavController) {
 
     var exitDialog by remember { mutableStateOf(false) }
+    var timer = Timer()
+    mins1.value = mins.value.toInt()
+    mins2.value = mins.value.toInt()
+    secs1.value = secs.value.toInt()
+    secs2.value = secs.value.toInt()
 
     if(exitDialog) {
         AlertDialog(onDismissRequest = {
@@ -340,32 +351,35 @@ fun GamePage(navController: NavController) {
             modifier = Modifier.fillMaxWidth(),
         ){
             Spacer(modifier = Modifier.width(20.dp))
+            if (mode.value == 2 && timedOrNot.value) {
+                Button(
+                    onClick = {},
+                    modifier = Modifier
+                        .height(60.dp)
+                        .width(IntrinsicSize.Max),
+                    contentPadding = PaddingValues(5.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(48,50,58), //143,252,84
+                        contentColor = Color(0xFFED6A5E)
+                    ),
+                    border = BorderStroke(
+                        width = 4.dp,
+                        color = Color(25,50,25)
+                    ),
+                    shape = RoundedCornerShape(25)
 
-            Button(
-                onClick = {},
-                modifier = Modifier
-                    .height(60.dp)
-                    .width(IntrinsicSize.Max),
-                contentPadding = PaddingValues(5.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(48,50,58), //143,252,84
-                    contentColor = Color(0xFFED6A5E)
-                ),
-                border = BorderStroke(
-                    width = 4.dp,
-                    color = Color(25,50,25)
-                ),
-                shape = RoundedCornerShape(25)
-
-            ){
-                Text(
-                    text = time2.value.toString(),
-                    modifier = Modifier.rotate(180f),
-                    fontFamily = fontFamily2,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 28.sp,
-                    color = Color(143,252,84)
-                )
+                ){
+                    Text(
+                        text = displayString(mins1.value.toString(),secs1.value.toString()),
+                        modifier = Modifier.rotate(180f),
+                        fontFamily = fontFamily2,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 28.sp,
+                        color = Color(143,252,84)
+                    )
+                }
+            } else {
+                Spacer(modifier = Modifier.height(60.dp))
             }
         }
 
@@ -439,6 +453,17 @@ fun GamePage(navController: NavController) {
                             )
                         }
                     }
+                    timer.schedule(
+                        object: TimerTask() {
+                            override fun run() {
+                                var newTime = timerChanger(mins1.value, secs1.value, mins2.value, secs2.value)
+                                mins1.value = newTime[0]
+                                secs1.value = newTime[1]
+                                mins2.value = newTime[2]
+                                secs2.value = newTime[3]
+                            }
+                        },1000)
+
                     if(clicked[i]) {
                         allowClick(i)
                         clicked[i] = false
@@ -453,30 +478,34 @@ fun GamePage(navController: NavController) {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.End
         ){
-            Button(
-                onClick = {},
-                modifier = Modifier
-                    .height(60.dp)
-                    .width(IntrinsicSize.Max),
-                contentPadding = PaddingValues(5.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(48,50,58), //143,252,84
-                    contentColor = Color(0xFFED6A5E)
-                ),
-                border = BorderStroke(
-                    width = 4.dp,
-                    color = Color(25,50,25)
-                ),
-                shape = RoundedCornerShape(25)
+            if (mode.value == 2 && timedOrNot.value){
+                Button(
+                    onClick = {},
+                    modifier = Modifier
+                        .height(60.dp)
+                        .width(IntrinsicSize.Max),
+                    contentPadding = PaddingValues(5.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(48,50,58), //143,252,84
+                        contentColor = Color(0xFFED6A5E)
+                    ),
+                    border = BorderStroke(
+                        width = 4.dp,
+                        color = Color(25,50,25)
+                    ),
+                    shape = RoundedCornerShape(25)
 
-            ){
-                Text(
-                    text = time1.value.toString(),
-                    fontFamily = fontFamily2,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 28.sp,
-                    color = Color(143,252,84)
-                )
+                ){
+                    Text(
+                        text = displayString(mins1.value.toString(),secs1.value.toString()),
+                        fontFamily = fontFamily2,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 28.sp,
+                        color = Color(143,252,84)
+                    )
+                }
+            } else {
+                Spacer(modifier = Modifier.height(60.dp))
             }
 
             Spacer(modifier = Modifier.width(20.dp))
