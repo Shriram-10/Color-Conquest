@@ -148,7 +148,6 @@ fun DisplayWinner(navController: NavController) {
 
                 Button(
                     onClick = {
-                        navController.navigate(Screen.HomePage.route)
                         counter.value = 0
                         for(b in 0..1){
                             for(t in 0..<r.value * c.value){
@@ -168,6 +167,8 @@ fun DisplayWinner(navController: NavController) {
                         otherPlayer.value = 0
                         player1Name.value = ""
                         player2Name.value = ""
+                        winner.value = -1
+                        navController.navigate(Screen.HomePage.route)
                     },
                     modifier = Modifier
                         .width(275.dp),

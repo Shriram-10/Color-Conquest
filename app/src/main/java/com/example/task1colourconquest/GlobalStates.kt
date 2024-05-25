@@ -99,3 +99,5 @@ var player2Name = mutableStateOf("")
 var winnerName = mutableStateOf("")
 var sizeOfOtherCircle = playerCover[if (counter.value % 2 == 0) 1 else 0]
 var sizeOfCircle = playerCover[if (counter.value % 2 == 0) 0 else 1]
+
+var mode = mutableStateOf(1)

@@ -12,19 +12,24 @@ fun allowClick(i: Int){
 
 fun increment(i: Int, caller: Int){
 
-    if (caller == 0){
-        playerPoints[thisPlayer.value][i] += 1
-    } else {
-        if (!playerCover[thisPlayer.value][i] && !playerCover[otherPlayer.value][i]){
+    if (counter.value == 1 || counter.value == 2){
+        playerPoints[thisPlayer.value][i] = 3
+    } else{
+        if (caller == 0){
             playerPoints[thisPlayer.value][i] += 1
-        } else if (playerCover[otherPlayer.value][i]){
-            sizeOfCircle[i] = !sizeOfCircle[i]
-            playerPoints[thisPlayer.value][i] = playerPoints[otherPlayer.value][i] + 1
-            playerPoints[otherPlayer.value][i] = 0
-        } else if (playerCover[thisPlayer.value][i]){
-            playerPoints[thisPlayer.value][i] += 1
+        } else {
+            if (!playerCover[thisPlayer.value][i] && !playerCover[otherPlayer.value][i]){
+                playerPoints[thisPlayer.value][i] += 1
+            } else if (playerCover[otherPlayer.value][i]){
+                sizeOfCircle[i] = !sizeOfCircle[i]
+                playerPoints[thisPlayer.value][i] = playerPoints[otherPlayer.value][i] + 1
+                playerPoints[otherPlayer.value][i] = 0
+            } else if (playerCover[thisPlayer.value][i]){
+                playerPoints[thisPlayer.value][i] += 1
+            }
         }
     }
+
     coverTracker(i)
 
     if (playerPoints[thisPlayer.value][i] > 3){
