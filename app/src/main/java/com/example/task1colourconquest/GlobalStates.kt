@@ -102,5 +102,21 @@ var sizeOfCircle = playerCover[if (counter.value % 2 == 0) 0 else 1]
 
 var mode = mutableStateOf(1)
 
+var mins = mutableStateOf("")
+var secs = mutableStateOf("")
 var time1 = mutableStateOf(0.0)
 var time2 = mutableStateOf(0.0)
+var chooseHandicap = mutableStateOf(false)
+var showDropDown = mutableStateOf(false)
+var showTimerDialog = mutableStateOf(false)
+var showWarning1 = mutableStateOf(false)
+var showWarning2 = mutableStateOf(false)
+var showWarning3 = mutableStateOf(false)
+var mins1 = mutableStateOf(0)
+var secs1 = mutableStateOf(0)
+var mins2 = mutableStateOf(0)
+var secs2 = mutableStateOf(0)
+
+var timedOrNot = mutableStateOf(false)
+var askTimer = mutableStateOf(true)
+var displayChooseTime = mutableStateOf(false)
