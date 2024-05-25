@@ -35,6 +35,13 @@ fun Navigation() {
                 ModesPage(navController = navController)
         }
         composable(
+            route = Screen.HackerSettings.route,
+            enterTransition = { slideInHorizontally { it }},
+            popEnterTransition = { slideInHorizontally { it }}
+        ){
+            HackerSettings(navController = navController)
+        }
+        composable(
             route = Screen.PlayerInformation.route,
             enterTransition = {slideInHorizontally { it }},
 //            exitTransition = {slideOutHorizontally { it }},

@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -48,6 +49,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.task1colourconquest.ui.theme.fontFamily
+import com.example.task1colourconquest.ui.theme.fontFamily2
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -331,7 +334,42 @@ fun GamePage(navController: NavController) {
             }
         }
 
-        Spacer(modifier = Modifier.height(120.dp))
+        Spacer(modifier = Modifier.height(20.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+        ){
+            Spacer(modifier = Modifier.width(20.dp))
+
+            Button(
+                onClick = {},
+                modifier = Modifier
+                    .height(60.dp)
+                    .width(IntrinsicSize.Max),
+                contentPadding = PaddingValues(5.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(48,50,58), //143,252,84
+                    contentColor = Color(0xFFED6A5E)
+                ),
+                border = BorderStroke(
+                    width = 4.dp,
+                    color = Color(25,50,25)
+                ),
+                shape = RoundedCornerShape(25)
+
+            ){
+                Text(
+                    text = time2.value.toString(),
+                    modifier = Modifier.rotate(180f),
+                    fontFamily = fontFamily2,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 28.sp,
+                    color = Color(143,252,84)
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(40.dp))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -409,7 +447,42 @@ fun GamePage(navController: NavController) {
             }
         }
 
-        Spacer(modifier = Modifier.height(120.dp))
+        Spacer(modifier = Modifier.height(40.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.End
+        ){
+            Button(
+                onClick = {},
+                modifier = Modifier
+                    .height(60.dp)
+                    .width(IntrinsicSize.Max),
+                contentPadding = PaddingValues(5.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(48,50,58), //143,252,84
+                    contentColor = Color(0xFFED6A5E)
+                ),
+                border = BorderStroke(
+                    width = 4.dp,
+                    color = Color(25,50,25)
+                ),
+                shape = RoundedCornerShape(25)
+
+            ){
+                Text(
+                    text = time1.value.toString(),
+                    fontFamily = fontFamily2,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 28.sp,
+                    color = Color(143,252,84)
+                )
+            }
+
+            Spacer(modifier = Modifier.width(20.dp))
+        }
+
+        Spacer(modifier = Modifier.height(20.dp))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
