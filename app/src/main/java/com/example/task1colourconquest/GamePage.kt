@@ -51,6 +51,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.task1colourconquest.ui.theme.fontFamily
@@ -65,10 +66,9 @@ import java.util.concurrent.TimeUnit
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GamePage(navController: NavController) {
+fun GamePage(navController: NavController, viewModel: TimerViewModel) {
 
     var exitDialog by remember { mutableStateOf(false) }
-    var timer = Timer()
     mins1.value = mins.value.toInt()
     mins2.value = mins.value.toInt()
     secs1.value = secs.value.toInt()
@@ -357,32 +357,7 @@ fun GamePage(navController: NavController) {
         ){
             Spacer(modifier = Modifier.width(20.dp))
             if (mode.value == 2 && timedOrNot.value) {
-                Button(
-                    onClick = {},
-                    modifier = Modifier
-                        .height(60.dp)
-                        .width(IntrinsicSize.Max),
-                    contentPadding = PaddingValues(5.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(48,50,58), //143,252,84
-                        contentColor = Color(0xFFED6A5E)
-                    ),
-                    border = BorderStroke(
-                        width = 4.dp,
-                        color = Color(25,50,25)
-                    ),
-                    shape = RoundedCornerShape(25)
-
-                ){
-                    Text(
-                        text = displayString(mins1.value.toString(),secs1.value.toString()),
-                        modifier = Modifier.rotate(180f),
-                        fontFamily = fontFamily2,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 28.sp,
-                        color = Color(143,252,84)
-                    )
-                }
+                TimerButton(mins2.value,secs2.value,viewModel)
             } else {
                 Spacer(modifier = Modifier.height(60.dp))
             }
@@ -446,6 +421,9 @@ fun GamePage(navController: NavController) {
                                 colors = ButtonDefaults.buttonColors(
                                     containerColor = colorCircle[i],
                                 ),
+                                elevation = ButtonDefaults.buttonElevation(
+                                    defaultElevation = 8.dp
+                                )
                             ){
 
                             }
@@ -473,32 +451,7 @@ fun GamePage(navController: NavController) {
             horizontalArrangement = Arrangement.End
         ){
             if (mode.value == 2 && timedOrNot.value){
-                Button(
-                    onClick = {},
-                    modifier = Modifier
-                        .height(60.dp)
-                        .width(IntrinsicSize.Max),
-                    contentPadding = PaddingValues(5.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(48,50,58), //143,252,84
-                        contentColor = Color(0xFFED6A5E)
-                    ),
-                    border = BorderStroke(
-                        width = 4.dp,
-                        color = Color(25,50,25)
-                    ),
-                    shape = RoundedCornerShape(25)
-
-                ){
-                    Text(
-                        text = displayString(mins1.value.toString(),secs1.value.toString()),
-                        modifier = Modifier.rotate(180f),
-                        fontFamily = fontFamily2,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 28.sp,
-                        color = Color(143,252,84)
-                    )
-                }
+                TimerButton(mins1.value,secs1.value,viewModel)
             } else {
                 Spacer(modifier = Modifier.height(60.dp))
             }
@@ -601,5 +554,47 @@ fun GamePage(navController: NavController) {
 @Preview(showBackground = true)
 @Composable
 fun GamePagePreview() {
-    GamePage(navController = rememberNavController())
+    GamePage(navController = rememberNavController(), viewModel = TimerViewModel())
+}
+
+@Composable
+fun TimerButton(mins: Int, secs: Int, viewModel: TimerViewModel) {
+    Row{
+        viewModel.apply{
+            Button(
+                onClick = {},
+                modifier = Modifier
+                    .height(60.dp)
+                    .width(IntrinsicSize.Max),
+                contentPadding = PaddingValues(5.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(48,50,58), //143,252,84
+                    contentColor = Color(0xFFED6A5E)
+                ),
+                border = BorderStroke(
+                    width = 4.dp,
+                    color = Color(25,50,25)
+                ),
+                shape = RoundedCornerShape(25)
+
+            ){
+                Text(
+                    text = timerText.value,
+                    modifier = Modifier.rotate(180f),
+                    fontFamily = fontFamily2,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 28.sp,
+                    color = Color(143,252,84)
+                )
+            }
+            Spacer(modifier = Modifier.width(6.dp))
+            Button(onClick = { if (isPlaying.value) stopCountDownTimer() else startCountDownTimer() }) {
+                Text(if (isPlaying.value) "Stop Countdown" else "Start Countdown")
+            }
+            Spacer(modifier = Modifier.width(6.dp))
+            Button(onClick = { resetCountDownTimer() }) {
+                Text("Reset")
+            }
+        }
+    }
 }

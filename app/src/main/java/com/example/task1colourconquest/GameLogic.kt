@@ -43,7 +43,7 @@ fun increment(i: Int, caller: Int){
     }
 
     pointsSum()
-    if ((pointsTotal[0] == 0 || pointsTotal[1] == 0) && counter.value > 6) {
+    if ((pointsTotal[0] == 0 || pointsTotal[1] == 0) && counter.value > 1) {
         resultDeterminer()
     }
     if (caller == 0){

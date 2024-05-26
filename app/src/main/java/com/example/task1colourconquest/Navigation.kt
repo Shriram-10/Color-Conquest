@@ -6,6 +6,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -57,7 +58,7 @@ fun Navigation() {
             popEnterTransition = {slideInHorizontally { it }},
 //            popExitTransition = {slideOutHorizontally { it }}
         ) {
-                GamePage(navController = navController)
+                GamePage(navController = navController, viewModel = viewModel())
         }
         composable(
             route = Screen.GameResult.route,
