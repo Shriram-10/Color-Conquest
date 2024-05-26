@@ -34,15 +34,19 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -57,6 +61,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.Timer
 import java.util.TimerTask
+import java.util.concurrent.TimeUnit
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -453,17 +458,6 @@ fun GamePage(navController: NavController) {
                             )
                         }
                     }
-                    timer.schedule(
-                        object: TimerTask() {
-                            override fun run() {
-                                var newTime = timerChanger(mins1.value, secs1.value, mins2.value, secs2.value)
-                                mins1.value = newTime[0]
-                                secs1.value = newTime[1]
-                                mins2.value = newTime[2]
-                                secs2.value = newTime[3]
-                            }
-                        },1000)
-
                     if(clicked[i]) {
                         allowClick(i)
                         clicked[i] = false
@@ -498,6 +492,7 @@ fun GamePage(navController: NavController) {
                 ){
                     Text(
                         text = displayString(mins1.value.toString(),secs1.value.toString()),
+                        modifier = Modifier.rotate(180f),
                         fontFamily = fontFamily2,
                         fontWeight = FontWeight.Bold,
                         fontSize = 28.sp,

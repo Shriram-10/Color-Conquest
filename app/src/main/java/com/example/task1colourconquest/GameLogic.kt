@@ -2,6 +2,10 @@ package com.example.task1colourconquest
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import java.util.Timer
+import java.util.concurrent.TimeUnit
+import kotlin.concurrent.fixedRateTimer
+import kotlin.time.Duration
 
 fun allowClick(i: Int){
     if (((counter.value == 0 || counter.value == 1 ) && !playerCover[otherPlayer.value][i]) || playerCover[thisPlayer.value][i]){
@@ -138,27 +142,4 @@ fun resultDeterminer(){
     } else {
         winner.value = -1
     }
-}
-
-fun timerChanger(min1: Int, sec1: Int, min2: Int, sec2: Int) : List<Int>{
-    var second1 = sec1
-    var minute1 = min1
-    var second2 = sec2
-    var minute2 = min2
-    if(minute1 > 0 && second1 > 0 && counter.value % 2 == 1){
-        if (second1 == 0){
-            minute1--
-            second1 = 59
-        } else {
-            second1--
-        }
-    } else if (minute2 > 0 && second2 > 0 && counter.value % 2 == 0 && counter.value != 0){
-        if (second2 == 0){
-            minute2--
-            second2 = 59
-        } else {
-            second2--
-        }
-    }
-    return listOf(minute1, second1, minute2, second2)
 }

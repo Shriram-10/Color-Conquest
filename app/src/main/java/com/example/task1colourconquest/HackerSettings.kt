@@ -345,6 +345,9 @@ fun HackerSettings(navController: NavController){
                             onClick = {
                                 timedOrNot.value = !timedOrNot.value
                                 displayChooseTime.value = !displayChooseTime.value
+                                mins.value = ""
+                                secs.value = ""
+                                showDropDown.value = false
                             },
                             modifier = Modifier.height(48.dp),
                             colors = ButtonDefaults.buttonColors(
@@ -387,7 +390,9 @@ fun HackerSettings(navController: NavController){
                                             secs.value = ""
                                         }
                                     },
-                                    modifier = Modifier.height(48.dp),
+                                    modifier = Modifier
+                                        .height(48.dp)
+                                        .width(IntrinsicSize.Max),
                                     colors = ButtonDefaults.buttonColors(
                                         containerColor = Color(0xFF0FA6F7),
                                         contentColor = Color(0xFFF2E6D1)
@@ -399,7 +404,7 @@ fun HackerSettings(navController: NavController){
                                 ){
                                     Text(
                                         text = if(chooseHandicap.value) "YES" else "NO",
-                                        fontSize = 20.sp,
+                                        fontSize = 18.sp,
                                         fontWeight = FontWeight.Bold
                                     )
                                 }

@@ -118,3 +118,5 @@ var secs2 = mutableStateOf(0)
 
 var timedOrNot = mutableStateOf(false)
 var displayChooseTime = mutableStateOf(false)
+
+var isRunning = mutableStateOf(false)
