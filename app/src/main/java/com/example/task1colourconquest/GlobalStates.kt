@@ -110,3 +110,8 @@ var mins1 = mutableStateOf(0)
 var secs1 = mutableStateOf(0)
 var mins2 = mutableStateOf(0)
 var secs2 = mutableStateOf(0)
+
+var minsh1 = mutableStateOf("")
+var secsh1 = mutableStateOf("")
+var minsh2 = mutableStateOf("")
+var secsh2 = mutableStateOf("")

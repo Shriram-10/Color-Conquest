@@ -345,8 +345,15 @@ fun HackerSettings(navController: NavController){
                             onClick = {
                                 timedOrNot.value = !timedOrNot.value
                                 displayChooseTime.value = !displayChooseTime.value
+                                if (chooseHandicap.value){
+                                    chooseHandicap.value = false
+                                }
                                 mins.value = ""
                                 secs.value = ""
+                                minsh1.value = ""
+                                secsh1.value = ""
+                                minsh2.value = ""
+                                secsh2.value = ""
                                 showDropDown.value = false
                             },
                             modifier = Modifier.height(48.dp),
@@ -392,7 +399,7 @@ fun HackerSettings(navController: NavController){
                                     },
                                     modifier = Modifier
                                         .height(48.dp)
-                                        .width(IntrinsicSize.Max),
+                                        .width(96.dp),
                                     colors = ButtonDefaults.buttonColors(
                                         containerColor = Color(0xFF0FA6F7),
                                         contentColor = Color(0xFFF2E6D1)
@@ -672,6 +679,182 @@ fun HackerSettings(navController: NavController){
                                             }
                                             Spacer(modifier = Modifier.height(20.dp))
                                         }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    AnimatedVisibility(
+                        visible = chooseHandicap.value
+                    ) {
+                        Column(
+                            modifier = Modifier.fillMaxSize(),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ){
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.Center,
+                                verticalAlignment = Alignment.CenterVertically
+                            ){
+                                AnimatedVisibility(
+                                    visible = chooseHandicap.value,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .background(Color(0xFFF2D1CD))
+                                        .clip(RoundedCornerShape(20))
+                                ){
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                    ){
+                                        Spacer(modifier = Modifier.height(5.dp))
+                                        Row(
+                                            modifier = Modifier
+                                                .fillMaxWidth(),
+                                            horizontalArrangement = Arrangement.Center,
+                                            verticalAlignment = Alignment.CenterVertically,
+                                        ){
+                                            Spacer(modifier = Modifier.width(55.dp))
+                                            Text(
+                                                text = "Mins",
+                                                fontSize = 18.sp,
+                                                fontWeight = FontWeight.Bold,
+                                                color = Color.Black
+                                            )
+                                            Spacer(modifier = Modifier.width(30.dp))
+
+                                            Text(
+                                                text = "Secs",
+                                                fontSize = 18.sp,
+                                                fontWeight = FontWeight.Bold,
+                                                color = Color.Black
+                                            )
+                                        }
+                                        Row(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .height(60.dp),
+                                            horizontalArrangement = Arrangement.Center,
+                                            verticalAlignment = Alignment.CenterVertically,
+                                        ){
+                                            Text(
+                                                text = "Player 1 : ",
+                                                fontSize = 18.sp,
+                                                fontWeight = FontWeight.Bold,
+                                                color = Color.Black
+                                            )
+                                            OutlinedTextField(
+                                                value = minsh1.value,
+                                                onValueChange = {
+                                                    minsh1.value = it
+                                                },
+                                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                                                modifier = Modifier
+                                                    .height(48.dp)
+                                                    .width(60.dp)
+                                                    .background(Color(0xFFC7F1FD)),
+                                            )
+                                            Text(
+                                                text = " : ",
+                                                fontSize = 18.sp,
+                                                fontWeight = FontWeight.Bold,
+                                                color = Color.Black
+                                            )
+
+                                            OutlinedTextField(
+                                                value = secsh1.value,
+                                                onValueChange = {
+                                                    secsh1.value = it
+                                                },
+                                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                                                modifier = Modifier
+                                                    .height(48.dp)
+                                                    .width(60.dp)
+                                                    .background(Color(0xFFC7F1FD)),
+                                            )
+                                        }
+                                        Row(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .height(60.dp),
+                                            horizontalArrangement = Arrangement.Center,
+                                            verticalAlignment = Alignment.CenterVertically,
+                                        ){
+                                            Text(
+                                                text = "Player 2 : ",
+                                                fontSize = 18.sp,
+                                                fontWeight = FontWeight.Bold,
+                                                color = Color.Black
+                                            )
+                                            OutlinedTextField(
+                                                value = minsh2.value,
+                                                onValueChange = {
+                                                    minsh2.value = it
+                                                },
+                                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                                                modifier = Modifier
+                                                    .height(48.dp)
+                                                    .width(60.dp)
+                                                    .background(Color(0xFFC7F1FD)),
+                                            )
+                                            Text(
+                                                text = " : ",
+                                                fontSize = 18.sp,
+                                                fontWeight = FontWeight.Bold,
+                                                color = Color.Black
+                                            )
+
+                                            OutlinedTextField(
+                                                value = secsh2.value,
+                                                onValueChange = {
+                                                    secsh2.value = it
+                                                },
+                                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                                                modifier = Modifier
+                                                    .height(48.dp)
+                                                    .width(60.dp)
+                                                    .background(Color(0xFFC7F1FD)),
+                                            )
+                                        }
+
+                                        Spacer(modifier = Modifier.height(16.dp))
+
+                                        Button(
+                                            onClick = {
+                                                if (minsh1.value.contains(",") || secsh1.value.contains(",") || secsh2.value.contains(",") || minsh2.value.contains(",")){
+                                                    showWarning1.value = true
+                                                } else if (minsh1.value.contains(" ")){
+                                                    minsh1.value = minsh1.value.replace(" ", "")
+                                                } else if (minsh2.value.contains(" ")){
+                                                    minsh2.value = minsh2.value.replace(" ", "")
+                                                } else if (secsh1.value.contains(" ")){
+                                                    secsh1.value = secsh1.value.replace(" ", "")
+                                                } else if (secsh2.value.contains(" ")){
+                                                    secsh2.value = secsh2.value.replace(" ", "")
+                                                } else if (minsh1.value.toFloat() % 1 != 0f || secsh1.value.toFloat() % 1 != 0f || minsh1.value == "" || secsh1.value == "" || minsh2.value.toFloat() % 1 != 0f || secsh2.value.toFloat() % 1 != 0f || minsh2.value == "" || secsh2.value == ""){
+                                                    showWarning1.value = true
+                                                } else if (minsh1.value.toInt() <= 0 || secsh1.value.toInt() < 0 || minsh2.value.toInt() <= 0 || secsh2.value.toInt() < 0){
+                                                    showWarning3.value = true
+                                                } else if (minsh1.value.toInt() > 15 || secsh1.value.toInt() > 59 || minsh2.value.toInt() > 15 || secsh2.value.toInt() > 59){
+                                                    showWarning2.value = true
+                                                }
+                                            },
+                                            modifier = Modifier.height(48.dp),
+                                            colors = ButtonDefaults.buttonColors(
+                                                containerColor = Color(0xFF0FA6F7)
+                                            ),
+                                            elevation = ButtonDefaults.buttonElevation(
+                                                defaultElevation = 12.dp
+                                            ),
+                                            shape = RoundedCornerShape(15)
+                                        ){
+                                            Text(
+                                                text = "Confirm",
+                                                fontSize = 18.sp,
+                                                fontWeight = FontWeight.Bold,
+                                                color = Color.White
+                                            )
+                                        }
+                                        Spacer(modifier = Modifier.height(20.dp))
                                     }
                                 }
                             }
