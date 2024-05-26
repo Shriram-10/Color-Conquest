@@ -1,5 +1,6 @@
 package com.example.task1colourconquest
 
+
 import android.os.CountDownTimer
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -11,8 +12,8 @@ import java.util.concurrent.TimeUnit
 class TimerViewModel2 : ViewModel()  {
     private var countDownTimer: CountDownTimer? = null
 
-    private val userInputMinute = TimeUnit.MINUTES.toMillis(1)
-    private val userInputSecond = TimeUnit.SECONDS.toMillis(59)
+    private val userInputMinute = TimeUnit.MINUTES.toMillis(0)
+    private val userInputSecond = TimeUnit.SECONDS.toMillis(10)
 
     val initialTotalTimeInMillis = userInputMinute + userInputSecond
     var timeLeft = mutableStateOf(initialTotalTimeInMillis)
@@ -21,6 +22,7 @@ class TimerViewModel2 : ViewModel()  {
     val timerText = mutableStateOf(timeLeft.value.timeFormat())
 
     val isPlaying = mutableStateOf(false)
+    val isTimeRemaining = mutableStateOf(true)
 
     fun startCountDownTimer(){
         isPlaying.value = true
@@ -31,8 +33,9 @@ class TimerViewModel2 : ViewModel()  {
             }
 
             override fun onFinish() {
-                timerText.value = initialTotalTimeInMillis.timeFormat()
+                timerText.value = "00:00"
                 isPlaying.value = false
+                isTimeRemaining.value = false
             }
         }.start()
     }

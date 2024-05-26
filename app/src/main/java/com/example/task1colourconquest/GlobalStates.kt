@@ -8,15 +8,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.graphics.Color
 
-var colorOfTile = mutableStateOf(false)
-//    mutableStateListOf(
-//    false,false,false,false,false,
-//    false,false,false,false,false,
-//    false,false,false,false,false,
-//    false,false,false,false,false,
-//    false,false,false,false,false,
-//)
-
 var winner = mutableStateOf(-1)
 
 var clicked = mutableStateListOf<Boolean>(
@@ -108,15 +99,14 @@ var secs = mutableStateOf("")
 var chooseHandicap = mutableStateOf(false)
 var showDropDown = mutableStateOf(false)
 var showTimerDialog = mutableStateOf(false)
+var timedOrNot = mutableStateOf(false)
+var displayChooseTime = mutableStateOf(false)
+
 var showWarning1 = mutableStateOf(false)
 var showWarning2 = mutableStateOf(false)
 var showWarning3 = mutableStateOf(false)
+
 var mins1 = mutableStateOf(0)
 var secs1 = mutableStateOf(0)
 var mins2 = mutableStateOf(0)
 var secs2 = mutableStateOf(0)
-
-var timedOrNot = mutableStateOf(false)
-var displayChooseTime = mutableStateOf(false)
-
-var isRunning = mutableStateOf(false)

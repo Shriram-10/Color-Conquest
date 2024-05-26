@@ -75,9 +75,9 @@ fun GamePage(navController: NavController, viewModel1: TimerViewModel1, viewMode
     secs1.value = secs.value.toInt()
     secs2.value = secs.value.toInt()
 
-
     if(exitDialog) {
         AlertDialog(onDismissRequest = {
+
             exitDialog = false
         },
             confirmButton = {
@@ -387,14 +387,6 @@ fun GamePage(navController: NavController, viewModel1: TimerViewModel1, viewMode
                                 color = Color(143,252,84)
                             )
                         }
-                        Spacer(modifier = Modifier.width(6.dp))
-                        Button(onClick = { if (isPlaying.value) stopCountDownTimer() else startCountDownTimer() }) {
-                            Text(if (isPlaying.value) "Stop Countdown" else "Start Countdown")
-                        }
-                        Spacer(modifier = Modifier.width(6.dp))
-                        Button(onClick = { resetCountDownTimer() }) {
-                            Text("Reset")
-                        }
                     }
                 }
             } else {
@@ -475,9 +467,26 @@ fun GamePage(navController: NavController, viewModel1: TimerViewModel1, viewMode
                             )
                         }
                     }
+
                     if(clicked[i]) {
                         allowClick(i)
+                        if (counter.value % 2 == 1){
+                            viewModel1.stopCountDownTimer()
+                            viewModel2.startCountDownTimer()
+                        }
+                        else {
+                            viewModel2.stopCountDownTimer()
+                            viewModel1.startCountDownTimer()
+                        }
+
                         clicked[i] = false
+                    }
+                    if (!viewModel1.isTimeRemaining.value){
+                        winnerName.value = if (player2Name.value != "") player2Name.value else "PLAYER 2"
+                        winner.value = 0
+                    } else if (!viewModel2.isTimeRemaining.value){
+                        winnerName.value = if (player1Name.value != "") player1Name.value else "PLAYER 1"
+                        winner.value = 1
                     }
                 }
             }
@@ -492,14 +501,6 @@ fun GamePage(navController: NavController, viewModel1: TimerViewModel1, viewMode
             if (mode.value == 2 && timedOrNot.value){
                 Row{
                     viewModel1.apply{
-                        Button(onClick = { if (isPlaying.value) stopCountDownTimer() else startCountDownTimer() }) {
-                            Text(if (isPlaying.value) "Stop Countdown" else "Start Countdown")
-                        }
-                        Spacer(modifier = Modifier.width(6.dp))
-                        Button(onClick = { resetCountDownTimer() }) {
-                            Text("Reset")
-                        }
-                        Spacer(modifier = Modifier.width(6.dp))
                         Button(
                             onClick = {},
                             modifier = Modifier
