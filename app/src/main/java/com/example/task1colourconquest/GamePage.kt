@@ -67,7 +67,7 @@ import java.util.concurrent.TimeUnit
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GamePage(navController: NavController, viewModel1: TimerViewModel1, viewModel2: TimerViewModel2) {
+fun GamePage(navController: NavController) {
 
     var exitDialog by remember { mutableStateOf(false) }
     mins1.value = mins.value.toInt()
@@ -360,33 +360,31 @@ fun GamePage(navController: NavController, viewModel1: TimerViewModel1, viewMode
             Spacer(modifier = Modifier.width(20.dp))
             if (mode.value == 2 && timedOrNot.value) {
                 Row{
-                    viewModel2.apply{
-                        Button(
-                            onClick = {},
-                            modifier = Modifier
-                                .height(60.dp)
-                                .width(IntrinsicSize.Max),
-                            contentPadding = PaddingValues(5.dp),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = Color(48,50,58), //143,252,84
-                                contentColor = Color(0xFFED6A5E)
-                            ),
-                            border = BorderStroke(
-                                width = 4.dp,
-                                color = Color(25,50,25)
-                            ),
-                            shape = RoundedCornerShape(25)
+                    Button(
+                        onClick = {},
+                        modifier = Modifier
+                            .height(60.dp)
+                            .width(IntrinsicSize.Max),
+                        contentPadding = PaddingValues(5.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(48,50,58), //143,252,84
+                            contentColor = Color(0xFFED6A5E)
+                        ),
+                        border = BorderStroke(
+                            width = 4.dp,
+                            color = Color(25,50,25)
+                        ),
+                        shape = RoundedCornerShape(25)
 
-                        ){
-                            Text(
-                                text = timerText.value,
-                                modifier = Modifier.rotate(180f),
-                                fontFamily = fontFamily2,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 28.sp,
-                                color = Color(143,252,84)
-                            )
-                        }
+                    ){
+                        Text(
+                            text = "",
+                            modifier = Modifier.rotate(180f),
+                            fontFamily = fontFamily2,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 28.sp,
+                            color = Color(143,252,84)
+                        )
                     }
                 }
             } else {
@@ -467,30 +465,33 @@ fun GamePage(navController: NavController, viewModel1: TimerViewModel1, viewMode
                             )
                         }
                     }
-                    if (winner.value == -1){
-                        if(clicked[i]) {
-                            allowClick(i)
-                            if (counter.value % 2 == 1){
-                                viewModel1.stopCountDownTimer()
-                                viewModel2.startCountDownTimer()
-                            }
-                            else {
-                                viewModel2.stopCountDownTimer()
-                                viewModel1.startCountDownTimer()
-                            }
 
-                            clicked[i] = false
-                        }
-                        if (!viewModel1.isTimeRemaining.value){
-                            counter.value++
-                            winnerName.value = if (player2Name.value != "") player2Name.value else "PLAYER 2"
-                            winner.value = 0
-                        } else if (!viewModel2.isTimeRemaining.value){
-                            counter.value++
-                            winnerName.value = if (player1Name.value != "") player1Name.value else "PLAYER 1"
-                            winner.value = 1
-                        }
+                    if(clicked[i]) {
+                        allowClick(i)
+//                        if (counter.value % 2 == 1){
+//                            viewModel1.stopCountDownTimer()
+//                            viewModel2.startCountDownTimer()
+//                        }
+//                        else {
+//                            viewModel2.stopCountDownTimer()
+//                            viewModel1.startCountDownTimer()
+//                        }
+
+                        clicked[i] = false
                     }
+//                    if (!viewModel1.isTimeRemaining.value){
+//                        counter.value++
+//                        winnerName.value = if (player2Name.value != "") player2Name.value else "PLAYER 2"
+//                        winner.value = 0
+//                    } else if (!viewModel2.isTimeRemaining.value){
+//                        counter.value++
+//                        winnerName.value = if (player1Name.value != "") player1Name.value else "PLAYER 1"
+//                        winner.value = 1
+//                    } else if (winner.value != -1){
+////                        viewModel1.stopCountDownTimer()
+////                        viewModel2.stopCountDownTimer()
+//                    }
+
                 }
             }
         }
@@ -503,32 +504,30 @@ fun GamePage(navController: NavController, viewModel1: TimerViewModel1, viewMode
         ){
             if (mode.value == 2 && timedOrNot.value){
                 Row{
-                    viewModel1.apply{
-                        Button(
-                            onClick = {},
-                            modifier = Modifier
-                                .height(60.dp)
-                                .width(IntrinsicSize.Max),
-                            contentPadding = PaddingValues(5.dp),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = Color(48,50,58), //143,252,84
-                                contentColor = Color(0xFFED6A5E)
-                            ),
-                            border = BorderStroke(
-                                width = 4.dp,
-                                color = Color(25,50,25)
-                            ),
-                            shape = RoundedCornerShape(25)
+                    Button(
+                        onClick = {},
+                        modifier = Modifier
+                            .height(60.dp)
+                            .width(IntrinsicSize.Max),
+                        contentPadding = PaddingValues(5.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(48,50,58), //143,252,84
+                            contentColor = Color(0xFFED6A5E)
+                        ),
+                        border = BorderStroke(
+                            width = 4.dp,
+                            color = Color(25,50,25)
+                        ),
+                        shape = RoundedCornerShape(25)
 
-                        ){
-                            Text(
-                                text = timerText.value,
-                                fontFamily = fontFamily2,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 28.sp,
-                                color = Color(143,252,84)
-                            )
-                        }
+                    ){
+                        Text(
+                            text = "",
+                            fontFamily = fontFamily2,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 28.sp,
+                            color = Color(143,252,84)
+                        )
                     }
                 }
             } else {
@@ -622,8 +621,6 @@ fun GamePage(navController: NavController, viewModel1: TimerViewModel1, viewMode
         }
     }
     if (winner.value != -1) {
-        viewModel2.stopCountDownTimer()
-        viewModel1.stopCountDownTimer()
         if (winner.value == 0) {
             DisplayWinner(navController = navController)
         } else if (winner.value == 1) {
@@ -635,6 +632,6 @@ fun GamePage(navController: NavController, viewModel1: TimerViewModel1, viewMode
 @Preview(showBackground = true)
 @Composable
 fun GamePagePreview() {
-    GamePage(navController = rememberNavController(), viewModel1 = viewModel(), viewModel2 = viewModel())
+    GamePage(navController = rememberNavController())
 }
 

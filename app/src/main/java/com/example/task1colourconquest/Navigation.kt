@@ -58,7 +58,7 @@ fun Navigation() {
             popEnterTransition = {slideInHorizontally { it }},
 //            popExitTransition = {slideOutHorizontally { it }}
         ) {
-                GamePage(navController = navController, viewModel1 = viewModel(), viewModel2 = viewModel())
+                GamePage(navController = navController)
         }
         composable(
             route = Screen.GameResult.route,
