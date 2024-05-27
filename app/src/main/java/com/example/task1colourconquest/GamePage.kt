@@ -621,6 +621,8 @@ fun GamePage(navController: NavController, viewModel1: TimerViewModel1, viewMode
         }
     }
     if (winner.value != -1) {
+        viewModel2.stopCountDownTimer()
+        viewModel1.stopCountDownTimer()
         if (winner.value == 0) {
             DisplayWinner(navController = navController)
         } else if (winner.value == 1) {
