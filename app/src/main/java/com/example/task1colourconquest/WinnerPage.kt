@@ -40,11 +40,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun DisplayWinner(navController: NavController) {
-    var causeDelay by remember {mutableStateOf(false)}
-    LaunchedEffect(Unit){
-        delay(1000)
-        causeDelay = false
-    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -126,8 +122,6 @@ fun DisplayWinner(navController: NavController) {
                         thisPlayer.value = 1
                         otherPlayer.value = 0
                         winner.value = -1
-                        navController.navigate(Screen.GamePage.route)
-
                     },
                     modifier = Modifier
                         .width(275.dp),

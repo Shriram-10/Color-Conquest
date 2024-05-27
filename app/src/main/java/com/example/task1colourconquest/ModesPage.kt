@@ -87,6 +87,7 @@ fun ModesPage(navController: NavController){
 
         Button(
             onClick = {
+                mode.value = 1
                 navController.navigate(route = Screen.PlayerInformation.route)
             },
             modifier = Modifier
