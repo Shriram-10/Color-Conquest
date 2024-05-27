@@ -467,28 +467,29 @@ fun GamePage(navController: NavController, viewModel1: TimerViewModel1, viewMode
                             )
                         }
                     }
+                    if (winner.value == -1){
+                        if(clicked[i]) {
+                            allowClick(i)
+                            if (counter.value % 2 == 1){
+                                viewModel1.stopCountDownTimer()
+                                viewModel2.startCountDownTimer()
+                            }
+                            else {
+                                viewModel2.stopCountDownTimer()
+                                viewModel1.startCountDownTimer()
+                            }
 
-                    if(clicked[i]) {
-                        allowClick(i)
-                        if (counter.value % 2 == 1){
-                            viewModel1.stopCountDownTimer()
-                            viewModel2.startCountDownTimer()
+                            clicked[i] = false
                         }
-                        else {
-                            viewModel2.stopCountDownTimer()
-                            viewModel1.startCountDownTimer()
+                        if (!viewModel1.isTimeRemaining.value){
+                            counter.value++
+                            winnerName.value = if (player2Name.value != "") player2Name.value else "PLAYER 2"
+                            winner.value = 0
+                        } else if (!viewModel2.isTimeRemaining.value){
+                            counter.value++
+                            winnerName.value = if (player1Name.value != "") player1Name.value else "PLAYER 1"
+                            winner.value = 1
                         }
-
-                        clicked[i] = false
-                    }
-                    if (!viewModel1.isTimeRemaining.value){
-                        counter.value++
-                        winnerName.value = if (player2Name.value != "") player2Name.value else "PLAYER 2"
-                        winner.value = 0
-                    } else if (!viewModel2.isTimeRemaining.value){
-                        counter.value++
-                        winnerName.value = if (player1Name.value != "") player1Name.value else "PLAYER 1"
-                        winner.value = 1
                     }
                 }
             }
