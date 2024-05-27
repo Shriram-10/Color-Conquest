@@ -11,12 +11,11 @@ import java.util.concurrent.TimeUnit
 
 class TimerViewModel2 : ViewModel()  {
     private var countDownTimer: CountDownTimer? = null
+    private var _userInputMinute : Long = TimeUnit.MINUTES.toMillis(1)
+    private var _userInputSecond: Long = TimeUnit.SECONDS.toMillis(10)
 
-    private val userInputMinute = TimeUnit.MINUTES.toMillis(0)
-    private val userInputSecond = TimeUnit.SECONDS.toMillis(10)
-
-    val initialTotalTimeInMillis = userInputMinute + userInputSecond
-    var timeLeft = mutableStateOf(initialTotalTimeInMillis)
+    private val _initialTotalTimeInMillis = _userInputMinute + _userInputSecond
+    var timeLeft = mutableStateOf(_initialTotalTimeInMillis)
     val countDownInterval = 1000L
 
     val timerText = mutableStateOf(timeLeft.value.timeFormat())
@@ -49,6 +48,6 @@ class TimerViewModel2 : ViewModel()  {
         isPlaying.value = false
         countDownTimer?.cancel()
         timerText.value = timeLeft.value.timeFormat()
-        timeLeft.value = initialTotalTimeInMillis
+        timeLeft.value = _initialTotalTimeInMillis
     }
 }
