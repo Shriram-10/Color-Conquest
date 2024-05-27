@@ -70,10 +70,10 @@ import java.util.concurrent.TimeUnit
 fun GamePage(navController: NavController) {
 
     var exitDialog by remember { mutableStateOf(false) }
-    mins1.value = mins.value.toInt()
-    mins2.value = mins.value.toInt()
-    secs1.value = secs.value.toInt()
-    secs2.value = secs.value.toInt()
+//    mins1.value = mins.value.toInt()
+//    mins2.value = mins.value.toInt()
+//    secs1.value = secs.value.toInt()
+//    secs2.value = secs.value.toInt()
 
     if(exitDialog) {
         AlertDialog(onDismissRequest = {
