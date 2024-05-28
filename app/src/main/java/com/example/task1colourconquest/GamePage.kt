@@ -427,7 +427,7 @@ fun GamePage(navController: NavController) {
                             
                             val sizeCircle by animateFloatAsState(
                                 targetValue = if (sizeOfCircle[i] || sizeOfOtherCircle[i]) 0.8f else 0f,
-                                animationSpec = tween(durationMillis = 2000)
+                                animationSpec = tween(durationMillis = 800)
                             )
 
                             Button (

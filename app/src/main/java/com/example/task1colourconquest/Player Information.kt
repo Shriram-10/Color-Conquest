@@ -151,21 +151,34 @@ fun PlayerPage(navController: NavController) {
                             modifier = Modifier.fillMaxSize()
                         )
                     }
-                    BasicTextField(
-                        value = player1Name.value,
-                        onValueChange = {player1Name.value = it},
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 24.dp),
-                        cursorBrush = SolidColor(Color(0xFFED6A5E)),
-                        textStyle = TextStyle(
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color(0xFFED6A5E),
-                            textAlign = TextAlign.Center,
-                            letterSpacing = 1.sp
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier.height(18.dp)
+                    ){
+                        BasicTextField(
+                            value = player1Name.value,
+                            onValueChange = {player1Name.value = it},
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 24.dp),
+                            cursorBrush = SolidColor(Color(0xFFED6A5E)),
+                            textStyle = TextStyle(
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFFED6A5E),
+                                textAlign = TextAlign.Center,
+                                letterSpacing = 1.sp
+                            )
                         )
-                    )
+                        if (player1Name.value == ""){
+                            Text(
+                                text = "Enter Player-1 Name",
+                                color = Color.Gray,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 14.sp
+                            )
+                        }
+                    }
 
                     Text(
                         text = "------------",
@@ -206,21 +219,34 @@ fun PlayerPage(navController: NavController) {
                             modifier = Modifier.fillMaxSize()
                         )
                     }
-                    BasicTextField(
-                        value = player2Name.value,
-                        onValueChange = {player2Name.value = it},
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 24.dp),
-                        cursorBrush = SolidColor(Color(0xFF0FA6F7)),
-                        textStyle = TextStyle(
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color(0xFF0FA6F7),
-                            textAlign = TextAlign.Center,
-                            letterSpacing = 1.sp
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier.height(18.dp)
+                    ){
+                        BasicTextField(
+                            value = player2Name.value,
+                            onValueChange = {player2Name.value = it},
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 24.dp),
+                            cursorBrush = SolidColor(Color(0xFF0FA6F7)),
+                            textStyle = TextStyle(
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFF0FA6F7),
+                                textAlign = TextAlign.Center,
+                                letterSpacing = 1.sp
+                            )
                         )
-                    )
+                        if (player2Name.value == ""){
+                            Text(
+                                text = "Enter Player-2 Name",
+                                color = Color.Gray,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 14.sp
+                            )
+                        }
+                    }
                     Text(
                         text = "------------",
                         modifier = Modifier
