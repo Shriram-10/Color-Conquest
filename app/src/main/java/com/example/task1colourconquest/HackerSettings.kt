@@ -200,6 +200,48 @@ fun HackerSettings(navController: NavController){
             }
         )
     }
+    if (showWarning4.value){
+        AlertDialog(
+            onDismissRequest = {  },
+            confirmButton = {
+                Button(
+                    onClick = { showWarning4.value = false },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFED6A5E),
+                        contentColor = Color.White
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 12.dp
+                    ),
+                    shape = RoundedCornerShape(
+                        topStartPercent = 20,
+                        topEndPercent = 0,
+                        bottomStartPercent = 0,
+                        bottomEndPercent = 20
+                    )
+                ) {
+                    Text(text = "OK")
+                }
+            },
+            title = {
+                Text(
+                    textAlign = TextAlign.Center,
+                    text = "Enter Time to Enter!",
+                    fontSize = 28.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = Color(0xFFED6A5E)
+                )
+            },
+            text = {
+                Text(
+                    textAlign = TextAlign.Center,
+                    text = "NOTE:\nPlease enter a valid time.\nMinutes and seconds should be greater than zero.\nMinutes should not exceed 15.\nSeconds should not exceed 59.",
+                    fontSize = 18.sp,
+                    color = Color.Black
+                )
+            }
+        )
+    }
 
     Column(
         modifier = Modifier
@@ -650,18 +692,22 @@ fun HackerSettings(navController: NavController){
                                             }
                                             Button(
                                                 onClick = {
-                                                    if (mins.value.contains(",") || secs.value.contains(",")){
-                                                        showWarning1.value = true
-                                                    } else if (mins.value.contains(" ")){
-                                                        mins.value = mins.value.replace(" ", "")
-                                                    } else if (secs.value.contains(" ")){
-                                                        secs.value = secs.value.replace(" ", "")
-                                                    } else if (mins.value.toFloat() % 1 != 0f || secs.value.toFloat() % 1 != 0f || mins.value == "" || secs.value == ""){
-                                                        showWarning1.value = true
-                                                    } else if ((mins.value.toInt() < 0 && secs.value.toInt() <= 0) || (mins.value.toInt() <= 0 && secs.value.toInt() < 0)){
-                                                        showWarning3.value = true
-                                                    } else if (mins.value.toInt() > 15 || secs.value.toInt() > 59){
-                                                        showWarning2.value = true
+                                                    if (mins.value == "" || secs.value == ""){
+                                                        showWarning4.value = true
+                                                    } else {
+                                                        if (mins.value.contains(",") || secs.value.contains(",")){
+                                                            showWarning1.value = true
+                                                        } else if (mins.value.contains(" ")){
+                                                            mins.value = mins.value.replace(" ", "")
+                                                        } else if (secs.value.contains(" ")){
+                                                            secs.value = secs.value.replace(" ", "")
+                                                        } else if (mins.value.toFloat() % 1 != 0f || secs.value.toFloat() % 1 != 0f || mins.value == "" || secs.value == ""){
+                                                            showWarning1.value = true
+                                                        } else if ((mins.value.toInt() < 0 && secs.value.toInt() <= 0) || (mins.value.toInt() <= 0 && secs.value.toInt() < 0)){
+                                                            showWarning3.value = true
+                                                        } else if (mins.value.toInt() > 15 || secs.value.toInt() > 59){
+                                                            showWarning2.value = true
+                                                        }
                                                     }
 
                                                     displayString = displayString(mins.value, secs.value)
@@ -827,22 +873,26 @@ fun HackerSettings(navController: NavController){
 
                                         Button(
                                             onClick = {
-                                                if (minsh1.value.contains(",") || secsh1.value.contains(",") || secsh2.value.contains(",") || minsh2.value.contains(",")){
-                                                    showWarning1.value = true
-                                                } else if (minsh1.value.contains(" ")){
-                                                    minsh1.value = minsh1.value.replace(" ", "")
-                                                } else if (minsh2.value.contains(" ")){
-                                                    minsh2.value = minsh2.value.replace(" ", "")
-                                                } else if (secsh1.value.contains(" ")){
-                                                    secsh1.value = secsh1.value.replace(" ", "")
-                                                } else if (secsh2.value.contains(" ")){
-                                                    secsh2.value = secsh2.value.replace(" ", "")
-                                                } else if (minsh1.value.toFloat() % 1 != 0f || secsh1.value.toFloat() % 1 != 0f || minsh1.value == "" || secsh1.value == "" || minsh2.value.toFloat() % 1 != 0f || secsh2.value.toFloat() % 1 != 0f || minsh2.value == "" || secsh2.value == ""){
-                                                    showWarning1.value = true
-                                                } else if (minsh1.value.toInt() <= 0 || secsh1.value.toInt() < 0 || minsh2.value.toInt() <= 0 || secsh2.value.toInt() < 0){
-                                                    showWarning3.value = true
-                                                } else if (minsh1.value.toInt() > 15 || secsh1.value.toInt() > 59 || minsh2.value.toInt() > 15 || secsh2.value.toInt() > 59){
-                                                    showWarning2.value = true
+                                                if (minsh1.value == "" || secsh1.value == "" || minsh2.value == "" || secsh2.value == ""){
+                                                    showWarning4.value = true
+                                                } else {
+                                                    if (minsh1.value.contains(",") || secsh1.value.contains(",") || secsh2.value.contains(",") || minsh2.value.contains(",")){
+                                                        showWarning1.value = true
+                                                    } else if (minsh1.value.contains(" ")){
+                                                        minsh1.value = minsh1.value.replace(" ", "")
+                                                    } else if (minsh2.value.contains(" ")){
+                                                        minsh2.value = minsh2.value.replace(" ", "")
+                                                    } else if (secsh1.value.contains(" ")){
+                                                        secsh1.value = secsh1.value.replace(" ", "")
+                                                    } else if (secsh2.value.contains(" ")){
+                                                        secsh2.value = secsh2.value.replace(" ", "")
+                                                    } else if (minsh1.value.toFloat() % 1 != 0f || secsh1.value.toFloat() % 1 != 0f || minsh1.value == "" || secsh1.value == "" || minsh2.value.toFloat() % 1 != 0f || secsh2.value.toFloat() % 1 != 0f || minsh2.value == "" || secsh2.value == ""){
+                                                        showWarning1.value = true
+                                                    } else if (((minsh1.value.toInt() < 0 && secsh1.value.toInt() <= 0) && (minsh1.value.toInt() <= 0 && secsh1.value.toInt() < 0)) || ((minsh2.value.toInt() < 0 && secsh2.value.toInt() <= 0) && (minsh2.value.toInt() <= 0 && secsh2.value.toInt() < 0))){
+                                                        showWarning3.value = true
+                                                    } else if (minsh1.value.toInt() > 15 || secsh1.value.toInt() > 59 || minsh2.value.toInt() > 15 || secsh2.value.toInt() > 59){
+                                                        showWarning2.value = true
+                                                    }
                                                 }
                                             },
                                             modifier = Modifier.height(40.dp),
@@ -875,7 +925,23 @@ fun HackerSettings(navController: NavController){
 
         Button(
             onClick = {
-                navController.navigate(Screen.PlayerInformation.route)
+                if (timedOrNot.value){
+                    if (!chooseHandicap.value){
+                        if (mins.value == "" || secs.value == ""){
+                            showWarning4.value = true
+                        } else {
+                            navController.navigate(Screen.PlayerInformation.route)
+                        }
+                    } else {
+                        if (minsh1.value == "" || secsh1.value == "" || minsh2.value == "" || secsh2.value == ""){
+                            showWarning4.value = true
+                        } else {
+                            navController.navigate(Screen.PlayerInformation.route)
+                        }
+                    }
+                } else {
+                    navController.navigate(Screen.PlayerInformation.route)
+                }
             },
             modifier = Modifier.height(50.dp),
             colors = ButtonDefaults.buttonColors(
