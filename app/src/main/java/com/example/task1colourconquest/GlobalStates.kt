@@ -116,4 +116,3 @@ var secsh1 = mutableStateOf("")
 var minsh2 = mutableStateOf("")
 var secsh2 = mutableStateOf("")
 
-var causeDelay = mutableStateOf(false)

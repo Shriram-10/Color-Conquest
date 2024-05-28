@@ -70,10 +70,12 @@ import java.util.concurrent.TimeUnit
 fun GamePage(navController: NavController) {
 
     var exitDialog by remember { mutableStateOf(false) }
-//    mins1.value = mins.value.toInt()
-//    mins2.value = mins.value.toInt()
-//    secs1.value = secs.value.toInt()
-//    secs2.value = secs.value.toInt()
+    if (chooseHandicap.value){
+        mins1.value = mins.value.toInt()
+        mins2.value = mins.value.toInt()
+        secs1.value = secs.value.toInt()
+        secs2.value = secs.value.toInt()
+    }
 
     if(exitDialog) {
         AlertDialog(onDismissRequest = {
@@ -359,34 +361,7 @@ fun GamePage(navController: NavController) {
         ){
             Spacer(modifier = Modifier.width(20.dp))
             if (mode.value == 2 && timedOrNot.value) {
-                Row{
-                    Button(
-                        onClick = {},
-                        modifier = Modifier
-                            .height(60.dp)
-                            .width(IntrinsicSize.Max),
-                        contentPadding = PaddingValues(5.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(48,50,58), //143,252,84
-                            contentColor = Color(0xFFED6A5E)
-                        ),
-                        border = BorderStroke(
-                            width = 4.dp,
-                            color = Color(25,50,25)
-                        ),
-                        shape = RoundedCornerShape(25)
-
-                    ){
-                        Text(
-                            text = "",
-                            modifier = Modifier.rotate(180f),
-                            fontFamily = fontFamily2,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 28.sp,
-                            color = Color(143,252,84)
-                        )
-                    }
-                }
+                TimerClock(mins.value.toLong(),secs.value.toLong(), rotate = true)
             } else {
                 Spacer(modifier = Modifier.height(60.dp))
             }
@@ -503,33 +478,7 @@ fun GamePage(navController: NavController) {
             horizontalArrangement = Arrangement.End
         ){
             if (mode.value == 2 && timedOrNot.value){
-                Row{
-                    Button(
-                        onClick = {},
-                        modifier = Modifier
-                            .height(60.dp)
-                            .width(IntrinsicSize.Max),
-                        contentPadding = PaddingValues(5.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(48,50,58), //143,252,84
-                            contentColor = Color(0xFFED6A5E)
-                        ),
-                        border = BorderStroke(
-                            width = 4.dp,
-                            color = Color(25,50,25)
-                        ),
-                        shape = RoundedCornerShape(25)
-
-                    ){
-                        Text(
-                            text = "",
-                            fontFamily = fontFamily2,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 28.sp,
-                            color = Color(143,252,84)
-                        )
-                    }
-                }
+                TimerClock(mins.value.toLong(),secs.value.toLong())
             } else {
                 Spacer(modifier = Modifier.height(60.dp))
             }
@@ -633,5 +582,80 @@ fun GamePage(navController: NavController) {
 @Composable
 fun GamePagePreview() {
     GamePage(navController = rememberNavController())
+}
+
+@Composable
+fun TimerClock(
+    totalMins: Long = 0,
+    totalSecs: Long,
+    initialValue: Float = 0f,
+    rotate: Boolean = false
+){
+    var totalTime = totalMins * 60 + totalSecs
+    var currentMins by remember {
+        mutableStateOf(totalMins)
+    }
+    var currentSecs by remember {
+        mutableStateOf(totalSecs)
+    }
+    var currentTime = currentMins * 60 + currentSecs
+    var value by remember {
+        mutableStateOf(initialValue)
+    }
+    var isRunning by remember {
+        mutableStateOf(false)
+    }
+    LaunchedEffect(key1 = currentSecs, key2 = currentMins, key3 = isRunning) {
+        if (currentSecs > 0 && isRunning) {
+            delay(1000)
+            currentSecs -= 1
+            value = currentTime / totalTime.toFloat()
+        } else if (currentSecs == 0L && currentTime > 0 && isRunning){
+            delay(1000)
+            currentSecs = 59
+            currentMins -= 1
+        }
+    }
+    Row{
+        Button(
+            onClick = {
+                      isRunning = !isRunning
+            },
+            modifier = Modifier
+                .height(60.dp)
+                .width(IntrinsicSize.Max),
+            contentPadding = PaddingValues(5.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(48,50,58), //143,252,84
+                contentColor = Color(0xFFED6A5E)
+            ),
+            border = BorderStroke(
+                width = 4.dp,
+                color = Color(25,50,25)
+            ),
+            shape = RoundedCornerShape(25)
+
+        ){
+
+            if (rotate){
+                Text(
+                    text = displayString(currentMins.toString(),currentSecs.toString()),
+                    modifier = Modifier.rotate(180f),
+                    fontFamily = fontFamily2,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 28.sp,
+                    color = Color(143,252,84)
+                )
+            } else {
+                Text(
+                    text = displayString(currentMins.toString(),currentSecs.toString()),
+                    fontFamily = fontFamily2,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 28.sp,
+                    color = Color(143,252,84)
+                )
+            }
+        }
+    }
 }
 
