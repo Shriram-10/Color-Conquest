@@ -42,10 +42,5 @@ val gradientColorList3 = listOf(
     Color(0xFF9A695D),
     Color(0xFFD99182)
 )
-val gradientColorList4 = listOf(
-    Color.Green,
-    Color.Red
-)
-
 
 

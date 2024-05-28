@@ -71,12 +71,6 @@ import java.util.concurrent.TimeUnit
 fun GamePage(navController: NavController) {
 
     var exitDialog by remember { mutableStateOf(false) }
-    if (chooseHandicap.value){
-        mins1.value = mins.value.toInt()
-        mins2.value = mins.value.toInt()
-        secs1.value = secs.value.toInt()
-        secs2.value = secs.value.toInt()
-    }
 
     if(exitDialog) {
         if (counter.value % 2 == 0){
@@ -378,7 +372,11 @@ fun GamePage(navController: NavController) {
         ){
             Spacer(modifier = Modifier.width(20.dp))
             if (mode.value == 2 && timedOrNot.value) {
-                TimerClock(mins.value.toLong(),secs.value.toLong(), rotate = true, runnerController = isRunning2.value, oppId = 1)
+                if (!chooseHandicap.value){
+                    TimerClock(mins.value.toLong(),secs.value.toLong(), rotate = true, runnerController = isRunning2.value, oppId = 1)
+                } else {
+                    TimerClock(minsh2.value.toLong(),secsh2.value.toLong(), rotate = true, runnerController = isRunning2.value, oppId = 1)
+                }
             } else {
                 Spacer(modifier = Modifier.height(60.dp))
             }
@@ -491,7 +489,11 @@ fun GamePage(navController: NavController) {
             horizontalArrangement = Arrangement.End
         ){
             if (mode.value == 2 && timedOrNot.value){
-                TimerClock(mins.value.toLong(),secs.value.toLong(), runnerController = isRunning1.value, oppId = 0,side = 1)
+                if (!chooseHandicap.value){
+                    TimerClock(mins.value.toLong(),secs.value.toLong(), rotate = false, runnerController = isRunning1.value, oppId = 0, side = 1)
+                } else {
+                    TimerClock(minsh1.value.toLong(),secsh1.value.toLong(), rotate = false, runnerController = isRunning1.value, oppId = 0, side = 1)
+                }
             } else {
                 Spacer(modifier = Modifier.height(60.dp))
             }
