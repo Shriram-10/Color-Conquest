@@ -121,6 +121,8 @@ fun DisplayWinner(navController: NavController) {
                         }
                         thisPlayer.value = 1
                         otherPlayer.value = 0
+                        resetTimer[0] = true
+                        resetTimer[1] = true
                         winner.value = -1
                     },
                     modifier = Modifier

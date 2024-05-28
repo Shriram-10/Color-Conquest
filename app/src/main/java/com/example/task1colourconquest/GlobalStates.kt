@@ -116,3 +116,6 @@ var secsh1 = mutableStateOf("")
 var minsh2 = mutableStateOf("")
 var secsh2 = mutableStateOf("")
 
+var isRunning1 = mutableStateOf(false)
+var isRunning2 = mutableStateOf(false)
+var resetTimer = mutableStateListOf(false,false)

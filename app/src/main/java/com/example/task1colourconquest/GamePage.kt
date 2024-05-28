@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -78,8 +79,17 @@ fun GamePage(navController: NavController) {
     }
 
     if(exitDialog) {
+        if (counter.value % 2 == 0){
+            isRunning1.value = false
+        } else {
+            isRunning2.value = false
+        }
         AlertDialog(onDismissRequest = {
-
+            if (counter.value % 2 == 0){
+                isRunning1.value = true
+            } else {
+                isRunning2.value = true
+            }
             exitDialog = false
         },
             confirmButton = {
@@ -89,6 +99,11 @@ fun GamePage(navController: NavController) {
                 ){
                     Button(
                         onClick = {
+                        if (counter.value % 2 == 0){
+                            isRunning1.value = true
+                        } else {
+                            isRunning2.value = true
+                        }
                         exitDialog = false
                     },
                         modifier = Modifier
@@ -182,6 +197,8 @@ fun GamePage(navController: NavController) {
                             }
                             thisPlayer.value = 1
                             otherPlayer.value = 0
+                            resetTimer[0] = true
+                            resetTimer[1] = true
                             exitDialog = false
                         },
                         modifier = Modifier
@@ -361,7 +378,7 @@ fun GamePage(navController: NavController) {
         ){
             Spacer(modifier = Modifier.width(20.dp))
             if (mode.value == 2 && timedOrNot.value) {
-                TimerClock(mins.value.toLong(),secs.value.toLong(), rotate = true)
+                TimerClock(mins.value.toLong(),secs.value.toLong(), rotate = true, runnerController = isRunning2.value, oppId = 1)
             } else {
                 Spacer(modifier = Modifier.height(60.dp))
             }
@@ -443,30 +460,26 @@ fun GamePage(navController: NavController) {
 
                     if(clicked[i]) {
                         allowClick(i)
-//                        if (counter.value % 2 == 1){
-//                            viewModel1.stopCountDownTimer()
-//                            viewModel2.startCountDownTimer()
-//                        }
-//                        else {
-//                            viewModel2.stopCountDownTimer()
-//                            viewModel1.startCountDownTimer()
-//                        }
+                        if (counter.value % 2 == 1){
+                            isRunning1.value = false
+                            isRunning2.value = true
+                        }
+                        else {
+                            isRunning2.value = false
+                            isRunning1.value = true
+                        }
 
                         clicked[i] = false
                     }
-//                    if (!viewModel1.isTimeRemaining.value){
-//                        counter.value++
-//                        winnerName.value = if (player2Name.value != "") player2Name.value else "PLAYER 2"
-//                        winner.value = 0
-//                    } else if (!viewModel2.isTimeRemaining.value){
-//                        counter.value++
-//                        winnerName.value = if (player1Name.value != "") player1Name.value else "PLAYER 1"
-//                        winner.value = 1
-//                    } else if (winner.value != -1){
-////                        viewModel1.stopCountDownTimer()
-////                        viewModel2.stopCountDownTimer()
-//                    }
-
+                    if (winner.value != -1){
+                        isRunning1.value = false
+                        isRunning2.value = false
+                        if (winner.value == 0){
+                            winnerName.value = if(player2Name.value != "") player2Name.value else "PLAYER 2"
+                        } else {
+                            winnerName.value = if(player1Name.value != "") player1Name.value else "PLAYER 1"
+                        }
+                    }
                 }
             }
         }
@@ -478,7 +491,7 @@ fun GamePage(navController: NavController) {
             horizontalArrangement = Arrangement.End
         ){
             if (mode.value == 2 && timedOrNot.value){
-                TimerClock(mins.value.toLong(),secs.value.toLong())
+                TimerClock(mins.value.toLong(),secs.value.toLong(), runnerController = isRunning1.value, oppId = 0,side = 1)
             } else {
                 Spacer(modifier = Modifier.height(60.dp))
             }
@@ -588,8 +601,11 @@ fun GamePagePreview() {
 fun TimerClock(
     totalMins: Long = 0,
     totalSecs: Long,
-    initialValue: Float = 0f,
-    rotate: Boolean = false
+    initialValue: Float = 1f,
+    rotate: Boolean = false,
+    runnerController: Boolean = false,
+    oppId: Int,
+    side: Int = 0
 ){
     var totalTime = totalMins * 60 + totalSecs
     var currentMins by remember {
@@ -605,6 +621,11 @@ fun TimerClock(
     var isRunning by remember {
         mutableStateOf(false)
     }
+    if (runnerController){
+        isRunning = true
+    } else {
+        isRunning = false
+    }
     LaunchedEffect(key1 = currentSecs, key2 = currentMins, key3 = isRunning) {
         if (currentSecs > 0 && isRunning) {
             delay(1000)
@@ -616,11 +637,60 @@ fun TimerClock(
             currentMins -= 1
         }
     }
+    if (currentTime == 0L){
+        isRunning = false
+        winner.value = oppId
+    }
+    if (resetTimer[oppId]){
+        currentMins = totalMins
+        currentSecs = totalSecs
+        value = 1f
+        resetTimer[oppId] = false
+    }
+
     Row{
+        if (side == 1){
+
+            Column{
+                Spacer(modifier = Modifier.height(22.dp))
+                Box(
+                    modifier = Modifier
+                        .height(16.dp)
+                        .width(200.dp),
+                    contentAlignment = Alignment.Center
+                ){
+                    Button(
+                        modifier = Modifier.fillMaxSize(),
+                        onClick = {},
+                        shape = RoundedCornerShape(30),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(50,50,50)
+                        )
+                    ){
+
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(0.98f),
+                    ){
+                        Button(
+                            modifier = Modifier
+                                .height(12.dp)
+                                .fillMaxWidth(value),
+                            onClick = {},
+                            shape = RoundedCornerShape(30),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = if (currentTime > 15) Color.Green else Color.Red
+                            )
+                        ){
+
+                        }
+                    }
+                }
+            }
+            Spacer(modifier = Modifier.width(20.dp))
+        }
         Button(
-            onClick = {
-                      isRunning = !isRunning
-            },
+            onClick = {},
             modifier = Modifier
                 .height(60.dp)
                 .width(IntrinsicSize.Max),
@@ -636,24 +706,52 @@ fun TimerClock(
             shape = RoundedCornerShape(25)
 
         ){
+            Text(
+                text = displayString(currentMins.toString(),currentSecs.toString()),
+                modifier = if (rotate) Modifier.rotate(180f) else Modifier.rotate(0f),
+                fontFamily = fontFamily2,
+                fontWeight = FontWeight.Bold,
+                fontSize = 28.sp,
+                color = if (currentTime > 15) Color.Green else Color.Red
+            )
+        }
+        if (side == 0){
+            Spacer(modifier = Modifier.width(20.dp))
+            Column{
+                Spacer(modifier = Modifier.height(22.dp))
+                Box(
+                    modifier = Modifier
+                        .height(16.dp)
+                        .width(200.dp),
+                    contentAlignment = Alignment.Center
+                ){
+                    Button(
+                        modifier = Modifier.fillMaxSize(),
+                        onClick = {},
+                        shape = RoundedCornerShape(30),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(50,50,50)
+                        )
+                    ){
 
-            if (rotate){
-                Text(
-                    text = displayString(currentMins.toString(),currentSecs.toString()),
-                    modifier = Modifier.rotate(180f),
-                    fontFamily = fontFamily2,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 28.sp,
-                    color = Color(143,252,84)
-                )
-            } else {
-                Text(
-                    text = displayString(currentMins.toString(),currentSecs.toString()),
-                    fontFamily = fontFamily2,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 28.sp,
-                    color = Color(143,252,84)
-                )
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(0.98f),
+                    ){
+                        Button(
+                            modifier = Modifier
+                                .height(12.dp)
+                                .fillMaxWidth(value),
+                            onClick = {},
+                            shape = RoundedCornerShape(30),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = if (currentTime > 15) Color.Green else Color.Red
+                            )
+                        ){
+
+                        }
+                    }
+                }
             }
         }
     }
