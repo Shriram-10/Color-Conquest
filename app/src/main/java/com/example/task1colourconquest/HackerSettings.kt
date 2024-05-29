@@ -242,6 +242,242 @@ fun HackerSettings(navController: NavController){
             }
         )
     }
+    if (showWarning5.value){
+        AlertDialog(
+            onDismissRequest = {  },
+            confirmButton = {
+                Button(
+                    onClick = { showWarning5.value = false },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFED6A5E),
+                        contentColor = Color.White
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 12.dp
+                    ),
+                    shape = RoundedCornerShape(
+                        topStartPercent = 20,
+                        topEndPercent = 0,
+                        bottomStartPercent = 0,
+                        bottomEndPercent = 20
+                    )
+                ) {
+                    Text(text = "OK")
+                }
+            },
+            title = {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Text(
+                        text = "Enter an Integer!",
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color(0xFFED6A5E)
+                    )
+                }
+            },
+            text = {
+                Text(
+                    textAlign = TextAlign.Center,
+                    text = "NOTE:\nNumber of rows and columns should not exceed 10 and should be greater than 2.",
+                    fontSize = 18.sp,
+                    color = Color.Black
+                )
+            }
+        )
+    }
+    if (showWarning6.value){
+        AlertDialog(
+            onDismissRequest = {  },
+            confirmButton = {
+                Button(
+                    onClick = { showWarning6.value = false },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFED6A5E),
+                        contentColor = Color.White
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 12.dp
+                    ),
+                    shape = RoundedCornerShape(
+                        topStartPercent = 20,
+                        topEndPercent = 0,
+                        bottomStartPercent = 0,
+                        bottomEndPercent = 20
+                    )
+                ) {
+                    Text(text = "OK")
+                }
+            },
+            title = {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Text(
+                        text = "Grid Size too Small!",
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color(0xFFED6A5E)
+                    )
+                }
+            },
+            text = {
+                Text(
+                    textAlign = TextAlign.Center,
+                    text = "NOTE:\nNumber of rows and columns should be greater than 2.",
+                    fontSize = 18.sp,
+                    color = Color.Black
+                )
+            }
+        )
+    }
+    if (showWarning7.value){
+        AlertDialog(
+            onDismissRequest = {  },
+            confirmButton = {
+                Button(
+                    onClick = { showWarning7.value = false },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFED6A5E),
+                        contentColor = Color.White
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 12.dp
+                    ),
+                    shape = RoundedCornerShape(
+                        topStartPercent = 20,
+                        topEndPercent = 0,
+                        bottomStartPercent = 0,
+                        bottomEndPercent = 20
+                    )
+                ) {
+                    Text(text = "OK")
+                }
+            },
+            title = {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Text(
+                        text = "Grid Size too Large!",
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color(0xFFED6A5E)
+                    )
+                }
+            },
+            text = {
+                Text(
+                    textAlign = TextAlign.Center,
+                    text = "NOTE:\nNumber of rows and columns should not exceed 10.",
+                    fontSize = 18.sp,
+                    color = Color.Black
+                )
+            }
+        )
+    }
+    if (showWarning8.value){
+        AlertDialog(
+            onDismissRequest = {  },
+            confirmButton = {
+                Button(
+                    onClick = { showWarning8.value = false },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFED6A5E),
+                        contentColor = Color.White
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 12.dp
+                    ),
+                    shape = RoundedCornerShape(
+                        topStartPercent = 20,
+                        topEndPercent = 0,
+                        bottomStartPercent = 0,
+                        bottomEndPercent = 20
+                    )
+                ) {
+                    Text(text = "OK")
+                }
+            },
+            title = {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Text(
+                        text = "Enter Input!",
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color(0xFFED6A5E)
+                    )
+                }
+            },
+            text = {
+                Text(
+                    textAlign = TextAlign.Center,
+                    text = "NOTE:\nNumber of rows and columns should be greater than 2 and should not exceed 10.",
+                    fontSize = 18.sp,
+                    color = Color.Black
+                )
+            }
+        )
+    }
+    if (showWarning9.value){
+        AlertDialog(
+            onDismissRequest = {  },
+            confirmButton = {
+                Button(
+                    onClick = { showWarning9.value = false },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFED6A5E),
+                        contentColor = Color.White
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 12.dp
+                    ),
+                    shape = RoundedCornerShape(
+                        topStartPercent = 20,
+                        topEndPercent = 0,
+                        bottomStartPercent = 0,
+                        bottomEndPercent = 20
+                    )
+                ) {
+                    Text(text = "OK")
+                }
+            },
+            title = {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Text(
+                        textAlign = TextAlign.Center,
+                        text = "Enter Positive Integer!",
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color(0xFFED6A5E)
+                    )
+                }
+            },
+            text = {
+                Text(
+                    textAlign = TextAlign.Center,
+                    text = "Recieved Input is negative!\nNOTE:\nNumber of rows and columns should be greater than 2 and should not exceed 10.",
+                    fontSize = 18.sp,
+                    color = Color.Black
+                )
+            }
+        )
+    }
 
     Column(
         modifier = Modifier
@@ -286,8 +522,32 @@ fun HackerSettings(navController: NavController){
                     modifier = Modifier.fillMaxSize(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    Spacer(modifier = Modifier.height(20.dp))
+                    Button(
+                        onClick = {
+                            setCustomGrid.value = !setCustomGrid.value
+                            changeGridSize.value = false
+                            showGridChangeDialog.value = false
+                            r.value = 0
+                            c.value = 0
+                        },
+                        modifier = Modifier.height(44.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(0xFF0FA6F7)
+                        ),
+                        elevation = ButtonDefaults.buttonElevation(
+                            defaultElevation = 12.dp
+                        ),
+                    ){
+                        Text(
+                            text = "Custom Grid" ,
+                            color = Color.White,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
                     Spacer(modifier = Modifier.height(10.dp))
-                    AnimatedVisibility(visible = true) {
+                    AnimatedVisibility(visible = setCustomGrid.value) {
                         Column(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalAlignment = Alignment.CenterHorizontally
@@ -404,20 +664,32 @@ fun HackerSettings(navController: NavController){
                                         Button(
                                             onClick = {
                                                 if (rInput.value == "" || cInput.value == ""){
-                                                    showWarning4.value = true
+                                                    showWarning8.value = true
                                                 } else {
                                                     if (rInput.value.contains(",") || cInput.value.contains(",")){
-                                                        showWarning1.value = true
+                                                        showWarning5.value = true
+                                                        rInput.value = ""
+                                                        cInput.value = ""
                                                     } else if (rInput.value.contains(" ")){
                                                         rInput.value = mins.value.replace(" ", "")
                                                     } else if (cInput.value.contains(" ")){
                                                         cInput.value = cInput.value.replace(" ", "")
                                                     } else if (rInput.value.toFloat() % 1 != 0f || cInput.value.toFloat() % 1 != 0f){
-                                                        showWarning1.value = true
+                                                        showWarning5.value = true
+                                                        rInput.value = ""
+                                                        cInput.value = ""
+                                                    } else if (rInput.value.toInt() < 0 || cInput.value.toInt() < 0){
+                                                        showWarning9.value = true
+                                                        rInput.value = ""
+                                                        cInput.value = ""
                                                     } else if (rInput.value.toInt() < 3 || cInput.value.toInt() < 3){
-                                                        showWarning3.value = true
+                                                        showWarning6.value = true
+                                                        rInput.value = ""
+                                                        cInput.value = ""
                                                     } else if (rInput.value.toInt() > 10 || cInput.value.toInt() > 10){
-                                                        showWarning2.value = true
+                                                        showWarning7.value = true
+                                                        rInput.value = ""
+                                                        cInput.value = ""
                                                     }
                                                 }
                                                 showGridChangeDialog.value = false
