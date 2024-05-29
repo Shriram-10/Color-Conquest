@@ -374,20 +374,19 @@ fun GamePage(navController: NavController) {
         Spacer(modifier = Modifier.height(40.dp))
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(375.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
         ){
-
             LazyVerticalGrid(
-                modifier = Modifier.width(375.dp),
+                modifier = if (r.value > c.value) Modifier.width((c.value * 375/r.value).dp).padding(4.dp) else Modifier.height((r.value * 375/c.value + (r.value + 1) * 4).dp).padding(8.dp),
                 columns = GridCells.Fixed(c.value),
             ) {
                 items(r.value * c.value){ i->
                     Box(
-                        modifier = Modifier
-                            .height((375/(r.value)).dp)
-                            .aspectRatio(1f)
-                            .padding(4.dp),
+                        modifier = if (r.value > c.value)  Modifier.width((375/r.value).dp).padding(4.dp).aspectRatio(1f) else Modifier.height((375/c.value).dp).padding(4.dp),
                         contentAlignment = Alignment.Center
                     ) {
                         Box(
