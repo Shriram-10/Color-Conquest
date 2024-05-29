@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -107,7 +108,6 @@ fun GamePage(navController: NavController) {
                     Button(
                         onClick = {
                             exitDialog = false
-                            navController.navigate(Screen.HomePage.route)
                             counter.value = 0
                             for(b in 0..1){
                                 for(t in 0..<r.value * c.value){
@@ -136,6 +136,7 @@ fun GamePage(navController: NavController) {
                                 mins.value = ""
                                 secs.value = ""
                             }
+                            navController.popBackStack(Screen.HomePage.route, false)
                         },
                         modifier = Modifier
                             .height(40.dp)
@@ -381,12 +382,12 @@ fun GamePage(navController: NavController) {
             verticalAlignment = Alignment.CenterVertically
         ){
             LazyVerticalGrid(
-                modifier = if (r.value > c.value) Modifier.width((c.value * 375/r.value).dp).padding(4.dp) else Modifier.height((r.value * 375/c.value + (r.value + 1) * 4).dp).padding(8.dp),
+                modifier = if (r.value > c.value) Modifier.width((c.value * 375/r.value).dp).padding(4.dp).fillMaxHeight() else if (r.value < c.value) Modifier.height((r.value * 375/c.value + (r.value + 1) * 4).dp).fillMaxWidth(0.95f).padding(8.dp) else Modifier.width(375.dp),
                 columns = GridCells.Fixed(c.value),
             ) {
                 items(r.value * c.value){ i->
                     Box(
-                        modifier = if (r.value > c.value)  Modifier.width((375/r.value).dp).padding(4.dp).aspectRatio(1f) else Modifier.height((375/c.value).dp).padding(4.dp),
+                        modifier = if (r.value > c.value)  Modifier.width((375/r.value).dp).padding(4.dp).aspectRatio(1f) else if(r.value < c.value) Modifier.height((375/c.value).dp).padding(4.dp) else Modifier.height((375/r.value).dp).padding(4.dp),
                         contentAlignment = Alignment.Center
                     ) {
                         Box(
@@ -435,13 +436,28 @@ fun GamePage(navController: NavController) {
                             ){
 
                             }
-
-                            Text(
-                                text = if (playerPoints[0][i] == 0 && playerPoints[1][i] == 0) "" else if (playerPoints[0][i] == 0) playerPoints[1][i].toString() else playerPoints[0][i].toString(),
-                                fontWeight = FontWeight.ExtraBold,
-                                fontSize = 32.sp,
-                                color = Color.White
-                            )
+                            if (r.value <= 6 && c.value <= 6){
+                                Text(
+                                    text = if (playerPoints[0][i] == 0 && playerPoints[1][i] == 0) "" else if (playerPoints[0][i] == 0) playerPoints[1][i].toString() else playerPoints[0][i].toString(),
+                                    fontWeight = FontWeight.ExtraBold,
+                                    fontSize = 32.sp,
+                                    color = Color.White
+                                )
+                            } else if (c.value <= r.value){
+                                Text(
+                                    text = if (playerPoints[0][i] == 0 && playerPoints[1][i] == 0) "" else if (playerPoints[0][i] == 0) playerPoints[1][i].toString() else playerPoints[0][i].toString(),
+                                    fontWeight = FontWeight.ExtraBold,
+                                    fontSize = 18.sp,
+                                    color = Color.White
+                                )
+                            } else {
+                                Text(
+                                    text = if (playerPoints[0][i] == 0 && playerPoints[1][i] == 0) "" else if (playerPoints[0][i] == 0) playerPoints[1][i].toString() else playerPoints[0][i].toString(),
+                                    fontWeight = FontWeight.ExtraBold,
+                                    fontSize = 18.sp,
+                                    color = Color.White
+                                )
+                            }
                         }
                     }
 

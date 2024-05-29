@@ -173,7 +173,7 @@ fun DisplayWinner(navController: NavController) {
                             mins.value = ""
                             secs.value = ""
                         }
-                        navController.popBackStack(Screen.HomePage.route,true)
+                        navController.popBackStack(Screen.HomePage.route,false)
                     },
                     modifier = Modifier
                         .width(275.dp),
