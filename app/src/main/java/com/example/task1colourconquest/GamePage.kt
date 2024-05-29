@@ -391,12 +391,13 @@ fun GamePage(navController: NavController) {
 
             LazyVerticalGrid(
                 modifier = Modifier.width(375.dp),
-                columns = GridCells.Fixed(5),
+                columns = GridCells.Fixed(c.value),
             ) {
                 items(r.value * c.value){ i->
                     Box(
                         modifier = Modifier
-                            .height(72.dp)
+                            .height((375/(r.value)).dp)
+                            .aspectRatio(1f)
                             .padding(4.dp),
                         contentAlignment = Alignment.Center
                     ) {

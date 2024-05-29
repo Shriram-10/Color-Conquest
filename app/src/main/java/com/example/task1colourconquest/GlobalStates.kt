@@ -11,11 +11,11 @@ import androidx.compose.ui.graphics.Color
 var winner = mutableStateOf(-1)
 
 var clicked = mutableStateListOf<Boolean>(
-    false,false,false,false,false,
-    false,false,false,false,false,
-    false,false,false,false,false,
-    false,false,false,false,false,
-    false,false,false,false,false
+//    false,false,false,false,false,
+//    false,false,false,false,false,
+//    false,false,false,false,false,
+//    false,false,false,false,false,
+//    false,false,false,false,false
 )
 
 var ColoringBG = mutableStateListOf<Color>(
@@ -27,52 +27,52 @@ var Coloring = mutableStateListOf<Color>(
 )
 
 var colorTile = mutableStateListOf<Color>(
-    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1),
-    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1),
-    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1),
-    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1),
-    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1)
+//    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1),
+//    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1),
+//    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1),
+//    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1),
+//    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1)
 )
 
 var colorCircle = mutableStateListOf<Color>(
-    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1),
-    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1),
-    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1),
-    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1),
-    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1)
+//    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1),
+//    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1),
+//    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1),
+//    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1),
+//    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1)
 )
 
 var playerCover : SnapshotStateList<SnapshotStateList<Boolean>> = mutableStateListOf(
     mutableStateListOf(
-        false, false, false, false, false,
-        false, false, false, false, false,
-        false, false, false, false, false,
-        false, false, false, false, false,
-        false, false, false, false, false
+//        false, false, false, false, false,
+//        false, false, false, false, false,
+//        false, false, false, false, false,
+//        false, false, false, false, false,
+//        false, false, false, false, false
     ),
     mutableStateListOf(
-        false, false, false, false, false,
-        false, false, false, false, false,
-        false, false, false, false, false,
-        false, false, false, false, false,
-        false, false, false, false, false
+//        false, false, false, false, false,
+//        false, false, false, false, false,
+//        false, false, false, false, false,
+//        false, false, false, false, false,
+//        false, false, false, false, false
     )
 )
 
 var playerPoints : SnapshotStateList<SnapshotStateList<Int>> = mutableStateListOf(
     mutableStateListOf(
-        0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0
+//        0, 0, 0, 0, 0,
+//        0, 0, 0, 0, 0,
+//        0, 0, 0, 0, 0,
+//        0, 0, 0, 0, 0,
+//        0, 0, 0, 0, 0
     ),
     mutableStateListOf(
-        0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0
+//        0, 0, 0, 0, 0,
+//        0, 0, 0, 0, 0,
+//        0, 0, 0, 0, 0,
+//        0, 0, 0, 0, 0,
+//        0, 0, 0, 0, 0
     )
 )
 
@@ -81,8 +81,10 @@ var backgroundColor = mutableStateOf(Color(0xFF0FA6F7))
 var pointsTotal = mutableStateListOf(0,0)
 val thisPlayer = mutableStateOf(1)
 val otherPlayer = mutableStateOf(0)
-val r = mutableStateOf(5)
-val c = mutableStateOf(5)
+var r = mutableStateOf(0)
+var c = mutableStateOf(0)
+var rInput = mutableStateOf("")
+var cInput = mutableStateOf("")
 
 var player1Name = mutableStateOf("")
 var player2Name = mutableStateOf("")
@@ -120,3 +122,17 @@ var secsh2 = mutableStateOf("")
 var isRunning1 = mutableStateOf(false)
 var isRunning2 = mutableStateOf(false)
 var resetTimer = mutableStateListOf(false,false)
+
+var changeGridSize = mutableStateOf(false)
+var showGridChangeDialog = mutableStateOf(false)
+fun generateGridSizeList(r: Int, c: Int){
+    for (i in 0..r * c - 1 ) {
+        clicked.add(false)
+        colorTile.add(Color(0xFFF2E6D1))
+        colorCircle.add(Color(0xFFF2E6D1))
+        playerCover[0].add(false)
+        playerCover[1].add(false)
+        playerPoints[0].add(0)
+        playerPoints[1].add(0)
+    }
+}

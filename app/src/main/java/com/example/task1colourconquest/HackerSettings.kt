@@ -282,7 +282,200 @@ fun HackerSettings(navController: NavController){
                 ),
                 shape = RoundedCornerShape(5)
             ){
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Spacer(modifier = Modifier.height(10.dp))
+                    AnimatedVisibility(visible = true) {
+                        Column(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ){
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically
+                            ){
+                                Text(
+                                    text = "Set Grid Size : ",
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black
+                                )
+                                Button(
+                                    onClick = {
+                                        showGridChangeDialog.value = !showGridChangeDialog.value
+                                    },
+                                    modifier = Modifier.height(44.dp),
+                                    colors = ButtonDefaults.buttonColors(
+                                        containerColor = Color(0xFF0FA6F7)
+                                    ),
+                                    elevation = ButtonDefaults.buttonElevation(
+                                        defaultElevation = 12.dp
+                                    ),
+                                ) {
+                                    Text(
+                                        text = if ((r.value.toString() == "0" && c.value.toString() == "0") && !changeGridSize.value) "Set" else r.value.toString() + " × " + c.value.toString(),
+                                        color = Color.White,
+                                        fontSize = 20.sp,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
+                            }
+                            Spacer(modifier = Modifier.height(20.dp))
+                            AnimatedVisibility(
+                                visible = showGridChangeDialog.value,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .background(Color(0xFFF2D1CD))
+                                    .clip(RoundedCornerShape(20))
+                            ){
+                                Column(
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                ){
+                                    Spacer(modifier = Modifier.height(5.dp))
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.Center,
+                                        verticalAlignment = Alignment.CenterVertically,
+                                    ){
+                                        Spacer(modifier = Modifier.width(55.dp))
+                                        Text(
+                                            text = "Rows",
+                                            fontSize = 18.sp,
+                                            fontWeight = FontWeight.Bold,
+                                            color = Color.Black
+                                        )
+                                        Spacer(modifier = Modifier.width(30.dp))
 
+                                        Text(
+                                            text = "Columns",
+                                            fontSize = 18.sp,
+                                            fontWeight = FontWeight.Bold,
+                                            color = Color.Black
+                                        )
+                                    }
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(80.dp),
+                                        horizontalArrangement = Arrangement.Center,
+                                        verticalAlignment = Alignment.CenterVertically,
+                                    ){
+                                        Text(
+                                            text = " Size : ",
+                                            fontSize = 18.sp,
+                                            fontWeight = FontWeight.Bold,
+                                            color = Color.Black
+                                        )
+                                        OutlinedTextField(
+                                            value = rInput.value,
+                                            onValueChange = {
+                                                rInput.value = it
+                                            },
+                                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                                            modifier = Modifier
+                                                .height(48.dp)
+                                                .width(60.dp)
+                                                .background(Color(0xFFC7F1FD)),
+                                        )
+                                        Text(
+                                            text = " × ",
+                                            fontSize = 18.sp,
+                                            fontWeight = FontWeight.Bold,
+                                            color = Color.Black
+                                        )
+
+                                        OutlinedTextField(
+                                            value = cInput.value,
+                                            onValueChange = {
+                                                cInput.value = it
+                                            },
+                                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                                            modifier = Modifier
+                                                .height(48.dp)
+                                                .width(60.dp)
+                                                .background(Color(0xFFC7F1FD)),
+                                        )
+                                    }
+                                    Row(
+                                        horizontalArrangement = Arrangement.Center
+                                    ){
+                                        Button(
+                                            onClick = {
+                                                if (rInput.value == "" || cInput.value == ""){
+                                                    showWarning4.value = true
+                                                } else {
+                                                    if (rInput.value.contains(",") || cInput.value.contains(",")){
+                                                        showWarning1.value = true
+                                                    } else if (rInput.value.contains(" ")){
+                                                        rInput.value = mins.value.replace(" ", "")
+                                                    } else if (cInput.value.contains(" ")){
+                                                        cInput.value = cInput.value.replace(" ", "")
+                                                    } else if (rInput.value.toFloat() % 1 != 0f || cInput.value.toFloat() % 1 != 0f){
+                                                        showWarning1.value = true
+                                                    } else if (rInput.value.toInt() < 3 || cInput.value.toInt() < 3){
+                                                        showWarning3.value = true
+                                                    } else if (rInput.value.toInt() > 10 || cInput.value.toInt() > 10){
+                                                        showWarning2.value = true
+                                                    }
+                                                }
+                                                showGridChangeDialog.value = false
+                                                if (rInput.value != "" && cInput.value != "" && !showGridChangeDialog.value && !changeGridSize.value){
+                                                    r.value = rInput.value.toInt()
+                                                    c.value = cInput.value.toInt()
+                                                    generateGridSizeList(r.value,c.value)
+                                                }
+                                            },
+                                            modifier = Modifier.height(40.dp),
+                                            colors = ButtonDefaults.buttonColors(
+                                                containerColor = Color(0xFF0FA6F7)
+                                            ),
+                                            elevation = ButtonDefaults.buttonElevation(
+                                                defaultElevation = 12.dp
+                                            ),
+                                            shape = RoundedCornerShape(15)
+                                        ){
+                                            Text(
+                                                text = "Confirm",
+                                                fontSize = 16.sp,
+                                                fontWeight = FontWeight.Bold,
+                                                color = Color.White
+                                            )
+                                        }
+                                        Spacer(modifier = Modifier.width(20.dp))
+                                        Button(
+                                            onClick = {
+                                                changeGridSize.value = false
+                                                r.value = 0
+                                                c.value = 0
+                                                rInput.value = ""
+                                                cInput.value = ""
+                                                showGridChangeDialog.value = false
+                                            },
+                                            modifier = Modifier.height(40.dp),
+                                            colors = ButtonDefaults.buttonColors(
+                                                containerColor = Color(0xFF0FA6F7)
+                                            ),
+                                            elevation = ButtonDefaults.buttonElevation(
+                                                defaultElevation = 12.dp
+                                            ),
+                                            shape = RoundedCornerShape(15)
+                                        ){
+                                            Text(
+                                                text = "Cancel",
+                                                fontSize = 16.sp,
+                                                fontWeight = FontWeight.Bold,
+                                                color = Color.White
+                                            )
+                                        }
+                                    }
+                                    Spacer(modifier = Modifier.height(20.dp))
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
