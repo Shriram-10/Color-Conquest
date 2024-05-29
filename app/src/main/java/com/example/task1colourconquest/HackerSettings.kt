@@ -523,226 +523,434 @@ fun HackerSettings(navController: NavController){
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Spacer(modifier = Modifier.height(20.dp))
-                    Button(
-                        onClick = {
-                            setCustomGrid.value = !setCustomGrid.value
-                            changeGridSize.value = false
-                            showGridChangeDialog.value = false
-                            r.value = 0
-                            c.value = 0
-                        },
-                        modifier = Modifier.height(44.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF0FA6F7)
-                        ),
-                        elevation = ButtonDefaults.buttonElevation(
-                            defaultElevation = 12.dp
-                        ),
-                    ){
-                        Text(
-                            text = "Custom Grid" ,
-                            color = Color.White,
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-                    Spacer(modifier = Modifier.height(10.dp))
-                    AnimatedVisibility(visible = setCustomGrid.value) {
+                    AnimatedVisibility(visible = !optionsSeriesDialog.value) {
                         Column(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ){
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically
+                            Button(
+                                onClick = {
+                                    setCustomGrid.value = !setCustomGrid.value
+                                    changeGridSize.value = false
+                                    showGridChangeDialog.value = false
+                                    r.value = 0
+                                    c.value = 0
+                                },
+                                modifier = Modifier.height(48.dp),
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = Color(0xFF0FA6F7)
+                                ),
+                                elevation = ButtonDefaults.buttonElevation(
+                                    defaultElevation = 12.dp
+                                ),
                             ){
                                 Text(
-                                    text = "Set Grid Size : ",
-                                    fontSize = 18.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = Color.Black
+                                    text = "Custom Grid" ,
+                                    color = Color.White,
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Bold
                                 )
-                                Button(
-                                    onClick = {
-                                        showGridChangeDialog.value = !showGridChangeDialog.value
-                                    },
-                                    modifier = Modifier.height(44.dp),
-                                    colors = ButtonDefaults.buttonColors(
-                                        containerColor = Color(0xFF0FA6F7)
-                                    ),
-                                    elevation = ButtonDefaults.buttonElevation(
-                                        defaultElevation = 12.dp
-                                    ),
-                                ) {
-                                    Text(
-                                        text = if ((r.value.toString() == "0" && c.value.toString() == "0") && !changeGridSize.value) "Set" else r.value.toString() + " × " + c.value.toString(),
-                                        color = Color.White,
-                                        fontSize = 20.sp,
-                                        fontWeight = FontWeight.Bold
-                                    )
-                                }
                             }
-                            Spacer(modifier = Modifier.height(20.dp))
-                            AnimatedVisibility(
-                                visible = showGridChangeDialog.value,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .background(Color(0xFFF2D1CD))
-                                    .clip(RoundedCornerShape(20))
-                            ){
+                            Spacer(modifier = Modifier.height(10.dp))
+                            AnimatedVisibility(visible = setCustomGrid.value) {
                                 Column(
-                                    horizontalAlignment = Alignment.CenterHorizontally,
-                                ){
-                                    Spacer(modifier = Modifier.height(5.dp))
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalAlignment = Alignment.CenterHorizontally
+                                ) {
                                     Row(
-                                        modifier = Modifier
-                                            .fillMaxWidth(),
-                                        horizontalArrangement = Arrangement.Center,
-                                        verticalAlignment = Alignment.CenterVertically,
-                                    ){
-                                        Spacer(modifier = Modifier.width(55.dp))
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
                                         Text(
-                                            text = "Rows",
+                                            text = "Set Grid Size : ",
                                             fontSize = 18.sp,
                                             fontWeight = FontWeight.Bold,
                                             color = Color.Black
                                         )
-                                        Spacer(modifier = Modifier.width(30.dp))
-
-                                        Text(
-                                            text = "Columns",
-                                            fontSize = 18.sp,
-                                            fontWeight = FontWeight.Bold,
-                                            color = Color.Black
-                                        )
-                                    }
-                                    Row(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .height(80.dp),
-                                        horizontalArrangement = Arrangement.Center,
-                                        verticalAlignment = Alignment.CenterVertically,
-                                    ){
-                                        Text(
-                                            text = " Size : ",
-                                            fontSize = 18.sp,
-                                            fontWeight = FontWeight.Bold,
-                                            color = Color.Black
-                                        )
-                                        OutlinedTextField(
-                                            value = rInput.value,
-                                            onValueChange = {
-                                                rInput.value = it
-                                            },
-                                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                                            modifier = Modifier
-                                                .height(48.dp)
-                                                .width(60.dp)
-                                                .background(Color(0xFFC7F1FD)),
-                                        )
-                                        Text(
-                                            text = " × ",
-                                            fontSize = 18.sp,
-                                            fontWeight = FontWeight.Bold,
-                                            color = Color.Black
-                                        )
-
-                                        OutlinedTextField(
-                                            value = cInput.value,
-                                            onValueChange = {
-                                                cInput.value = it
-                                            },
-                                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                                            modifier = Modifier
-                                                .height(48.dp)
-                                                .width(60.dp)
-                                                .background(Color(0xFFC7F1FD)),
-                                        )
-                                    }
-                                    Row(
-                                        horizontalArrangement = Arrangement.Center
-                                    ){
                                         Button(
                                             onClick = {
-                                                if (rInput.value == "" || cInput.value == ""){
-                                                    showWarning8.value = true
-                                                } else {
-                                                    if (rInput.value.contains(",") || cInput.value.contains(",")){
-                                                        showWarning5.value = true
-                                                        rInput.value = ""
-                                                        cInput.value = ""
-                                                    } else if (rInput.value.contains(" ")){
-                                                        rInput.value = mins.value.replace(" ", "")
-                                                    } else if (cInput.value.contains(" ")){
-                                                        cInput.value = cInput.value.replace(" ", "")
-                                                    } else if (rInput.value.toFloat() % 1 != 0f || cInput.value.toFloat() % 1 != 0f){
-                                                        showWarning5.value = true
-                                                        rInput.value = ""
-                                                        cInput.value = ""
-                                                    } else if (rInput.value.toInt() < 0 || cInput.value.toInt() < 0){
-                                                        showWarning9.value = true
-                                                        rInput.value = ""
-                                                        cInput.value = ""
-                                                    } else if (rInput.value.toInt() < 3 || cInput.value.toInt() < 3){
-                                                        showWarning6.value = true
-                                                        rInput.value = ""
-                                                        cInput.value = ""
-                                                    } else if (rInput.value.toInt() > 10 || cInput.value.toInt() > 10){
-                                                        showWarning7.value = true
-                                                        rInput.value = ""
-                                                        cInput.value = ""
-                                                    }
-                                                }
-                                                showGridChangeDialog.value = false
-                                                if (rInput.value != "" && cInput.value != "" && !showGridChangeDialog.value && !changeGridSize.value){
-                                                    r.value = rInput.value.toInt()
-                                                    c.value = cInput.value.toInt()
-                                                    generateGridSizeList(r.value,c.value)
-                                                }
+                                                showGridChangeDialog.value =
+                                                    !showGridChangeDialog.value
                                             },
-                                            modifier = Modifier.height(40.dp),
+                                            modifier = Modifier.height(44.dp),
                                             colors = ButtonDefaults.buttonColors(
-                                                containerColor = Color(0xFF0FA6F7)
+                                                containerColor = Color(0xFFED6A5E)
                                             ),
+                                            shape = RoundedCornerShape(15),
                                             elevation = ButtonDefaults.buttonElevation(
                                                 defaultElevation = 12.dp
                                             ),
-                                            shape = RoundedCornerShape(15)
-                                        ){
+                                        ) {
                                             Text(
-                                                text = "Confirm",
-                                                fontSize = 16.sp,
-                                                fontWeight = FontWeight.Bold,
-                                                color = Color.White
+                                                text = if ((r.value.toString() == "0" && c.value.toString() == "0") && !changeGridSize.value) "Set" else r.value.toString() + " × " + c.value.toString(),
+                                                color = Color.White,
+                                                fontSize = 20.sp,
+                                                fontWeight = FontWeight.Bold
                                             )
                                         }
-                                        Spacer(modifier = Modifier.width(20.dp))
+                                    }
+                                        Spacer(modifier = Modifier.height(20.dp))
+                                        AnimatedVisibility(
+                                            visible = showGridChangeDialog.value,
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .background(Color(0xFFF2D1CD))
+                                                .clip(RoundedCornerShape(20))
+                                        ) {
+                                            Column(
+                                                modifier = Modifier.fillMaxWidth(),
+                                                horizontalAlignment = Alignment.CenterHorizontally,
+                                            ) {
+                                                Spacer(modifier = Modifier.height(5.dp))
+                                                Row(
+                                                    modifier = Modifier
+                                                        .fillMaxWidth(),
+                                                    horizontalArrangement = Arrangement.Center,
+                                                    verticalAlignment = Alignment.CenterVertically,
+                                                ) {
+                                                    Spacer(modifier = Modifier.width(55.dp))
+                                                    Text(
+                                                        text = "Rows",
+                                                        fontSize = 18.sp,
+                                                        fontWeight = FontWeight.Bold,
+                                                        color = Color.Black
+                                                    )
+                                                    Spacer(modifier = Modifier.width(30.dp))
+
+                                                    Text(
+                                                        text = "Columns",
+                                                        fontSize = 18.sp,
+                                                        fontWeight = FontWeight.Bold,
+                                                        color = Color.Black
+                                                    )
+                                                }
+                                                Row(
+                                                    modifier = Modifier
+                                                        .fillMaxWidth()
+                                                        .height(80.dp),
+                                                    horizontalArrangement = Arrangement.Center,
+                                                    verticalAlignment = Alignment.CenterVertically,
+                                                ) {
+                                                    Text(
+                                                        text = " Size : ",
+                                                        fontSize = 18.sp,
+                                                        fontWeight = FontWeight.Bold,
+                                                        color = Color.Black
+                                                    )
+                                                    OutlinedTextField(
+                                                        value = rInput.value,
+                                                        onValueChange = {
+                                                            rInput.value = it
+                                                        },
+                                                        keyboardOptions = KeyboardOptions(
+                                                            keyboardType = KeyboardType.Number
+                                                        ),
+                                                        modifier = Modifier
+                                                            .height(48.dp)
+                                                            .width(60.dp)
+                                                            .background(Color(0xFFC7F1FD)),
+                                                    )
+                                                    Text(
+                                                        text = " × ",
+                                                        fontSize = 18.sp,
+                                                        fontWeight = FontWeight.Bold,
+                                                        color = Color.Black
+                                                    )
+
+                                                    OutlinedTextField(
+                                                        value = cInput.value,
+                                                        onValueChange = {
+                                                            cInput.value = it
+                                                        },
+                                                        keyboardOptions = KeyboardOptions(
+                                                            keyboardType = KeyboardType.Number
+                                                        ),
+                                                        modifier = Modifier
+                                                            .height(48.dp)
+                                                            .width(60.dp)
+                                                            .background(Color(0xFFC7F1FD)),
+                                                    )
+                                                }
+                                                Row(
+                                                    horizontalArrangement = Arrangement.Center
+                                                ) {
+                                                    Button(
+                                                        onClick = {
+                                                            if (rInput.value == "" || cInput.value == "") {
+                                                                showWarning8.value = true
+                                                            } else {
+                                                                if (rInput.value.contains(",") || cInput.value.contains(
+                                                                        ","
+                                                                    )
+                                                                ) {
+                                                                    showWarning5.value = true
+                                                                    rInput.value = ""
+                                                                    cInput.value = ""
+                                                                } else if (rInput.value.contains(" ")) {
+                                                                    rInput.value =
+                                                                        mins.value.replace(" ", "")
+                                                                } else if (cInput.value.contains(" ")) {
+                                                                    cInput.value =
+                                                                        cInput.value.replace(
+                                                                            " ",
+                                                                            ""
+                                                                        )
+                                                                } else if (rInput.value.toFloat() % 1 != 0f || cInput.value.toFloat() % 1 != 0f) {
+                                                                    showWarning5.value = true
+                                                                    rInput.value = ""
+                                                                    cInput.value = ""
+                                                                } else if (rInput.value.toInt() < 0 || cInput.value.toInt() < 0) {
+                                                                    showWarning9.value = true
+                                                                    rInput.value = ""
+                                                                    cInput.value = ""
+                                                                } else if (rInput.value.toInt() < 3 || cInput.value.toInt() < 3) {
+                                                                    showWarning6.value = true
+                                                                    rInput.value = ""
+                                                                    cInput.value = ""
+                                                                } else if (rInput.value.toInt() > 10 || cInput.value.toInt() > 10) {
+                                                                    showWarning7.value = true
+                                                                    rInput.value = ""
+                                                                    cInput.value = ""
+                                                                }
+                                                            }
+                                                            showGridChangeDialog.value = false
+                                                            if (rInput.value != "" && cInput.value != "" && !showGridChangeDialog.value && !changeGridSize.value) {
+                                                                r.value = rInput.value.toInt()
+                                                                c.value = cInput.value.toInt()
+                                                                generateGridSizeList(
+                                                                    r.value,
+                                                                    c.value
+                                                                )
+                                                            }
+                                                        },
+                                                        modifier = Modifier.height(40.dp),
+                                                        colors = ButtonDefaults.buttonColors(
+                                                            containerColor = Color(0xFF0FA6F7)
+                                                        ),
+                                                        elevation = ButtonDefaults.buttonElevation(
+                                                            defaultElevation = 12.dp
+                                                        ),
+                                                        shape = RoundedCornerShape(15)
+                                                    ) {
+                                                        Text(
+                                                            text = "Confirm",
+                                                            fontSize = 16.sp,
+                                                            fontWeight = FontWeight.Bold,
+                                                            color = Color.White
+                                                        )
+                                                    }
+                                                    Spacer(modifier = Modifier.width(20.dp))
+                                                    Button(
+                                                        onClick = {
+                                                            changeGridSize.value = false
+                                                            r.value = 0
+                                                            c.value = 0
+                                                            rInput.value = ""
+                                                            cInput.value = ""
+                                                            showGridChangeDialog.value = false
+                                                        },
+                                                        modifier = Modifier.height(40.dp),
+                                                        colors = ButtonDefaults.buttonColors(
+                                                            containerColor = Color(0xFF0FA6F7)
+                                                        ),
+                                                        elevation = ButtonDefaults.buttonElevation(
+                                                            defaultElevation = 12.dp
+                                                        ),
+                                                        shape = RoundedCornerShape(15)
+                                                    ) {
+                                                        Text(
+                                                            text = "Cancel",
+                                                            fontSize = 16.sp,
+                                                            fontWeight = FontWeight.Bold,
+                                                            color = Color.White
+                                                        )
+                                                    }
+                                                }
+                                                Spacer(modifier = Modifier.height(20.dp))
+                                            }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Text(
+                        text = "-----------------",
+                        fontSize = 44.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color.Black
+                    )
+//                    Spacer(modifier = Modifier.height(40.dp))
+                    AnimatedVisibility(visible = true) {
+                        Column(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Button(
+                                onClick = {
+                                    showGridChangeDialog.value = false
+                                    optionsSeriesDialog.value = !optionsSeriesDialog.value
+                                },
+                                modifier = Modifier.height(48.dp),
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = Color(0xFF0FA6F7)
+                                ),
+                                elevation = ButtonDefaults.buttonElevation(
+                                    defaultElevation = 12.dp
+                                )
+                            ){
+                                Text(
+                                    text = "Series Mode",
+                                    color = Color.White,
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(10.dp))
+                            AnimatedVisibility(visible = optionsSeriesDialog.value) {
+                                Column(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalAlignment = Alignment.CenterHorizontally
+                                ){
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.Center,
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ){
+                                        Text(
+                                            text = "Handicapped Series? : ",
+                                            fontSize = 18.sp,
+                                            fontWeight = FontWeight.Bold,
+                                            color = Color.Black
+                                        )
+                                        Spacer(modifier = Modifier.width(4.dp))
                                         Button(
                                             onClick = {
-                                                changeGridSize.value = false
-                                                r.value = 0
-                                                c.value = 0
-                                                rInput.value = ""
-                                                cInput.value = ""
-                                                showGridChangeDialog.value = false
+                                                chooseSeriesHandicap.value =
+                                                    !chooseSeriesHandicap.value
                                             },
-                                            modifier = Modifier.height(40.dp),
+                                            modifier = Modifier.height(44.dp),
+                                            shape = RoundedCornerShape(15),
                                             colors = ButtonDefaults.buttonColors(
-                                                containerColor = Color(0xFF0FA6F7)
-                                            ),
-                                            elevation = ButtonDefaults.buttonElevation(
-                                                defaultElevation = 12.dp
-                                            ),
-                                            shape = RoundedCornerShape(15)
-                                        ){
-                                            Text(
-                                                text = "Cancel",
-                                                fontSize = 16.sp,
-                                                fontWeight = FontWeight.Bold,
-                                                color = Color.White
+                                                containerColor = Color(0xFFED6A5E),
+                                                contentColor = Color.White
                                             )
+                                        ){
+                                           Text(
+                                               text = if(chooseSeriesHandicap.value) "YES" else "NO",
+                                               fontSize = 18.sp,
+                                               fontWeight = FontWeight.Bold,
+                                               color = Color.White
+                                           )
                                         }
                                     }
                                     Spacer(modifier = Modifier.height(20.dp))
+                                    Text(
+                                        text = "Choose number of matches : ",
+                                        fontSize = 18.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        color = Color.Black
+                                    )
+                                    Spacer(modifier = Modifier.height(8.dp))
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.Center,
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ){
+                                        Button(
+                                            onClick = {
+                                                noOfMatches.value = 3
+                                            },
+                                            modifier = Modifier.height(56.dp),
+                                            shape = RoundedCornerShape(15),
+                                            colors = ButtonDefaults.buttonColors(
+                                                containerColor = if (noOfMatches.value == 3) Color(0xFF0FA6F7)  else Color(0xFFED6A5E),
+                                            )
+                                        ){
+                                            Text(
+                                                text = " 3 ",
+                                                fontSize = 26.sp,
+                                                fontWeight = FontWeight.Bold,
+                                                color = Color.White
+                                            )
+                                        }
+                                        Spacer(modifier = Modifier.width(8.dp))
+                                        Button(
+                                            onClick = {
+                                                noOfMatches.value = 5
+                                            },
+                                            modifier = Modifier.height(56.dp),
+                                            shape = RoundedCornerShape(15),
+                                            colors = ButtonDefaults.buttonColors(
+                                                containerColor = if (noOfMatches.value == 5) Color(0xFF0FA6F7) else Color(0xFFED6A5E)
+                                                )
+                                        ){
+                                            Text(
+                                                text = " 5 ",
+                                                fontSize = 26.sp,
+                                                fontWeight = FontWeight.Bold,
+                                                color = Color.White
+                                            )
+                                        }
+                                        Spacer(modifier = Modifier.width(8.dp))
+                                        AnimatedVisibility(visible = customSeries.value) {
+                                            Button(
+                                                onClick = {
+                                                    customSeries.value = false
+                                                },
+                                                modifier = Modifier.height(56.dp),
+                                                shape = RoundedCornerShape(15),
+                                                colors = ButtonDefaults.buttonColors(
+                                                    containerColor = Color(0xFFED6A5E),
+                                                    contentColor = Color.White
+                                                )
+                                            ){
+                                                Text(
+                                                    text = "Custom",
+                                                    fontSize = 22.sp,
+                                                    fontWeight = FontWeight.Bold,
+                                                    color = Color.White
+                                                )
+                                            }
+                                        }
+                                        AnimatedVisibility(visible = !customSeries.value) {
+                                            OutlinedTextField(
+                                                value = noOfMatchesInput.value,
+                                                onValueChange = {
+                                                    noOfMatchesInput.value = it
+                                                },
+                                                label = {
+                                                    Text(
+                                                        text = "Enter",
+                                                        fontSize = 8.sp
+                                                    )
+                                                },
+                                                modifier = Modifier
+                                                    .width(64.dp)
+                                                    .height(56.dp)
+                                                    .background(Color(0xFFF2D1CD)),
+                                                keyboardOptions = KeyboardOptions(
+                                                    keyboardType = KeyboardType.Number
+                                                )
+                                            )
+                                        }
+                                    }
+                                    Spacer(modifier = Modifier.height(10.dp))
+                                    Button(
+                                        onClick = {},
+                                        modifier = Modifier.height(44.dp),
+                                        colors = ButtonDefaults.buttonColors(
+                                            containerColor = Color(0xFF0FA6F7)
+                                        ),
+                                        elevation = ButtonDefaults.buttonElevation(
+                                            defaultElevation = 12.dp
+                                        ),
+                                    ){
+                                        Text(
+                                            text = "Confirm",
+                                            color = Color.White,
+                                            fontSize = 18.sp,
+                                            fontWeight = FontWeight.ExtraBold
+                                        )
+                                    }
                                 }
                             }
                         }

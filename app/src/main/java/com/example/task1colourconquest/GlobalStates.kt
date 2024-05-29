@@ -125,6 +125,12 @@ var resetTimer = mutableStateListOf(false,false)
 var setCustomGrid = mutableStateOf(false)
 var changeGridSize = mutableStateOf(false)
 var showGridChangeDialog = mutableStateOf(false)
+
+var chooseSeriesHandicap = mutableStateOf(false)
+var optionsSeriesDialog = mutableStateOf(false)
+var customSeries = mutableStateOf(true)
+var noOfMatchesInput = mutableStateOf("")
+var noOfMatches = mutableStateOf(1)
 fun generateGridSizeList(r: Int, c: Int){
     for (i in 0..r * c - 1 ) {
         clicked.add(false)
