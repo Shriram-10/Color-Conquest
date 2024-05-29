@@ -271,7 +271,7 @@ fun PlayerPage(navController: NavController) {
 
         Button(
             onClick = {
-                if (mode.value == 1 || (mode.value == 2 && (!setCustomGrid.value))){
+                if (mode.value == 1 || (mode.value == 2 && (rInput.value == "" || cInput.value == ""))){
                     r.value = 5
                     c.value = 5
                     generateGridSizeList(r.value,c.value)

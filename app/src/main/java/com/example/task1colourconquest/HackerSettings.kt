@@ -65,7 +65,7 @@ fun HackerSettings(navController: NavController){
 
     var isTimerVisible by remember {mutableStateOf(false)}
     var isSeriesVisible by remember {mutableStateOf(false)}
-    var displayString: String = ""
+    var displayString = ""
 
     if (showWarning1.value){
         AlertDialog(
@@ -289,6 +289,53 @@ fun HackerSettings(navController: NavController){
             }
         )
     }
+    if (showWarning10.value){
+        AlertDialog(
+            onDismissRequest = {  },
+            confirmButton = {
+                Button(
+                    onClick = { showWarning10.value = false },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFED6A5E),
+                        contentColor = Color.White
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 12.dp
+                    ),
+                    shape = RoundedCornerShape(
+                        topStartPercent = 20,
+                        topEndPercent = 0,
+                        bottomStartPercent = 0,
+                        bottomEndPercent = 20
+                    )
+                ) {
+                    Text(text = "OK")
+                }
+            },
+            title = {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Text(
+                        text = "Enter an Integer!",
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color(0xFFED6A5E)
+                    )
+                }
+            },
+            text = {
+                Text(
+                    textAlign = TextAlign.Center,
+                    text = "NOTE:\nNumber of matches should be greater than 1 and should not exceed 10.",
+                    fontSize = 18.sp,
+                    color = Color.Black
+                )
+            }
+        )
+    }
     if (showWarning6.value){
         AlertDialog(
             onDismissRequest = {  },
@@ -330,6 +377,53 @@ fun HackerSettings(navController: NavController){
                 Text(
                     textAlign = TextAlign.Center,
                     text = "NOTE:\nNumber of rows and columns should be greater than 2.",
+                    fontSize = 18.sp,
+                    color = Color.Black
+                )
+            }
+        )
+    }
+    if (showWarning11.value){
+        AlertDialog(
+            onDismissRequest = {  },
+            confirmButton = {
+                Button(
+                    onClick = { showWarning11.value = false },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFED6A5E),
+                        contentColor = Color.White
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 12.dp
+                    ),
+                    shape = RoundedCornerShape(
+                        topStartPercent = 20,
+                        topEndPercent = 0,
+                        bottomStartPercent = 0,
+                        bottomEndPercent = 20
+                    )
+                ) {
+                    Text(text = "OK")
+                }
+            },
+            title = {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Text(
+                        text = "Not Enough Matches!",
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color(0xFFED6A5E)
+                    )
+                }
+            },
+            text = {
+                Text(
+                    textAlign = TextAlign.Center,
+                    text = "NOTE:\nAt least two matches are required in a series.",
                     fontSize = 18.sp,
                     color = Color.Black
                 )
@@ -383,6 +477,53 @@ fun HackerSettings(navController: NavController){
             }
         )
     }
+    if (showWarning12.value){
+        AlertDialog(
+            onDismissRequest = {  },
+            confirmButton = {
+                Button(
+                    onClick = { showWarning12.value = false },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFED6A5E),
+                        contentColor = Color.White
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 12.dp
+                    ),
+                    shape = RoundedCornerShape(
+                        topStartPercent = 20,
+                        topEndPercent = 0,
+                        bottomStartPercent = 0,
+                        bottomEndPercent = 20
+                    )
+                ) {
+                    Text(text = "OK")
+                }
+            },
+            title = {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Text(
+                        text = "Too many matches!",
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color(0xFFED6A5E)
+                    )
+                }
+            },
+            text = {
+                Text(
+                    textAlign = TextAlign.Center,
+                    text = "NOTE:\nNumber of matches should not exceed 10.",
+                    fontSize = 18.sp,
+                    color = Color.Black
+                )
+            }
+        )
+    }
     if (showWarning8.value){
         AlertDialog(
             onDismissRequest = {  },
@@ -424,6 +565,53 @@ fun HackerSettings(navController: NavController){
                 Text(
                     textAlign = TextAlign.Center,
                     text = "NOTE:\nNumber of rows and columns should be greater than 2 and should not exceed 10.",
+                    fontSize = 18.sp,
+                    color = Color.Black
+                )
+            }
+        )
+    }
+    if (showWarning13.value){
+        AlertDialog(
+            onDismissRequest = {  },
+            confirmButton = {
+                Button(
+                    onClick = { showWarning13.value = false },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFED6A5E),
+                        contentColor = Color.White
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 12.dp
+                    ),
+                    shape = RoundedCornerShape(
+                        topStartPercent = 20,
+                        topEndPercent = 0,
+                        bottomStartPercent = 0,
+                        bottomEndPercent = 20
+                    )
+                ) {
+                    Text(text = "OK")
+                }
+            },
+            title = {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Text(
+                        text = "Enter Input!",
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color(0xFFED6A5E)
+                    )
+                }
+            },
+            text = {
+                Text(
+                    textAlign = TextAlign.Center,
+                    text = "NOTE:\nNumber of matches should be greater than 1 and should not exceed 10.",
                     fontSize = 18.sp,
                     color = Color.Black
                 )
@@ -678,10 +866,7 @@ fun HackerSettings(navController: NavController){
                                                             if (rInput.value == "" || cInput.value == "") {
                                                                 showWarning8.value = true
                                                             } else {
-                                                                if (rInput.value.contains(",") || cInput.value.contains(
-                                                                        ","
-                                                                    )
-                                                                ) {
+                                                                if (rInput.value.contains(",") || cInput.value.contains(",") || rInput.value.contains(".") || cInput.value.contains(".")) {
                                                                     showWarning5.value = true
                                                                     rInput.value = ""
                                                                     cInput.value = ""
@@ -694,10 +879,6 @@ fun HackerSettings(navController: NavController){
                                                                             " ",
                                                                             ""
                                                                         )
-                                                                } else if (rInput.value.toFloat() % 1 != 0f || cInput.value.toFloat() % 1 != 0f) {
-                                                                    showWarning5.value = true
-                                                                    rInput.value = ""
-                                                                    cInput.value = ""
                                                                 } else if (rInput.value.toInt() < 0 || cInput.value.toInt() < 0) {
                                                                     showWarning9.value = true
                                                                     rInput.value = ""
@@ -765,7 +946,7 @@ fun HackerSettings(navController: NavController){
                                                         )
                                                     }
                                                 }
-                                                Spacer(modifier = Modifier.height(20.dp))
+                                                Spacer(modifier = Modifier.height(10.dp))
                                             }
                                     }
                                 }
@@ -917,12 +1098,6 @@ fun HackerSettings(navController: NavController){
                                                 onValueChange = {
                                                     noOfMatchesInput.value = it
                                                 },
-                                                label = {
-                                                    Text(
-                                                        text = "Enter",
-                                                        fontSize = 8.sp
-                                                    )
-                                                },
                                                 modifier = Modifier
                                                     .width(64.dp)
                                                     .height(56.dp)
@@ -935,7 +1110,23 @@ fun HackerSettings(navController: NavController){
                                     }
                                     Spacer(modifier = Modifier.height(10.dp))
                                     Button(
-                                        onClick = {},
+                                        onClick = {
+                                            if (noOfMatchesInput.value == ""){
+                                                showWarning13.value = true
+                                            } else {
+                                                if (noOfMatchesInput.value.contains(",") || noOfMatchesInput.value.contains(".")){
+                                                    showWarning10.value = true
+                                                } else if (noOfMatchesInput.value.contains(" ")){
+                                                    noOfMatchesInput.value = noOfMatchesInput.value.replace(" ", "")
+                                                } else if (noOfMatchesInput.value.toInt() <= 1){
+                                                    showWarning11.value = true
+                                                } else if (noOfMatchesInput.value.toInt() > 10){
+                                                    showWarning12.value = true
+                                                } else {
+                                                    noOfMatches.value = noOfMatchesInput.value.toInt()
+                                                }
+                                            }
+                                        },
                                         modifier = Modifier.height(44.dp),
                                         colors = ButtonDefaults.buttonColors(
                                             containerColor = Color(0xFF0FA6F7)
@@ -1368,20 +1559,19 @@ fun HackerSettings(navController: NavController){
                                                     if (mins.value == "" || secs.value == ""){
                                                         showWarning4.value = true
                                                     } else {
-                                                        if (mins.value.contains(",") || secs.value.contains(",")){
+                                                        if (mins.value.contains(",") || secs.value.contains(",") || mins.value.contains(".") || secs.value.contains(".")){
                                                             showWarning1.value = true
                                                         } else if (mins.value.contains(" ")){
                                                             mins.value = mins.value.replace(" ", "")
                                                         } else if (secs.value.contains(" ")){
                                                             secs.value = secs.value.replace(" ", "")
-                                                        } else if (mins.value.toFloat() % 1 != 0f || secs.value.toFloat() % 1 != 0f || mins.value == "" || secs.value == ""){
-                                                            showWarning1.value = true
                                                         } else if ((mins.value.toInt() < 0 || secs.value.toInt() < 0) || (mins.value.toInt() == 0 && secs.value.toInt() == 0)){
                                                             showWarning3.value = true
                                                         } else if (mins.value.toInt() > 15 || secs.value.toInt() > 59){
                                                             showWarning2.value = true
+                                                        } else {
+                                                            displayString = displayString(mins.value, secs.value)
                                                         }
-                                                        displayString = displayString(mins.value, secs.value)
                                                     }
 
                                                     showTimerDialog.value = false
@@ -1548,7 +1738,7 @@ fun HackerSettings(navController: NavController){
                                                 if (minsh1.value == "" || secsh1.value == "" || minsh2.value == "" || secsh2.value == ""){
                                                     showWarning4.value = true
                                                 } else {
-                                                    if (minsh1.value.contains(",") || secsh1.value.contains(",") || secsh2.value.contains(",") || minsh2.value.contains(",")){
+                                                    if (minsh1.value.contains(",") || secsh1.value.contains(",") || secsh2.value.contains(",") || minsh2.value.contains(",") || minsh1.value.contains(".") || minsh2.value.contains(".") || secsh1.value.contains(".") || secsh2.value.contains(".")){
                                                         showWarning1.value = true
                                                     } else if (minsh1.value.contains(" ")){
                                                         minsh1.value = minsh1.value.replace(" ", "")
@@ -1558,8 +1748,6 @@ fun HackerSettings(navController: NavController){
                                                         secsh1.value = secsh1.value.replace(" ", "")
                                                     } else if (secsh2.value.contains(" ")){
                                                         secsh2.value = secsh2.value.replace(" ", "")
-                                                    } else if (minsh1.value.toFloat() % 1 != 0f || secsh1.value.toFloat() % 1 != 0f || minsh1.value == "" || secsh1.value == "" || minsh2.value.toFloat() % 1 != 0f || secsh2.value.toFloat() % 1 != 0f || minsh2.value == "" || secsh2.value == ""){
-                                                        showWarning1.value = true
                                                     } else if (((minsh1.value.toInt() < 0 && secsh1.value.toInt() <= 0) && (minsh1.value.toInt() <= 0 && secsh1.value.toInt() < 0)) || ((minsh2.value.toInt() < 0 && secsh2.value.toInt() <= 0) && (minsh2.value.toInt() <= 0 && secsh2.value.toInt() < 0))){
                                                         showWarning3.value = true
                                                     } else if (minsh1.value.toInt() > 15 || secsh1.value.toInt() > 59 || minsh2.value.toInt() > 15 || secsh2.value.toInt() > 59){
