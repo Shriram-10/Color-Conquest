@@ -135,6 +135,8 @@ var optionsSeriesDialog = mutableStateOf(false)
 var customSeries = mutableStateOf(true)
 var noOfMatchesInput = mutableStateOf("")
 var noOfMatches = mutableStateOf(1)
+var matchCount = mutableStateOf(1)
+var listOfWins = mutableListOf<Int>()
 fun generateGridSizeList(r: Int, c: Int){
     for (i in 0..r * c - 1 ) {
         clicked.add(false)
@@ -144,6 +146,22 @@ fun generateGridSizeList(r: Int, c: Int){
         playerCover[1].add(false)
         playerPoints[0].add(0)
         playerPoints[1].add(0)
+    }
+}
+
+fun generateResultList(){
+    for (i in 0..noOfMatches.value - 1){
+        if (noOfMatches.value > 1){
+            listOfWins.add(-1)
+        }
+    }
+}
+
+fun emptyResultList(){
+    for (i in 0..noOfMatches.value - 1){
+        if (noOfMatches.value > 1 && matchCount.value == noOfMatches.value){
+            listOfWins.removeAt(noOfMatches.value - i - 1)
+        }
     }
 }
 

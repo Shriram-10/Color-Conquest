@@ -102,42 +102,120 @@ fun DisplayWinner(navController: NavController) {
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                Button(
-                    onClick = {
-                        counter.value = 0
-                        for(b in 0..1){
-                            for(t in 0..<r.value * c.value){
-                                playerPoints[b][t] = 0
+                if (noOfMatches.value == 1){
+                    Button(
+                        onClick = {
+                            counter.value = 0
+                            for(b in 0..1){
+                                for(t in 0..<r.value * c.value){
+                                    playerPoints[b][t] = 0
+                                }
                             }
-                        }
-                        backgroundColor.value = Color(0xFFED6A5E)
-                        pointsTotal[0] = 0
-                        pointsTotal[1] = 0
-                        for(i in 0 .. 1) {
-                            for (j in 0..<r.value * c.value) {
-                                colorTile[j] = Color(0xFFF2E6D1)
-                                playerCover[i][j] = false
+                            backgroundColor.value = Color(0xFFED6A5E)
+                            pointsTotal[0] = 0
+                            pointsTotal[1] = 0
+                            for(i in 0 .. 1) {
+                                for (j in 0..<r.value * c.value) {
+                                    colorTile[j] = Color(0xFFF2E6D1)
+                                    playerCover[i][j] = false
+                                }
                             }
-                        }
-                        thisPlayer.value = 1
-                        otherPlayer.value = 0
-                        resetTimer[0] = true
-                        resetTimer[1] = true
-                        winner.value = -1
-                    },
-                    modifier = Modifier
-                        .width(275.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(87,190,235),
-                        contentColor = Color.White
-                    )
-                ){
-                    Text(
-                        text = "Play Again",
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White,
-                        fontSize = 25.sp
-                    )
+                            thisPlayer.value = 1
+                            otherPlayer.value = 0
+                            resetTimer[0] = true
+                            resetTimer[1] = true
+                            winner.value = -1
+                        },
+                        modifier = Modifier
+                            .width(275.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(87,190,235),
+                            contentColor = Color.White
+                        )
+                    ){
+                        Text(
+                            text = "Play Again",
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White,
+                            fontSize = 25.sp
+                        )
+                    }
+                } else if (noOfMatches.value > 1 && matchCount.value < noOfMatches.value) {
+                    Button(
+                        onClick = {
+                            counter.value = 0
+                            for(b in 0..1){
+                                for(t in 0..<r.value * c.value){
+                                    playerPoints[b][t] = 0
+                                }
+                            }
+                            backgroundColor.value = Color(0xFFED6A5E)
+                            pointsTotal[0] = 0
+                            pointsTotal[1] = 0
+                            for(i in 0 .. 1) {
+                                for (j in 0..<r.value * c.value) {
+                                    colorTile[j] = Color(0xFFF2E6D1)
+                                    playerCover[i][j] = false
+                                }
+                            }
+                            thisPlayer.value = 1
+                            otherPlayer.value = 0
+                            resetTimer[0] = true
+                            resetTimer[1] = true
+                            winner.value = -1
+                            matchCount.value += 1
+                        },
+                        modifier = Modifier
+                            .width(275.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(87,190,235),
+                            contentColor = Color.White
+                        )
+                    ){
+                        Text(
+                            text = "Next Match",
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White,
+                            fontSize = 25.sp
+                        )
+                    }
+                } else {
+                    Button(
+                        onClick = {
+                            counter.value = 0
+                            for(b in 0..1){
+                                for(t in 0..<r.value * c.value){
+                                    playerPoints[b][t] = 0
+                                }
+                            }
+                            backgroundColor.value = Color(0xFFED6A5E)
+                            pointsTotal[0] = 0
+                            pointsTotal[1] = 0
+                            for(i in 0 .. 1) {
+                                for (j in 0..<r.value * c.value) {
+                                    colorTile[j] = Color(0xFFF2E6D1)
+                                    playerCover[i][j] = false
+                                }
+                            }
+                            winner.value = -1
+                            noOfMatches.value = 1
+                            noOfMatchesInput.value = ""
+                            navController.popBackStack(Screen.HackerSettings.route, false)
+                        },
+                        modifier = Modifier
+                            .width(275.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(87,190,235),
+                            contentColor = Color.White
+                        )
+                    ){
+                        Text(
+                            text = "New Series",
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White,
+                            fontSize = 25.sp
+                        )
+                    }
                 }
 
                 Spacer(modifier = Modifier.height(8.dp))
