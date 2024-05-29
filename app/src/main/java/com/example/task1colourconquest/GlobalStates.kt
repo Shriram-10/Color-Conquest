@@ -93,10 +93,7 @@ var winnerName = mutableStateOf("")
 var sizeOfOtherCircle = playerCover[if (counter.value % 2 == 0) 1 else 0]
 var sizeOfCircle = playerCover[if (counter.value % 2 == 0) 0 else 1]
 
-var mode = mutableStateOf(1)
-
-var mins = mutableStateOf("")
-var secs = mutableStateOf("")
+var mode = mutableStateOf(0)
 
 var chooseHandicap = mutableStateOf(false)
 var showDropDown = mutableStateOf(false)
@@ -114,11 +111,8 @@ var showWarning7 = mutableStateOf(false)
 var showWarning8 = mutableStateOf(false)
 var showWarning9 = mutableStateOf(false)
 
-var mins1 = mutableStateOf(0)
-var secs1 = mutableStateOf(0)
-var mins2 = mutableStateOf(0)
-var secs2 = mutableStateOf(0)
-
+var mins = mutableStateOf("")
+var secs = mutableStateOf("")
 var minsh1 = mutableStateOf("")
 var secsh1 = mutableStateOf("")
 var minsh2 = mutableStateOf("")
@@ -140,5 +134,17 @@ fun generateGridSizeList(r: Int, c: Int){
         playerCover[1].add(false)
         playerPoints[0].add(0)
         playerPoints[1].add(0)
+    }
+}
+
+fun removeListItems(r: Int, c:Int){
+    for (i in 0..r * c - 1){
+        clicked.removeAt(r * c - i - 1)
+        colorTile.removeAt(r * c - i - 1)
+        colorCircle.removeAt(r * c - i - 1)
+        playerCover[0].removeAt(r * c - i - 1)
+        playerCover[1].removeAt(r * c - i - 1)
+        playerPoints[0].removeAt(r * c - i - 1)
+        playerPoints[1].removeAt(r * c - i - 1)
     }
 }

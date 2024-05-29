@@ -1168,14 +1168,13 @@ fun HackerSettings(navController: NavController){
                                                             secs.value = secs.value.replace(" ", "")
                                                         } else if (mins.value.toFloat() % 1 != 0f || secs.value.toFloat() % 1 != 0f || mins.value == "" || secs.value == ""){
                                                             showWarning1.value = true
-                                                        } else if ((mins.value.toInt() < 0 && secs.value.toInt() <= 0) || (mins.value.toInt() <= 0 && secs.value.toInt() < 0)){
+                                                        } else if ((mins.value.toInt() < 0 || secs.value.toInt() < 0) || (mins.value.toInt() == 0 && secs.value.toInt() == 0)){
                                                             showWarning3.value = true
                                                         } else if (mins.value.toInt() > 15 || secs.value.toInt() > 59){
                                                             showWarning2.value = true
                                                         }
+                                                        displayString = displayString(mins.value, secs.value)
                                                     }
-
-                                                    displayString = displayString(mins.value, secs.value)
 
                                                     showTimerDialog.value = false
                                                 },

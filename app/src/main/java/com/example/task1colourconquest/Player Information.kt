@@ -271,6 +271,11 @@ fun PlayerPage(navController: NavController) {
 
         Button(
             onClick = {
+                if (mode.value == 1 || (mode.value == 2 && (!setCustomGrid.value))){
+                    r.value = 5
+                    c.value = 5
+                    generateGridSizeList(r.value,c.value)
+                }
                 navController.navigate(Screen.GamePage.route)
             },
             modifier = Modifier

@@ -147,6 +147,20 @@ fun HomePage(navController: NavController) {
                     containerColor = Color(0xFF0FA6F7)
                 ),
                 onClick = {
+                    removeListItems(r.value, c.value)
+                    rInput.value = ""
+                    cInput.value = ""
+                    setCustomGrid.value = false
+                    changeGridSize.value = false
+                    showGridChangeDialog.value = false
+                    chooseHandicap.value = false
+                    timedOrNot.value = false
+                    displayChooseTime.value = false
+                    showTimerDialog.value = false
+                    showDropDown.value = false
+                    mode.value = 0
+                    r.value = 1
+                    c.value = 1
                     navController.navigate(Screen.ModesPage.route)
                 },
                 shape = RoundedCornerShape(

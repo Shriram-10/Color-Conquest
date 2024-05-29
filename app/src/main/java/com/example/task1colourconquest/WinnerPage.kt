@@ -164,7 +164,16 @@ fun DisplayWinner(navController: NavController) {
                         player1Name.value = ""
                         player2Name.value = ""
                         winner.value = -1
-                        navController.navigate(Screen.HomePage.route)
+                        if (chooseHandicap.value){
+                            minsh1.value = ""
+                            minsh2.value = ""
+                            secsh1.value = ""
+                            secsh2.value = ""
+                        } else {
+                            mins.value = ""
+                            secs.value = ""
+                        }
+                        navController.popBackStack(Screen.HomePage.route,true)
                     },
                     modifier = Modifier
                         .width(275.dp),
