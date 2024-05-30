@@ -143,3 +143,24 @@ fun resultDeterminer(){
         winner.value = -1
     }
 }
+
+
+fun seriesResultDeterminer(){
+    for (i in 0..<noOfMatches.value){
+        if (listOfWins[i] == 0){
+            player2Wins.value++
+        } else if (listOfWins[i] == 1){
+            player1Wins.value++
+
+        }
+    }
+    if (player1Wins.value > player2Wins.value){
+        seriesWinner.value = 1
+        seriesWinnerName.value = if (player1Name.value == "") "PLAYER 1" else player1Name.value
+    } else if (player2Wins.value > player1Wins.value){
+        seriesWinner.value = 0
+        seriesWinnerName.value = if (player2Name.value == "") "PLAYER 2" else player2Name.value
+    } else {
+        seriesWinner.value = -1
+    }
+}

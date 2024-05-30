@@ -162,6 +162,7 @@ fun DisplayWinner(navController: NavController) {
                             otherPlayer.value = 0
                             resetTimer[0] = true
                             resetTimer[1] = true
+                            listOfWins[matchCount.value - 1] = winner.value
                             winner.value = -1
                             matchCount.value += 1
                         },
@@ -197,9 +198,12 @@ fun DisplayWinner(navController: NavController) {
                                     playerCover[i][j] = false
                                 }
                             }
+                            listOfWins[noOfMatches.value - 1] = winner.value
                             winner.value = -1
                             noOfMatches.value = 1
+                            matchCount.value = 1
                             noOfMatchesInput.value = ""
+                            emptyResultList()
                             navController.popBackStack(Screen.HackerSettings.route, false)
                         },
                         modifier = Modifier

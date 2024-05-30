@@ -140,6 +140,10 @@ var noOfMatchesInput = mutableStateOf("")
 var noOfMatches = mutableStateOf(1)
 var matchCount = mutableStateOf(1)
 var listOfWins = mutableListOf<Int>()
+var player1Wins = mutableStateOf(0)
+var player2Wins = mutableStateOf(0)
+var seriesWinner = mutableStateOf(-1)
+var seriesWinnerName = mutableStateOf("")
 fun generateGridSizeList(r: Int, c: Int){
     for (i in 0..r * c - 1 ) {
         clicked.add(false)
