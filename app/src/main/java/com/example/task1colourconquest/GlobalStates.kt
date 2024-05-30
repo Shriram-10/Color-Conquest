@@ -166,9 +166,7 @@ fun generateResultList(){
 
 fun emptyResultList(){
     for (i in 0..noOfMatches.value - 1){
-        if (noOfMatches.value > 1 && matchCount.value == noOfMatches.value){
-            listOfWins.removeAt(noOfMatches.value - i - 1)
-        }
+        listOfWins.removeAt(noOfMatches.value - i - 1)
     }
 }
 

@@ -2,8 +2,11 @@ package com.example.task1colourconquest
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,12 +16,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -46,63 +52,63 @@ fun DisplayWinner(navController: NavController) {
             .fillMaxSize()
             .background(Color.White.copy(alpha = 0.5f)),
         contentAlignment = Alignment.Center
-    ){
-        Button(
-            onClick = { /*TODO*/ },
-            modifier = Modifier
-                .width(275.dp)
-                .height(290.dp),
-            shape = RoundedCornerShape(20.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(62,65,113),
-                contentColor = Color.Black
-            ),
-            elevation = ButtonDefaults.buttonElevation(
-                defaultElevation = 12.dp
-            )
-        ){
-            Column(
+    ) {
+        if (noOfMatches.value == 1) {
+            Button(
+                onClick = { /*TODO*/ },
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(0.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .width(275.dp)
+                    .height(290.dp),
+                shape = RoundedCornerShape(20.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(62,65,113),
+                    contentColor = Color.Black
+                ),
+                elevation = ButtonDefaults.buttonElevation(
+                    defaultElevation = 12.dp
+                )
             ){
-                Button(
-                    modifier = Modifier.width(275.dp),
-                    onClick = { /*TODO*/ },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.White,
-                        contentColor = Color.Black
-                    )
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(0.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ){
+                    Button(
+                        modifier = Modifier.width(275.dp),
+                        onClick = { /*TODO*/ },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.White,
+                            contentColor = Color.Black
+                        )
+                    ){
+                        Text(
+                            text = winnerName.value.uppercase(),
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black,
+                            fontSize = 26.sp
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Image(
+                        painter = painterResource(id = R.drawable.winner),
+                        contentDescription = "winner",
+                        modifier = Modifier.aspectRatio(16f/5f)
+                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
                     Text(
-                        text = winnerName.value.uppercase(),
+                        text = "WINS!",
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black,
+                        color = Color.White,
                         fontSize = 26.sp
                     )
-                }
 
-                Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
 
-                Image(
-                    painter = painterResource(id = R.drawable.winner),
-                    contentDescription = "winner",
-                    modifier = Modifier.aspectRatio(16f/5f)
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                Text(
-                    text = "WINS!",
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White,
-                    fontSize = 26.sp
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                if (noOfMatches.value == 1){
                     Button(
                         onClick = {
                             counter.value = 0
@@ -140,7 +146,285 @@ fun DisplayWinner(navController: NavController) {
                             fontSize = 25.sp
                         )
                     }
-                } else if (noOfMatches.value > 1 && matchCount.value < noOfMatches.value) {
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Button(
+                        onClick = {
+                            counter.value = 0
+                            for(b in 0..1){
+                                for(t in 0..<r.value * c.value){
+                                    playerPoints[b][t] = 0
+                                }
+                            }
+                            backgroundColor.value = Color(0xFFED6A5E)
+                            pointsTotal[0] = 0
+                            pointsTotal[1] = 0
+                            for(i in 0 .. 1) {
+                                for (j in 0..<r.value * c.value) {
+                                    colorTile[j] = Color(0xFFF2E6D1)
+                                    playerCover[i][j] = false
+                                }
+                            }
+                            thisPlayer.value = 1
+                            otherPlayer.value = 0
+                            player1Name.value = ""
+                            player2Name.value = ""
+                            winner.value = -1
+                            if (chooseHandicap.value){
+                                minsh1.value = ""
+                                minsh2.value = ""
+                                secsh1.value = ""
+                                secsh2.value = ""
+                            } else {
+                                mins.value = ""
+                                secs.value = ""
+                            }
+                            navController.popBackStack(Screen.HomePage.route,false)
+                        },
+                        modifier = Modifier
+                            .width(275.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(237,106,94),
+                            contentColor = Color.White
+                        )
+                    ){
+                        Text(
+                            text = "Home",
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White,
+                            fontSize = 25.sp
+                        )
+                    }
+                }
+            }
+        } else if (noOfMatches.value > 1 && matchCount.value < noOfMatches.value){
+            Button(
+                onClick = { /*TODO*/ },
+                modifier = Modifier
+                    .width(275.dp)
+                    .height(IntrinsicSize.Min),
+                shape = RoundedCornerShape(20.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(62,65,113),
+                    contentColor = Color.Black
+                ),
+                elevation = ButtonDefaults.buttonElevation(
+                    defaultElevation = 12.dp
+                )
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(0.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Button(
+                        modifier = Modifier.width(275.dp),
+                        onClick = { /*TODO*/ },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.White,
+                            contentColor = Color.Black
+                        )
+                    ){
+                        Text(
+                            text = winnerName.value.uppercase(),
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black,
+                            fontSize = 26.sp
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Image(
+                        painter = painterResource(id = R.drawable.winner),
+                        contentDescription = "winner",
+                        modifier = Modifier.aspectRatio(16f/5f)
+                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Text(
+                        text = "WINS!",
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        fontSize = 26.sp
+                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ){
+                        Button(
+                            onClick = {},
+                            modifier = Modifier
+                                .fillMaxWidth(0.48f)
+                                .height(180.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(242,230,209)
+                            ),
+                            shape = RoundedCornerShape(20),
+                            elevation = ButtonDefaults.buttonElevation(
+                                defaultElevation = 12.dp
+                            )
+                        ){
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center
+                            ){
+                                Icon(
+                                    Icons.Filled.Person,
+                                    contentDescription = "Person",
+                                    tint = Color(0xFFED6A5E),
+                                    modifier = Modifier.height(50.dp).aspectRatio(1f)
+                                )
+
+                                Spacer(modifier = Modifier.height(4.dp))
+
+                                Text(
+                                    text = if (player1Name.value != "") player1Name.value.uppercase() else "PLAYER 1",
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color(0xFFED6A5E),
+                                    fontSize = 13.sp
+                                )
+
+                                Spacer(modifier = Modifier.height(4.dp))
+
+                                Box(
+                                    modifier = Modifier.height(70.dp),
+                                    contentAlignment = Alignment.Center
+                                ){
+                                    Button(
+                                        onClick = {},
+                                        modifier = Modifier
+                                            .fillMaxWidth(0.9f)
+                                            .height(70.dp),
+                                        colors = ButtonDefaults.buttonColors(
+                                            containerColor = Color(0xFFED6A5E)
+                                        ),
+                                        shape = RoundedCornerShape(20),
+                                        elevation = ButtonDefaults.buttonElevation(
+                                            defaultElevation = 12.dp
+                                        )
+                                    ){
+
+                                    }
+
+                                    Column(
+                                        modifier = Modifier.fillMaxSize(),
+                                        horizontalAlignment = Alignment.CenterHorizontally
+                                    ){
+                                        Spacer(modifier = Modifier.height(4.dp))
+
+                                        Text(
+                                            text = "WINS",
+                                            fontWeight = FontWeight.Bold,
+                                            color = Color.White,
+                                            fontSize = 12.sp
+                                        )
+
+                                        Spacer(modifier = Modifier.height(8.dp))
+
+                                        Text(
+                                            text = listOfWins.count{ it == 1 }.toString(),
+                                            fontWeight = FontWeight.Bold,
+                                            color = Color.White,
+                                            fontSize = 24.sp
+                                        )
+                                    }
+                                }
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.width(8.dp))
+
+                        Button(
+                            onClick = {},
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(180.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(242,230,209)
+                            ),
+                            shape = RoundedCornerShape(20),
+                            elevation = ButtonDefaults.buttonElevation(
+                                defaultElevation = 12.dp
+                            )
+                        ){
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center
+                            ){
+                                Icon(
+                                    Icons.Filled.Person,
+                                    contentDescription = "Person",
+                                    tint = Color(0xFF0FA6F7),
+                                    modifier = Modifier.height(50.dp).aspectRatio(1f)
+                                )
+
+                                Spacer(modifier = Modifier.height(4.dp))
+
+                                Text(
+                                    text = if (player2Name.value != "") player2Name.value.uppercase() else "PLAYER 2",
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color(0xFF0FA6F7),
+                                    fontSize = 13.sp
+                                )
+
+                                Spacer(modifier = Modifier.height(4.dp))
+
+                                Box(
+                                    modifier = Modifier.height(70.dp),
+                                    contentAlignment = Alignment.Center
+                                ){
+                                    Button(
+                                        onClick = {},
+                                        modifier = Modifier
+                                            .fillMaxWidth(0.9f)
+                                            .height(70.dp),
+                                        colors = ButtonDefaults.buttonColors(
+                                            containerColor = Color(0xFF0FA6F7)
+                                        ),
+                                        shape = RoundedCornerShape(20),
+                                        elevation = ButtonDefaults.buttonElevation(
+                                            defaultElevation = 12.dp
+                                        )
+                                    ){
+
+                                    }
+
+                                    Column(
+                                        modifier = Modifier.fillMaxSize(),
+                                        horizontalAlignment = Alignment.CenterHorizontally
+                                    ){
+                                        Spacer(modifier = Modifier.height(4.dp))
+
+                                        Text(
+                                            text = "WINS",
+                                            fontWeight = FontWeight.Bold,
+                                            color = Color.White,
+                                            fontSize = 12.sp
+                                        )
+
+                                        Spacer(modifier = Modifier.height(8.dp))
+
+                                        Text(
+                                            text = listOfWins.count{ it == 0 }.toString(),
+                                            fontWeight = FontWeight.Bold,
+                                            color = Color.White,
+                                            fontSize = 24.sp
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
                     Button(
                         onClick = {
                             counter.value = 0
@@ -162,7 +446,6 @@ fun DisplayWinner(navController: NavController) {
                             otherPlayer.value = 0
                             resetTimer[0] = true
                             resetTimer[1] = true
-                            listOfWins[matchCount.value - 1] = winner.value
                             winner.value = -1
                             matchCount.value += 1
                         },
@@ -180,7 +463,9 @@ fun DisplayWinner(navController: NavController) {
                             fontSize = 25.sp
                         )
                     }
-                } else {
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
                     Button(
                         onClick = {
                             counter.value = 0
@@ -198,21 +483,329 @@ fun DisplayWinner(navController: NavController) {
                                     playerCover[i][j] = false
                                 }
                             }
+                            thisPlayer.value = 1
+                            otherPlayer.value = 0
+                            player1Name.value = ""
+                            player2Name.value = ""
                             listOfWins[noOfMatches.value - 1] = winner.value
                             winner.value = -1
+                            emptyResultList()
                             noOfMatches.value = 1
                             matchCount.value = 1
                             noOfMatchesInput.value = ""
+                            confirmButton.value = false
+                            textFieldDisplay.value = false
+                            customSeries.value = true
+                            confirmCustomSeries.value = false
+                            timedOrNot.value = false
+                            displayChooseTime.value = false
+                            if (chooseHandicap.value){
+                                minsh1.value = ""
+                                minsh2.value = ""
+                                secsh1.value = ""
+                                secsh2.value = ""
+                                chooseHandicap.value = false
+                            } else {
+                                mins.value = ""
+                                secs.value = ""
+                            }
+                            navController.popBackStack(Screen.HomePage.route, false)
+                        },
+                        modifier = Modifier
+                            .width(275.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(237,106,94),
+                            contentColor = Color.White
+                        )
+                    ){
+                        Text(
+                            text = "Home",
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White,
+                            fontSize = 25.sp
+                        )
+                    }
+                }
+            }
+        } else {
+            Button(
+                onClick = { /*TODO*/ },
+                modifier = Modifier
+                    .width(275.dp)
+                    .height(IntrinsicSize.Min),
+                shape = RoundedCornerShape(20.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(62,65,113),
+                    contentColor = Color.Black
+                ),
+                elevation = ButtonDefaults.buttonElevation(
+                    defaultElevation = 12.dp
+                )
+            ){
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(0.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Button(
+                        modifier = Modifier.width(275.dp),
+                        onClick = { /*TODO*/ },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.White,
+                            contentColor = Color.Black
+                        )
+                    ){
+                        Text(
+                            text = winnerName.value.uppercase(),
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black,
+                            fontSize = 26.sp
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Image(
+                        painter = painterResource(id = R.drawable.winner),
+                        contentDescription = "winner",
+                        modifier = Modifier.aspectRatio(16f/5f)
+                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Text(
+                        text = "WINS!",
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        fontSize = 26.sp
+                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ){
+                        Button(
+                            onClick = {},
+                            modifier = Modifier
+                                .fillMaxWidth(0.48f)
+                                .height(180.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(242,230,209)
+                            ),
+                            shape = RoundedCornerShape(20),
+                            elevation = ButtonDefaults.buttonElevation(
+                                defaultElevation = 12.dp
+                            )
+                        ){
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center
+                            ){
+                                Icon(
+                                    Icons.Filled.Person,
+                                    contentDescription = "Person",
+                                    tint = Color(0xFFED6A5E),
+                                    modifier = Modifier.height(50.dp).aspectRatio(1f)
+                                )
+
+                                Spacer(modifier = Modifier.height(4.dp))
+
+                                Text(
+                                    text = if (player1Name.value != "") player1Name.value.uppercase() else "PLAYER 1",
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color(0xFFED6A5E),
+                                    fontSize = 13.sp
+                                )
+
+                                Spacer(modifier = Modifier.height(4.dp))
+
+                                Box(
+                                    modifier = Modifier.height(70.dp),
+                                    contentAlignment = Alignment.Center
+                                ){
+                                    Button(
+                                        onClick = {},
+                                        modifier = Modifier
+                                            .fillMaxWidth(0.9f)
+                                            .height(70.dp),
+                                        colors = ButtonDefaults.buttonColors(
+                                            containerColor = Color(0xFFED6A5E)
+                                        ),
+                                        shape = RoundedCornerShape(20),
+                                        elevation = ButtonDefaults.buttonElevation(
+                                            defaultElevation = 12.dp
+                                        )
+                                    ){
+
+                                    }
+
+                                    Column(
+                                        modifier = Modifier.fillMaxSize(),
+                                        horizontalAlignment = Alignment.CenterHorizontally
+                                    ){
+                                        Spacer(modifier = Modifier.height(4.dp))
+
+                                        Text(
+                                            text = "WINS",
+                                            fontWeight = FontWeight.Bold,
+                                            color = Color.White,
+                                            fontSize = 12.sp
+                                        )
+
+                                        Spacer(modifier = Modifier.height(8.dp))
+
+                                        Text(
+                                            text = listOfWins.count{ it == 1 }.toString(),
+                                            fontWeight = FontWeight.Bold,
+                                            color = Color.White,
+                                            fontSize = 24.sp
+                                        )
+                                    }
+                                }
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.width(8.dp))
+
+                        Button(
+                            onClick = {},
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(180.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(242,230,209)
+                            ),
+                            shape = RoundedCornerShape(20),
+                            elevation = ButtonDefaults.buttonElevation(
+                                defaultElevation = 12.dp
+                            )
+                        ){
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center
+                            ){
+                                Icon(
+                                    Icons.Filled.Person,
+                                    contentDescription = "Person",
+                                    tint = Color(0xFF0FA6F7),
+                                    modifier = Modifier.height(50.dp).aspectRatio(1f)
+                                )
+
+                                Spacer(modifier = Modifier.height(4.dp))
+
+                                Text(
+                                    text = if (player2Name.value != "") player2Name.value.uppercase() else "PLAYER 2",
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color(0xFF0FA6F7),
+                                    fontSize = 13.sp
+                                )
+
+                                Spacer(modifier = Modifier.height(4.dp))
+
+                                Box(
+                                    modifier = Modifier.height(70.dp),
+                                    contentAlignment = Alignment.Center
+                                ){
+                                    Button(
+                                        onClick = {},
+                                        modifier = Modifier
+                                            .fillMaxWidth(0.9f)
+                                            .height(70.dp),
+                                        colors = ButtonDefaults.buttonColors(
+                                            containerColor = Color(0xFF0FA6F7)
+                                        ),
+                                        shape = RoundedCornerShape(20),
+                                        elevation = ButtonDefaults.buttonElevation(
+                                            defaultElevation = 12.dp
+                                        )
+                                    ){
+
+                                    }
+
+                                    Column(
+                                        modifier = Modifier.fillMaxSize(),
+                                        horizontalAlignment = Alignment.CenterHorizontally
+                                    ){
+                                        Spacer(modifier = Modifier.height(4.dp))
+
+                                        Text(
+                                            text = "WINS",
+                                            fontWeight = FontWeight.Bold,
+                                            color = Color.White,
+                                            fontSize = 12.sp
+                                        )
+
+                                        Spacer(modifier = Modifier.height(8.dp))
+
+                                        Text(
+                                            text = listOfWins.count{ it == 0 }.toString(),
+                                            fontWeight = FontWeight.Bold,
+                                            color = Color.White,
+                                            fontSize = 24.sp
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Button(
+                        onClick = {
+                            counter.value = 0
+                            for (b in 0..1) {
+                                for (t in 0..<r.value * c.value) {
+                                    playerPoints[b][t] = 0
+                                }
+                            }
+                            backgroundColor.value = Color(0xFFED6A5E)
+                            pointsTotal[0] = 0
+                            pointsTotal[1] = 0
+                            for (i in 0..1) {
+                                for (j in 0..<r.value * c.value) {
+                                    colorTile[j] = Color(0xFFF2E6D1)
+                                    playerCover[i][j] = false
+                                }
+                            }
+                            thisPlayer.value = 1
+                            otherPlayer.value = 0
+                            player1Name.value = ""
+                            player2Name.value = ""
+                            listOfWins[noOfMatches.value - 1] = winner.value
+                            winner.value = -1
                             emptyResultList()
+                            noOfMatches.value = 1
+                            matchCount.value = 1
+                            noOfMatchesInput.value = ""
+                            confirmButton.value = false
+                            textFieldDisplay.value = false
+                            customSeries.value = true
+                            confirmCustomSeries.value = false
+                            timedOrNot.value = false
+                            displayChooseTime.value = false
+                            if (chooseHandicap.value){
+                                minsh1.value = ""
+                                minsh2.value = ""
+                                secsh1.value = ""
+                                secsh2.value = ""
+                                chooseHandicap.value = false
+                            } else {
+                                mins.value = ""
+                                secs.value = ""
+                            }
                             navController.popBackStack(Screen.HackerSettings.route, false)
                         },
                         modifier = Modifier
                             .width(275.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(87,190,235),
+                            containerColor = Color(87, 190, 235),
                             contentColor = Color.White
                         )
-                    ){
+                    ) {
                         Text(
                             text = "New Series",
                             fontWeight = FontWeight.Bold,
@@ -220,56 +813,68 @@ fun DisplayWinner(navController: NavController) {
                             fontSize = 25.sp
                         )
                     }
-                }
 
-                Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
 
-                Button(
-                    onClick = {
-                        counter.value = 0
-                        for(b in 0..1){
-                            for(t in 0..<r.value * c.value){
-                                playerPoints[b][t] = 0
+                    Button(
+                        onClick = {
+                            counter.value = 0
+                            for(b in 0..1){
+                                for(t in 0..<r.value * c.value){
+                                    playerPoints[b][t] = 0
+                                }
                             }
-                        }
-                        backgroundColor.value = Color(0xFFED6A5E)
-                        pointsTotal[0] = 0
-                        pointsTotal[1] = 0
-                        for(i in 0 .. 1) {
-                            for (j in 0..<r.value * c.value) {
-                                colorTile[j] = Color(0xFFF2E6D1)
-                                playerCover[i][j] = false
+                            backgroundColor.value = Color(0xFFED6A5E)
+                            pointsTotal[0] = 0
+                            pointsTotal[1] = 0
+                            for(i in 0 .. 1) {
+                                for (j in 0..<r.value * c.value) {
+                                    colorTile[j] = Color(0xFFF2E6D1)
+                                    playerCover[i][j] = false
+                                }
                             }
-                        }
-                        thisPlayer.value = 1
-                        otherPlayer.value = 0
-                        player1Name.value = ""
-                        player2Name.value = ""
-                        winner.value = -1
-                        if (chooseHandicap.value){
-                            minsh1.value = ""
-                            minsh2.value = ""
-                            secsh1.value = ""
-                            secsh2.value = ""
-                        } else {
-                            mins.value = ""
-                            secs.value = ""
-                        }
-                        navController.popBackStack(Screen.HomePage.route,false)
-                    },
-                    modifier = Modifier
-                        .width(275.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(237,106,94),
-                        contentColor = Color.White
-                    )
-                ){
-                    Text(
-                        text = "Home",
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White,
-                        fontSize = 25.sp
-                    )
+                            thisPlayer.value = 1
+                            otherPlayer.value = 0
+                            player1Name.value = ""
+                            player2Name.value = ""
+                            listOfWins[noOfMatches.value - 1] = winner.value
+                            winner.value = -1
+                            emptyResultList()
+                            noOfMatches.value = 1
+                            matchCount.value = 1
+                            noOfMatchesInput.value = ""
+                            confirmButton.value = false
+                            textFieldDisplay.value = false
+                            customSeries.value = true
+                            confirmCustomSeries.value = false
+                            timedOrNot.value = false
+                            displayChooseTime.value = false
+                            if (chooseHandicap.value){
+                                minsh1.value = ""
+                                minsh2.value = ""
+                                secsh1.value = ""
+                                secsh2.value = ""
+                                chooseHandicap.value = false
+                            } else {
+                                mins.value = ""
+                                secs.value = ""
+                            }
+                            navController.popBackStack(Screen.HomePage.route,false)
+                        },
+                        modifier = Modifier
+                            .width(275.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(237,106,94),
+                            contentColor = Color.White
+                        )
+                    ){
+                        Text(
+                            text = "Home",
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White,
+                            fontSize = 25.sp
+                        )
+                    }
                 }
             }
         }

@@ -135,9 +135,11 @@ fun pointsSum(){
 fun resultDeterminer(){
     if (pointsTotal[0] == 0) {
         winner.value = 1
+        listOfWins[matchCount.value - 1] = winner.value
         winnerName.value = if (player1Name.value != "") player1Name.value else "PLAYER 1"
     } else if (pointsTotal[1] == 0) {
         winner.value = 0
+        listOfWins[matchCount.value - 1] = winner.value
         winnerName.value = if (player2Name.value != "") player2Name.value else "PLAYER 2"
     } else {
         winner.value = -1
