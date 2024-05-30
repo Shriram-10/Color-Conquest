@@ -105,59 +105,135 @@ fun GamePage(navController: NavController) {
 
                     Spacer(modifier = Modifier.height(8.dp))
 
-                    Button(
-                        onClick = {
-                            exitDialog = false
-                            counter.value = 0
-                            for(b in 0..1){
-                                for(t in 0..<r.value * c.value){
-                                    playerPoints[b][t] = 0
+                    if (noOfMatches.value == 1){
+                        Button(
+                            onClick = {
+                                exitDialog = false
+                                counter.value = 0
+                                for(b in 0..1){
+                                    for(t in 0..<r.value * c.value){
+                                        playerPoints[b][t] = 0
+                                    }
                                 }
-                            }
-                            backgroundColor.value = Color(0xFFED6A5E)
-                            pointsTotal[0] = 0
-                            pointsTotal[1] = 0
-                            for(i in 0 .. 1) {
-                                for (j in 0..<r.value * c.value) {
-                                    colorTile[j] = Color(0xFFF2E6D1)
-                                    playerCover[i][j] = false
+                                backgroundColor.value = Color(0xFFED6A5E)
+                                pointsTotal[0] = 0
+                                pointsTotal[1] = 0
+                                for(i in 0 .. 1) {
+                                    for (j in 0..<r.value * c.value) {
+                                        colorTile[j] = Color(0xFFF2E6D1)
+                                        playerCover[i][j] = false
+                                    }
                                 }
-                            }
-                            thisPlayer.value = 1
-                            otherPlayer.value = 0
-                            player1Name.value = ""
-                            player2Name.value = ""
-                            if (chooseHandicap.value){
-                                minsh1.value = ""
-                                minsh2.value = ""
-                                secsh1.value = ""
-                                secsh2.value = ""
-                            } else {
-                                mins.value = ""
-                                secs.value = ""
-                            }
-                            navController.popBackStack(Screen.HomePage.route, false)
-                        },
-                        modifier = Modifier
-                            .height(40.dp)
-                            .width(150.dp),
-                        enabled = true,
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFFED6A5E),
-                            contentColor = Color.White
-                        ),
-                        elevation = ButtonDefaults.buttonElevation(
-                            defaultElevation = 8.dp,
-                            pressedElevation = 12.dp
-                        ),
-                        shape = RoundedCornerShape(10)
+                                thisPlayer.value = 1
+                                otherPlayer.value = 0
+                                player1Name.value = ""
+                                player2Name.value = ""
+                                if (chooseHandicap.value){
+                                    minsh1.value = ""
+                                    minsh2.value = ""
+                                    secsh1.value = ""
+                                    secsh2.value = ""
+                                } else {
+                                    mins.value = ""
+                                    secs.value = ""
+                                }
+                                navController.popBackStack(Screen.HomePage.route, false)
+                            },
+                            modifier = Modifier
+                                .height(40.dp)
+                                .width(150.dp),
+                            enabled = true,
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(0xFFED6A5E),
+                                contentColor = Color.White
+                            ),
+                            elevation = ButtonDefaults.buttonElevation(
+                                defaultElevation = 8.dp,
+                                pressedElevation = 12.dp
+                            ),
+                            shape = RoundedCornerShape(10)
                         ) {
-                        Text(
-                            text = "Leave Game",
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 16.sp,
-                            color = Color.White
-                        )
+                            Text(
+                                text = "Leave Game",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 16.sp,
+                                color = Color.White
+                            )
+                        }
+                    } else if (noOfMatches.value > 1){
+                        Button(
+                            onClick = {
+                                exitDialog = false
+                                counter.value = 0
+                                for(b in 0..1){
+                                    for(t in 0..<r.value * c.value){
+                                        playerPoints[b][t] = 0
+                                    }
+                                }
+                                backgroundColor.value = Color(0xFFED6A5E)
+                                pointsTotal[0] = 0
+                                pointsTotal[1] = 0
+                                for(i in 0 .. 1) {
+                                    for (j in 0..<r.value * c.value) {
+                                        colorTile[j] = Color(0xFFF2E6D1)
+                                        playerCover[i][j] = false
+                                    }
+                                }
+                                thisPlayer.value = 1
+                                otherPlayer.value = 0
+                                player1Name.value = ""
+                                player2Name.value = ""
+                                listOfWins[noOfMatches.value - 1] = winner.value
+                                winner.value = -1
+                                emptyResultList()
+                                noOfMatches.value = 1
+                                matchCount.value = 1
+                                noOfMatchesInput.value = ""
+                                confirmButton.value = false
+                                textFieldDisplay.value = false
+                                customSeries.value = true
+                                confirmCustomSeries.value = false
+                                player1Wins.value = 0
+                                player2Wins.value = 0
+                                seriesWinner.value = -1
+                                seriesWinnerName.value = ""
+                                showGridChangeDialog.value = false
+                                optionsSeriesDialog.value = false
+                                timedOrNot.value = false
+                                displayChooseTime.value = false
+                                if (chooseHandicap.value){
+                                    minsh1.value = ""
+                                    minsh2.value = ""
+                                    secsh1.value = ""
+                                    secsh2.value = ""
+                                    chooseHandicap.value = false
+                                } else {
+                                    mins.value = ""
+                                    secs.value = ""
+                                }
+                                navController.popBackStack(Screen.HomePage.route,false)
+                            },
+                            modifier = Modifier
+                                .height(40.dp)
+                                .width(150.dp),
+                            enabled = true,
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(0xFFED6A5E),
+                                contentColor = Color.White
+                            ),
+                            elevation = ButtonDefaults.buttonElevation(
+                                defaultElevation = 8.dp,
+                                pressedElevation = 12.dp
+                            ),
+                            shape = RoundedCornerShape(10)
+                        ) {
+                            Text(
+                                text = "Leave Game",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 16.sp,
+                                color = Color.White
+                            )
+                        }
                     }
 
                     Spacer(modifier = Modifier.height(8.dp))

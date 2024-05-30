@@ -501,6 +501,8 @@ fun DisplayWinner(navController: NavController) {
                             player2Wins.value = 0
                             seriesWinner.value = -1
                             seriesWinnerName.value = ""
+                            showGridChangeDialog.value = false
+                            optionsSeriesDialog.value = false
                             timedOrNot.value = false
                             displayChooseTime.value = false
                             if (chooseHandicap.value){
@@ -803,6 +805,8 @@ fun DisplayWinner(navController: NavController) {
                             player2Wins.value = 0
                             seriesWinner.value = -1
                             seriesWinnerName.value = ""
+                            showGridChangeDialog.value = false
+                            optionsSeriesDialog.value = false
                             timedOrNot.value = false
                             displayChooseTime.value = false
                             if (chooseHandicap.value){
@@ -871,6 +875,8 @@ fun DisplayWinner(navController: NavController) {
                             seriesWinnerName.value = ""
                             timedOrNot.value = false
                             displayChooseTime.value = false
+                            showGridChangeDialog.value = false
+                            optionsSeriesDialog.value = false
                             if (chooseHandicap.value){
                                 minsh1.value = ""
                                 minsh2.value = ""
