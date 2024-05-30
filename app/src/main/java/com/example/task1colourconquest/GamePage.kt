@@ -588,6 +588,7 @@ fun GamePage(navController: NavController) {
                 )
             }
         }
+        Spacer(modifier = Modifier.height(24.dp))
     }
     if (winner.value != -1) {
         if (winner.value == 0) {

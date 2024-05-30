@@ -497,6 +497,10 @@ fun DisplayWinner(navController: NavController) {
                             textFieldDisplay.value = false
                             customSeries.value = true
                             confirmCustomSeries.value = false
+                            player1Wins.value = 0
+                            player2Wins.value = 0
+                            seriesWinner.value = -1
+                            seriesWinnerName.value = ""
                             timedOrNot.value = false
                             displayChooseTime.value = false
                             if (chooseHandicap.value){
@@ -557,7 +561,7 @@ fun DisplayWinner(navController: NavController) {
                         )
                     ){
                         Text(
-                            text = winnerName.value.uppercase(),
+                            text = if (seriesResultDeterminer() != "TIE!") seriesResultDeterminer() else "NO RESULT",
                             fontWeight = FontWeight.Bold,
                             color = Color.Black,
                             fontSize = 26.sp
@@ -574,12 +578,22 @@ fun DisplayWinner(navController: NavController) {
 
                     Spacer(modifier = Modifier.height(8.dp))
 
-                    Text(
-                        text = "WINS!",
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White,
-                        fontSize = 26.sp
-                    )
+                    if (seriesResultDeterminer() != "TIE!"){
+                        Text(
+                            text = "WINS THE SERIES!",
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White,
+                            fontSize = 26.sp
+                        )
+                    } else {
+                        Text(
+                            text = "SERIES TIED!",
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White,
+                            fontSize = 26.sp
+                        )
+                    }
+
 
                     Spacer(modifier = Modifier.height(8.dp))
 
@@ -785,6 +799,10 @@ fun DisplayWinner(navController: NavController) {
                             textFieldDisplay.value = false
                             customSeries.value = true
                             confirmCustomSeries.value = false
+                            player1Wins.value = 0
+                            player2Wins.value = 0
+                            seriesWinner.value = -1
+                            seriesWinnerName.value = ""
                             timedOrNot.value = false
                             displayChooseTime.value = false
                             if (chooseHandicap.value){
@@ -847,6 +865,10 @@ fun DisplayWinner(navController: NavController) {
                             textFieldDisplay.value = false
                             customSeries.value = true
                             confirmCustomSeries.value = false
+                            player1Wins.value = 0
+                            player2Wins.value = 0
+                            seriesWinner.value = -1
+                            seriesWinnerName.value = ""
                             timedOrNot.value = false
                             displayChooseTime.value = false
                             if (chooseHandicap.value){

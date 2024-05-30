@@ -147,7 +147,7 @@ fun resultDeterminer(){
 }
 
 
-fun seriesResultDeterminer(){
+fun seriesResultDeterminer(): String{
     for (i in 0..<noOfMatches.value){
         if (listOfWins[i] == 0){
             player2Wins.value++
@@ -164,5 +164,7 @@ fun seriesResultDeterminer(){
         seriesWinnerName.value = if (player2Name.value == "") "PLAYER 2" else player2Name.value
     } else {
         seriesWinner.value = -1
+        seriesWinnerName.value = "TIE!"
     }
+    return seriesWinnerName.value
 }
