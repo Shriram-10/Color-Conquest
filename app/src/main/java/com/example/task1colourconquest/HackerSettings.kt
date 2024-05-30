@@ -954,13 +954,13 @@ fun HackerSettings(navController: NavController){
                         }
                     }
                     Text(
-                        text = "-----------------",
+                        textAlign = TextAlign.Center,
+                        text = "---------------",
                         fontSize = 44.sp,
                         fontWeight = FontWeight.ExtraBold,
                         color = Color.Black
                     )
-//                    Spacer(modifier = Modifier.height(40.dp))
-                    AnimatedVisibility(visible = true) {
+                    AnimatedVisibility(visible = !showGridChangeDialog.value) {
                         Column(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalAlignment = Alignment.CenterHorizontally
@@ -1038,7 +1038,17 @@ fun HackerSettings(navController: NavController){
                                     ){
                                         Button(
                                             onClick = {
-                                                noOfMatches.value = 3
+                                                if (noOfMatches.value != 3){
+                                                    noOfMatches.value = 3
+                                                } else {
+                                                    noOfMatches.value = 1
+                                                }
+                                                if (noOfMatches.value == 3 && (textFieldDisplay.value || confirmCustomSeries.value)){
+                                                    textFieldDisplay.value = false
+                                                    customSeries.value = true
+                                                    confirmCustomSeries.value = false
+                                                    confirmButton.value = false
+                                                }
                                             },
                                             modifier = Modifier.height(56.dp),
                                             shape = RoundedCornerShape(15),
@@ -1056,7 +1066,17 @@ fun HackerSettings(navController: NavController){
                                         Spacer(modifier = Modifier.width(8.dp))
                                         Button(
                                             onClick = {
-                                                noOfMatches.value = 5
+                                                if (noOfMatches.value != 5){
+                                                    noOfMatches.value = 5
+                                                } else {
+                                                    noOfMatches.value = 1
+                                                }
+                                                if (noOfMatches.value == 5 && (textFieldDisplay.value || confirmCustomSeries.value)){
+                                                    textFieldDisplay.value = false
+                                                    customSeries.value = true
+                                                    confirmCustomSeries.value = false
+                                                    confirmButton.value = false
+                                                }
                                             },
                                             modifier = Modifier.height(56.dp),
                                             shape = RoundedCornerShape(15),
@@ -1076,6 +1096,10 @@ fun HackerSettings(navController: NavController){
                                             Button(
                                                 onClick = {
                                                     customSeries.value = false
+                                                    textFieldDisplay.value = true
+                                                    if (noOfMatches.value == 3 || noOfMatches.value == 5) {
+                                                        noOfMatches.value = 1
+                                                    }
                                                 },
                                                 modifier = Modifier.height(56.dp),
                                                 shape = RoundedCornerShape(15),
@@ -1092,7 +1116,7 @@ fun HackerSettings(navController: NavController){
                                                 )
                                             }
                                         }
-                                        AnimatedVisibility(visible = !customSeries.value) {
+                                        AnimatedVisibility(visible = textFieldDisplay.value) {
                                             OutlinedTextField(
                                                 value = noOfMatchesInput.value,
                                                 onValueChange = {
@@ -1107,24 +1131,59 @@ fun HackerSettings(navController: NavController){
                                                 )
                                             )
                                         }
+                                        AnimatedVisibility(visible = confirmCustomSeries.value) {
+                                            Button(
+                                                onClick = {},
+                                                modifier = Modifier
+                                                    .height(56.dp)
+                                                    .width(80.dp),
+                                                shape = RoundedCornerShape(15),
+                                                colors = ButtonDefaults.buttonColors(
+                                                    containerColor = Color(0xFF0FA6F7),
+                                                    contentColor = Color.White
+                                                )
+                                            ){
+                                                Text(
+                                                    text = noOfMatchesInput.value,
+                                                    fontSize = 22.sp,
+                                                    fontWeight = FontWeight.Bold,
+                                                    color = Color.White
+                                                )
+                                            }
+                                        }
                                     }
                                     Spacer(modifier = Modifier.height(10.dp))
                                     Button(
                                         onClick = {
-                                            if (noOfMatchesInput.value == ""){
-                                                showWarning13.value = true
-                                            } else {
-                                                if (noOfMatchesInput.value.contains(",") || noOfMatchesInput.value.contains(".")){
-                                                    showWarning10.value = true
-                                                } else if (noOfMatchesInput.value.contains(" ")){
-                                                    noOfMatchesInput.value = noOfMatchesInput.value.replace(" ", "")
-                                                } else if (noOfMatchesInput.value.toInt() <= 1){
-                                                    showWarning11.value = true
-                                                } else if (noOfMatchesInput.value.toInt() > 10){
-                                                    showWarning12.value = true
+                                            if (!confirmButton.value){
+                                                if (noOfMatchesInput.value == ""){
+                                                    showWarning13.value = true
                                                 } else {
-                                                    noOfMatches.value = noOfMatchesInput.value.toInt()
+                                                    if (noOfMatchesInput.value.contains(",") || noOfMatchesInput.value.contains(".")){
+                                                        showWarning10.value = true
+                                                    } else if (noOfMatchesInput.value.contains(" ")){
+                                                        noOfMatchesInput.value = noOfMatchesInput.value.replace(" ", "")
+                                                    } else if (noOfMatchesInput.value.toInt() <= 1){
+                                                        showWarning11.value = true
+                                                    } else if (noOfMatchesInput.value.toInt() > 10){
+                                                        showWarning12.value = true
+                                                    } else {
+                                                        noOfMatches.value = noOfMatchesInput.value.toInt()
+                                                        if (noOfMatches.value == 3 || noOfMatches.value == 5){
+                                                            customSeries.value = true
+                                                            textFieldDisplay.value = false
+                                                            confirmCustomSeries.value = false
+                                                        } else {
+                                                            textFieldDisplay.value = false
+                                                            confirmCustomSeries.value = true
+                                                            confirmButton.value = true
+                                                        }
+                                                    }
                                                 }
+                                            } else {
+                                                confirmCustomSeries.value = false
+                                                textFieldDisplay.value = true
+                                                confirmButton.value = false
                                             }
                                         },
                                         modifier = Modifier.height(44.dp),
@@ -1136,7 +1195,7 @@ fun HackerSettings(navController: NavController){
                                         ),
                                     ){
                                         Text(
-                                            text = "Confirm",
+                                            text = if (!confirmButton.value) "Confirm" else "Edit",
                                             color = Color.White,
                                             fontSize = 18.sp,
                                             fontWeight = FontWeight.ExtraBold
