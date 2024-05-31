@@ -51,8 +51,8 @@ fun ModesPage(navController: NavController){
         val infiniteTransition = rememberInfiniteTransition()
 
         val colors = infiniteTransition.animateColor(
-            if (darkLight.value == 1) Color(81,161,51) else Color(0xFFED6A5E),
-            if (darkLight.value == 1) Color(64,64,64) else Color(0xFF0FA6F7),
+            if (darkLight.value == 1) Color(185,126,189) else Color(0xFFED6A5E),
+            if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7),
             animationSpec = infiniteRepeatable(tween(200),
                 repeatMode = RepeatMode.Reverse
             )
@@ -93,7 +93,7 @@ fun ModesPage(navController: NavController){
             modifier = Modifier
                 .height(72.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7),
+                containerColor = if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7),
                 contentColor = Color.LightGray
             ),
             elevation = ButtonDefaults.buttonElevation(
@@ -117,7 +117,7 @@ fun ModesPage(navController: NavController){
             modifier = Modifier
                 .height(72.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E),
+                containerColor = if (darkLight.value == 1) Color(185,126,189) else Color(0xFFED6A5E),
                 contentColor = if (darkLight.value == 1) Color(150,150,150) else Color.DarkGray
             ),
             elevation = ButtonDefaults.buttonElevation(
@@ -138,7 +138,7 @@ fun ModesPage(navController: NavController){
             modifier = Modifier
                 .height(72.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7),
+                containerColor = if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7),
                 contentColor = Color.Black
             ),
             elevation = ButtonDefaults.buttonElevation(

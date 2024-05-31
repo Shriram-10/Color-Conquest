@@ -81,7 +81,7 @@ fun PlayerPage(navController: NavController) {
             ),
             border = BorderStroke(3.dp, Color(0xFFDABA9F)),
             colors = ButtonDefaults.buttonColors(
-                containerColor = if (darkLight.value == 1) Color(81,161,51) else Color(0xFFF8D8BC)
+                containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF8D8BC)
             )
         ) {
             Text(
@@ -109,7 +109,7 @@ fun PlayerPage(navController: NavController) {
                     modifier = Modifier.fillMaxSize()
                 ){
                     Image(
-                        painter = painterResource(id = R.drawable.playercard),
+                        painter = painterResource(id = if (darkLight.value == 1) R.drawable.darkplayercard else R.drawable.playercard),
                         contentDescription = "Player Cards",
                         modifier = Modifier.aspectRatio(7f/10f)
                     )
@@ -137,7 +137,7 @@ fun PlayerPage(navController: NavController) {
                         bottomStartPercent = 30,
                         bottomEndPercent = 30),
                     colors = CardDefaults.cardColors(
-                        containerColor =  if (darkLight.value == 1) Color(81,161,51) else Color(0xFF3E4171)
+                        containerColor =  if (darkLight.value == 1) Color(64,64,64) else Color(0xFF3E4171)
                     )
                 ) {
                     Box(
@@ -147,7 +147,7 @@ fun PlayerPage(navController: NavController) {
                         Icon(
                             Icons.Filled.Person,
                             contentDescription = "Person",
-                            tint = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E),
+                            tint = if (darkLight.value == 1) Color(216,172,225) else Color(0xFFED6A5E),
                             modifier = Modifier.fillMaxSize()
                         )
                     }
@@ -161,11 +161,11 @@ fun PlayerPage(navController: NavController) {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(horizontal = 24.dp),
-                            cursorBrush = SolidColor(if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E)),
+                            cursorBrush = SolidColor(if (darkLight.value == 1) Color(216,172,225) else Color(0xFFED6A5E)),
                             textStyle = TextStyle(
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E),
+                                color = if (darkLight.value == 1) Color(216,172,225) else Color(0xFFED6A5E),
                                 textAlign = TextAlign.Center,
                                 letterSpacing = 1.sp
                             )
@@ -173,7 +173,7 @@ fun PlayerPage(navController: NavController) {
                         if (player1Name.value == ""){
                             Text(
                                 text = "Enter Player-1 Name",
-                                color = if (darkLight.value == 1) Color.Black else Color.Gray,
+                                color = if (darkLight.value == 1) Color.White else Color.Gray,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 14.sp
                             )
@@ -187,7 +187,7 @@ fun PlayerPage(navController: NavController) {
                             .padding(horizontal = 26.dp),
                         fontSize = 24.sp,
                         fontWeight = FontWeight.ExtraBold,
-                        color = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E)
+                        color = if (darkLight.value == 1) Color(216,172,225) else Color(0xFFED6A5E)
                     )
                 }
 
@@ -205,7 +205,7 @@ fun PlayerPage(navController: NavController) {
                         bottomStartPercent = 30,
                         bottomEndPercent = 30),
                     colors = CardDefaults.cardColors(
-                        containerColor = if (darkLight.value == 1) Color(81,161,51) else Color(0xFF3E4171)
+                        containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(0xFF3E4171)
                     )
                 ) {
                     Box(
@@ -215,7 +215,7 @@ fun PlayerPage(navController: NavController) {
                         Icon(
                             Icons.Filled.Person,
                             contentDescription = "Person",
-                            tint = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7),
+                            tint = if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7),
                             modifier = Modifier.fillMaxSize()
                         )
                     }
@@ -229,11 +229,11 @@ fun PlayerPage(navController: NavController) {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(horizontal = 24.dp),
-                            cursorBrush = SolidColor(if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7)),
+                            cursorBrush = SolidColor(if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7)),
                             textStyle = TextStyle(
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7),
+                                color = if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7),
                                 textAlign = TextAlign.Center,
                                 letterSpacing = 1.sp
                             )
@@ -241,7 +241,7 @@ fun PlayerPage(navController: NavController) {
                         if (player2Name.value == ""){
                             Text(
                                 text = "Enter Player-2 Name",
-                                color = if (darkLight.value == 1) Color.Black else Color.Gray,
+                                color = if (darkLight.value == 1) Color.White else Color.Gray,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 14.sp
                             )
@@ -254,7 +254,7 @@ fun PlayerPage(navController: NavController) {
                             .padding(horizontal = 26.dp),
                         fontSize = 24.sp,
                         fontWeight = FontWeight.ExtraBold,
-                        color = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7)
+                        color = if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7)
                     )
                 }
             }
@@ -286,7 +286,7 @@ fun PlayerPage(navController: NavController) {
                 defaultElevation = 8.dp
             ),
             colors = ButtonDefaults.buttonColors(
-                containerColor = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7)
+                containerColor = if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7)
             )
         ){
             Text(
