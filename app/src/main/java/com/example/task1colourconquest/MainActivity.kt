@@ -36,8 +36,8 @@ val gradientColorList = listOf(
         Color(0xFFED6B71)
     ),
     listOf(
-        Color(0xFFC6C6C6),
-        Color(20,20,20)
+        Color(13,20,26),
+        Color(36,46,53)
     )
 )
 val gradientColorList2 = listOf(
@@ -46,7 +46,7 @@ val gradientColorList2 = listOf(
         Color(0xFF765244)
     ),
     listOf(
-        Color(20,20,20),
+        Color(0xFF9A695D),
         Color(50, 91, 46, 255),
     )
 )

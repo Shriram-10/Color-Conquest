@@ -263,7 +263,7 @@ fun PlayerPage(navController: NavController) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Image(
-            painter = painterResource(id = R.drawable.players),
+            painter = painterResource(id = if (darkLight.value == 1) R.drawable.darkplayers else R.drawable.players),
             contentDescription = "players"
         )
 

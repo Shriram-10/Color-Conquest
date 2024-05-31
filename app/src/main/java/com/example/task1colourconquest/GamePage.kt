@@ -86,7 +86,7 @@ fun GamePage(navController: NavController) {
                             .width(150.dp),
                         enabled = true,
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFFED6A5E),
+                            containerColor = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E),
                             contentColor = Color.White
                         ),
                         elevation = ButtonDefaults.buttonElevation(
@@ -115,12 +115,12 @@ fun GamePage(navController: NavController) {
                                         playerPoints[b][t] = 0
                                     }
                                 }
-                                backgroundColor.value = Color(0xFFED6A5E)
+                                backgroundColor.value = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E)
                                 pointsTotal[0] = 0
                                 pointsTotal[1] = 0
                                 for(i in 0 .. 1) {
                                     for (j in 0..<r.value * c.value) {
-                                        colorTile[j] = Color(0xFFF2E6D1)
+                                        colorTile[j] = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
                                         playerCover[i][j] = false
                                     }
                                 }
@@ -144,7 +144,7 @@ fun GamePage(navController: NavController) {
                                 .width(150.dp),
                             enabled = true,
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = Color(0xFFED6A5E),
+                                containerColor = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E),
                                 contentColor = Color.White
                             ),
                             elevation = ButtonDefaults.buttonElevation(
@@ -170,7 +170,7 @@ fun GamePage(navController: NavController) {
                                         playerPoints[b][t] = 0
                                     }
                                 }
-                                backgroundColor.value = Color(0xFFED6A5E)
+                                backgroundColor.value = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E)
                                 pointsTotal[0] = 0
                                 pointsTotal[1] = 0
                                 for(i in 0 .. 1) {
@@ -218,7 +218,7 @@ fun GamePage(navController: NavController) {
                                 .width(150.dp),
                             enabled = true,
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = Color(0xFFED6A5E),
+                                containerColor = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E),
                                 contentColor = Color.White
                             ),
                             elevation = ButtonDefaults.buttonElevation(
@@ -246,7 +246,7 @@ fun GamePage(navController: NavController) {
                                     playerPoints[b][t] = 0
                                 }
                             }
-                            backgroundColor.value = Color(0xFFED6A5E)
+                            backgroundColor.value = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E)
                             pointsTotal[0] = 0
                             pointsTotal[1] = 0
                             for(i in 0 .. 1) {
@@ -266,7 +266,7 @@ fun GamePage(navController: NavController) {
                             .width(150.dp),
                         enabled = true,
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFFED6A5E),
+                            containerColor = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E),
                             contentColor = Color.White
                         ),
                         elevation = ButtonDefaults.buttonElevation(
@@ -292,7 +292,7 @@ fun GamePage(navController: NavController) {
                     Text(
                         text = "Are you Sure?",
                         fontWeight = FontWeight.ExtraBold,
-                        color = Color(0xFF0FA6F7)
+                        color = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7)
                     )
                 }
             }
@@ -322,7 +322,7 @@ fun GamePage(navController: NavController) {
                             .widthIn(min = 80.dp)
                             .height(56.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(48,50,58),
+                            containerColor = if (darkLight.value == 1) Color.White else Color(48,50,58),
                             contentColor = Color(0xFF323232)
                         ),
                         border = BorderStroke(
@@ -339,9 +339,10 @@ fun GamePage(navController: NavController) {
                     ){
                         Text(
                             text = pointsTotal[0].toString(),
+                            modifier = Modifier.rotate(180f),
                             fontWeight = FontWeight.Bold,
                             fontSize = 28.sp,
-                            color = Color(0xFF0FA6F7)
+                            color = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7)
                         )
                     }
 
@@ -371,8 +372,8 @@ fun GamePage(navController: NavController) {
                             bottomStartPercent = 45,
                         ),
                         colors = ButtonDefaults.buttonColors(
-                            contentColor = Color(0xFF0FA6F7),
-                            containerColor = Color(48,50,58)
+                            contentColor = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7),
+                            containerColor = if (darkLight.value == 1) Color.White else Color(48,50,58)
                         ),
                         border = BorderStroke(
                             width = 2.dp,
@@ -388,7 +389,7 @@ fun GamePage(navController: NavController) {
                                 text = if (player2Name.value != "") player2Name.value.uppercase() else "PLAYER 2",
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 28.sp,
-                                color = Color(0xFF0FA6F7),
+                                color = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7),
                                 modifier = Modifier.rotate(180f)
                             )
                         }
@@ -411,7 +412,7 @@ fun GamePage(navController: NavController) {
                             pressedElevation = 12.dp
                         ),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.White,
+                            containerColor = if (darkLight.value == 1) Color.Black else Color.White,
                             contentColor = Color.Gray
                         ),
                         shape = RoundedCornerShape(percent = 50),
@@ -425,7 +426,7 @@ fun GamePage(navController: NavController) {
                         text = "X",
                         fontWeight = FontWeight.Bold,
                         fontSize = 28.sp,
-                        color = Color.Gray
+                        color = if (darkLight.value == 1) Color.White else Color.Gray
                     )
                 }
             }
@@ -612,8 +613,8 @@ fun GamePage(navController: NavController) {
                     bottomEndPercent = 45,
                 ),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(48,50,58),
-                    contentColor = Color(0xFFED6A5E)
+                    containerColor = if (darkLight.value == 1) Color.White else Color(48,50,58),
+                    contentColor = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E)
                 ),
                 border = BorderStroke(
                     width = 2.dp,
@@ -628,7 +629,7 @@ fun GamePage(navController: NavController) {
                         text = if (player1Name.value != "") player1Name.value.uppercase() else "PLAYER 1",
                         fontWeight = FontWeight.Bold,
                         fontSize = 28.sp,
-                        color = Color(0xFFED6A5E)
+                        color = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E)
                     )
                 }
             }
@@ -641,7 +642,7 @@ fun GamePage(navController: NavController) {
                     .widthIn(min = 80.dp)
                     .height(56.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(48,50,58),
+                    containerColor = if (darkLight.value == 1) Color.White else Color(48,50,58),
                     contentColor = Color(0xFF323232)
                 ),
                 elevation = ButtonDefaults.buttonElevation(
@@ -660,7 +661,7 @@ fun GamePage(navController: NavController) {
                     text = pointsTotal[1].toString(),
                     fontWeight = FontWeight.Bold,
                     fontSize = 28.sp,
-                    color = Color(0xFFED6A5E)
+                    color = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E)
                 )
             }
         }
@@ -748,7 +749,7 @@ fun TimerClock(
                         onClick = {},
                         shape = RoundedCornerShape(30),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(50,50,50)
+                            containerColor = if (darkLight.value == 1) Color(100,100,100)else Color(50,50,50)
                         )
                     ){
 
@@ -781,7 +782,6 @@ fun TimerClock(
             contentPadding = PaddingValues(5.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(48,50,58), //143,252,84
-                contentColor = Color(0xFFED6A5E)
             ),
             border = BorderStroke(
                 width = 4.dp,

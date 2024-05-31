@@ -129,7 +129,7 @@ fun HomePage(navController: NavController/*, modifier: Modifier*/) {
 
         Spacer(modifier = Modifier.height(100.dp))
 
-        Image(painter = painterResource(id = R.drawable.players),
+        Image(painter = painterResource(id = if (darkLight.value == 1) R.drawable.darkplayers else R.drawable.players),
             contentDescription = "Players")
 
         Spacer(modifier = Modifier.height(100.dp))
@@ -145,7 +145,7 @@ fun HomePage(navController: NavController/*, modifier: Modifier*/) {
                     pressedElevation = 12.dp,
                 ),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7)
+                    containerColor = if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7)
                 ),
                 onClick = {
                     removeListItems(r.value, c.value)
@@ -195,7 +195,7 @@ fun HomePage(navController: NavController/*, modifier: Modifier*/) {
                     pressedElevation = 12.dp
                 ),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = if (darkLight.value == 1) Color(81,161,51) else Color(0xFF3E4171)
+                    containerColor = if (darkLight.value == 1) Color(126,86,62) else Color(0xFF3E4171)
                 )
             ) {
                 Text(text = "?",

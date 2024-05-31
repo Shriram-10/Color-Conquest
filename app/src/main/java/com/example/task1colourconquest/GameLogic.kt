@@ -69,15 +69,15 @@ fun colorChanger(i: Int){
         colorCircle[i] = ColoringBG[thisPlayer.value]
         colorTile[i] = Coloring[thisPlayer.value]
     } else if (playerPoints[thisPlayer.value][i] > 3){
-        colorTile[i] = Color(0xFFF2E6D1)
-        colorCircle[i] = Color(0xFFF2E6D1)
+        colorTile[i] = if (darkLight.value == 1) Color(150,150,150) else Color(0xFFF2E6D1)
+        colorCircle[i] = if (darkLight.value == 1) Color(150,150,150) else Color(0xFFF2E6D1)
     }
 
     for(j in 0..<r.value * c.value) {
         if (playerCover[otherPlayer.value][j]){
             colorTile[j] = Coloring[otherPlayer.value]
         } else {
-            colorTile[j] = Color(0xFFF2E6D1)
+            colorTile[j] = if (darkLight.value == 1) Color(150,150,150) else Color(0xFFF2E6D1)
         }
     }
 }
@@ -135,11 +135,15 @@ fun pointsSum(){
 fun resultDeterminer(){
     if (pointsTotal[0] == 0) {
         winner.value = 1
-        listOfWins[matchCount.value - 1] = winner.value
+        if (noOfMatches.value > 1){
+            listOfWins[matchCount.value - 1] = winner.value
+        }
         winnerName.value = if (player1Name.value != "") player1Name.value else "PLAYER 1"
     } else if (pointsTotal[1] == 0) {
         winner.value = 0
-        listOfWins[matchCount.value - 1] = winner.value
+        if (noOfMatches.value > 1){
+            listOfWins[matchCount.value - 1] = winner.value
+        }
         winnerName.value = if (player2Name.value != "") player2Name.value else "PLAYER 2"
     } else {
         winner.value = -1
