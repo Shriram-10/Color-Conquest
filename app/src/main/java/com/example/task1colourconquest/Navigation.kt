@@ -5,7 +5,9 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -22,9 +24,9 @@ fun Navigation() {
         composable(
             route = Screen.HomePage.route,
             enterTransition = {slideInHorizontally { it }},
-            popEnterTransition = {slideInHorizontally { it }}
+            popEnterTransition = {slideInHorizontally { it }},
         ) {
-            HomePage(navController = navController)
+            HomePage(navController = navController/*, modifier = modifier*/)
         }
         composable(
             route = Screen.ModesPage.route,
@@ -33,14 +35,14 @@ fun Navigation() {
             popEnterTransition = {slideInHorizontally { it }},
 //            popExitTransition = {slideOutHorizontally { it }}
         ) {
-                ModesPage(navController = navController)
+                ModesPage(navController = navController, /*modifier = Modifier*/)
         }
         composable(
             route = Screen.HackerSettings.route,
             enterTransition = { slideInHorizontally { it }},
             popEnterTransition = { slideInHorizontally { it }}
         ){
-            HackerSettings(navController = navController)
+            HackerSettings(navController = navController, /*modifier = Modifier*/)
         }
         composable(
             route = Screen.PlayerInformation.route,
@@ -49,7 +51,7 @@ fun Navigation() {
             popEnterTransition = {slideInHorizontally { it }},
 //            popExitTransition = {slideOutHorizontally { it }}
         ) {
-                PlayerPage(navController = navController)
+                PlayerPage(navController = navController, /*modifier = Modifier*/)
         }
         composable(
             route = Screen.GamePage.route,
@@ -58,12 +60,12 @@ fun Navigation() {
             popEnterTransition = {slideInHorizontally { it }},
 //            popExitTransition = {slideOutHorizontally { it }}
         ) {
-                GamePage(navController = navController)
+                GamePage(navController = navController, /*modifier = Modifier*/)
         }
         composable(
             route = Screen.GameResult.route,
         ) {
-            DisplayWinner(navController = navController)
+            DisplayWinner(navController = navController, /*modifier = Modifier*/)
         }
     }
 }

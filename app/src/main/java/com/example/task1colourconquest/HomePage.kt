@@ -28,6 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -42,7 +43,7 @@ import com.example.task1colourconquest.ui.theme.fontFamily
 import kotlinx.coroutines.delay
 
 @Composable
-fun HomePage(navController: NavController) {
+fun HomePage(navController: NavController/*, modifier: Modifier*/) {
 
     var enterGame by remember { mutableStateOf(false) }
     var trueAsEntering by remember { mutableStateOf(false) }
@@ -91,7 +92,7 @@ fun HomePage(navController: NavController) {
             .background(
                 brush = gradientBackground(
                     isVerticalGradient = true,
-                    colors = gradientColorList
+                    colors = gradientColorList[darkLight.value]
                 )
             ),
         verticalArrangement = Arrangement.Center,
@@ -110,7 +111,7 @@ fun HomePage(navController: NavController) {
             ){
                 Text(
                     text = "COLOR",
-                    style = TextStyle(brush = Brush.verticalGradient(colors = gradientColorList2)),
+                    style = TextStyle(brush = Brush.verticalGradient(colors = gradientColorList2[darkLight.value])),
                     fontFamily = fontFamily,
                     fontSize = 64.sp,
                     color = Color.Black
@@ -118,7 +119,7 @@ fun HomePage(navController: NavController) {
 
                 Text(
                     text = "CONQUEST",
-                    style = TextStyle(brush = Brush.verticalGradient(colors = gradientColorList3)),
+                    style = TextStyle(brush = Brush.verticalGradient(colors = gradientColorList3[darkLight.value])),
                     fontFamily = fontFamily,
                     fontSize = 64.sp,
                     color = Color.Black
@@ -144,7 +145,7 @@ fun HomePage(navController: NavController) {
                     pressedElevation = 12.dp,
                 ),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF0FA6F7)
+                    containerColor = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7)
                 ),
                 onClick = {
                     removeListItems(r.value, c.value)
@@ -194,7 +195,7 @@ fun HomePage(navController: NavController) {
                     pressedElevation = 12.dp
                 ),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF3C4271)
+                    containerColor = if (darkLight.value == 1) Color(81,161,51) else Color(0xFF3E4171)
                 )
             ) {
                 Text(text = "?",
@@ -206,12 +207,15 @@ fun HomePage(navController: NavController) {
 
         Spacer(modifier = Modifier.height(36.dp))
 
-        Text(text = "Made with \uD83D\uDC9A by Shriram Umapathy")
+        Text(
+            text = if (darkLight.value == 1) "Made with \uD83D\uDC9A by Shriram Umapathy" else "Made with \u2764\uFE0F by Shriram Umapathy",
+            color = if (darkLight.value == 1) Color.White else Color.Black
+        )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun HomePagePreview() {
-    HomePage(navController = NavController(LocalContext.current))
+    HomePage(navController = NavController(LocalContext.current)/*, modifier = Modifier*/)
 }

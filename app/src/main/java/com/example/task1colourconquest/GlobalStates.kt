@@ -8,6 +8,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.graphics.Color
 
+var darkLight = mutableStateOf(1)
 var winner = mutableStateOf(-1)
 
 var clicked = mutableStateListOf<Boolean>(

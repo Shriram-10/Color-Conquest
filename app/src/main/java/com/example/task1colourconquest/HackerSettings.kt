@@ -659,7 +659,7 @@ fun HackerSettings(navController: NavController){
             .background(
                 brush = gradientBackground(
                     isVerticalGradient = true,
-                    colors = gradientColorList
+                    colors = gradientColorList[darkLight.value]
                 )
             ),
         verticalArrangement = Arrangement.Center,
@@ -684,7 +684,7 @@ fun HackerSettings(navController: NavController){
                 onClick = {},
                 modifier = Modifier.fillMaxSize(),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFF2E6D1)
+                    containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1)
                 ),
                 elevation = ButtonDefaults.buttonElevation(
                     defaultElevation = 25.dp,
@@ -712,8 +712,8 @@ fun HackerSettings(navController: NavController){
                                 },
                                 modifier = Modifier.height(48.dp),
                                 colors = ButtonDefaults.buttonColors(
-                                    containerColor = Color(0xFF0FA6F7)
-                                ),
+                                    containerColor = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7),
+                                    ),
                                 elevation = ButtonDefaults.buttonElevation(
                                     defaultElevation = 12.dp
                                 ),
@@ -738,7 +738,7 @@ fun HackerSettings(navController: NavController){
                                             text = "Set Grid Size : ",
                                             fontSize = 18.sp,
                                             fontWeight = FontWeight.Bold,
-                                            color = Color.Black
+                                            color = if (darkLight.value == 1) Color.White else Color.Black
                                         )
                                         Button(
                                             onClick = {
@@ -747,7 +747,7 @@ fun HackerSettings(navController: NavController){
                                             },
                                             modifier = Modifier.height(44.dp),
                                             colors = ButtonDefaults.buttonColors(
-                                                containerColor = Color(0xFFED6A5E)
+                                                containerColor = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E),
                                             ),
                                             shape = RoundedCornerShape(15),
                                             elevation = ButtonDefaults.buttonElevation(
@@ -767,7 +767,7 @@ fun HackerSettings(navController: NavController){
                                             visible = showGridChangeDialog.value,
                                             modifier = Modifier
                                                 .fillMaxWidth()
-                                                .background(Color(0xFFF2D1CD))
+                                                .background(if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD))
                                                 .clip(RoundedCornerShape(20))
                                         ) {
                                             Column(
@@ -821,7 +821,7 @@ fun HackerSettings(navController: NavController){
                                                         modifier = Modifier
                                                             .height(48.dp)
                                                             .width(60.dp)
-                                                            .background(Color(0xFFC7F1FD)),
+                                                            .background(if (darkLight.value == 1) Color(249,217,187) else Color(0xFFC7F1FD)),
                                                     )
                                                     Text(
                                                         text = " × ",
@@ -841,7 +841,7 @@ fun HackerSettings(navController: NavController){
                                                         modifier = Modifier
                                                             .height(48.dp)
                                                             .width(60.dp)
-                                                            .background(Color(0xFFC7F1FD)),
+                                                            .background(if (darkLight.value == 1) Color(249,217,187) else Color(0xFFC7F1FD)),
                                                     )
                                                 }
                                                 Row(
@@ -891,8 +891,8 @@ fun HackerSettings(navController: NavController){
                                                         },
                                                         modifier = Modifier.height(40.dp),
                                                         colors = ButtonDefaults.buttonColors(
-                                                            containerColor = Color(0xFF0FA6F7)
-                                                        ),
+                                                            containerColor = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7),
+                                                            ),
                                                         elevation = ButtonDefaults.buttonElevation(
                                                             defaultElevation = 12.dp
                                                         ),
@@ -917,8 +917,8 @@ fun HackerSettings(navController: NavController){
                                                         },
                                                         modifier = Modifier.height(40.dp),
                                                         colors = ButtonDefaults.buttonColors(
-                                                            containerColor = Color(0xFF0FA6F7)
-                                                        ),
+                                                            containerColor = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7),
+                                                            ),
                                                         elevation = ButtonDefaults.buttonElevation(
                                                             defaultElevation = 12.dp
                                                         ),
@@ -944,7 +944,7 @@ fun HackerSettings(navController: NavController){
                         text = "---------------",
                         fontSize = 44.sp,
                         fontWeight = FontWeight.ExtraBold,
-                        color = Color.Black
+                        color = if (darkLight.value == 1) Color.White else Color.Black
                     )
                     AnimatedVisibility(visible = !showGridChangeDialog.value) {
                         Column(
@@ -958,8 +958,8 @@ fun HackerSettings(navController: NavController){
                                 },
                                 modifier = Modifier.height(48.dp),
                                 colors = ButtonDefaults.buttonColors(
-                                    containerColor = Color(0xFF0FA6F7)
-                                ),
+                                    containerColor = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7),
+                                    ),
                                 elevation = ButtonDefaults.buttonElevation(
                                     defaultElevation = 12.dp
                                 )
@@ -986,7 +986,7 @@ fun HackerSettings(navController: NavController){
                                             text = "Handicapped Series? : ",
                                             fontSize = 18.sp,
                                             fontWeight = FontWeight.Bold,
-                                            color = Color.Black
+                                            color = if (darkLight.value == 1) Color.White else Color.Black
                                         )
                                         Spacer(modifier = Modifier.width(4.dp))
                                         Button(
@@ -997,7 +997,7 @@ fun HackerSettings(navController: NavController){
                                             modifier = Modifier.height(44.dp),
                                             shape = RoundedCornerShape(15),
                                             colors = ButtonDefaults.buttonColors(
-                                                containerColor = Color(0xFFED6A5E),
+                                                containerColor = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E),
                                                 contentColor = Color.White
                                             )
                                         ){
@@ -1014,7 +1014,7 @@ fun HackerSettings(navController: NavController){
                                         text = "Choose number of matches : ",
                                         fontSize = 18.sp,
                                         fontWeight = FontWeight.Bold,
-                                        color = Color.Black
+                                        color = if (darkLight.value == 1) Color.White else Color.Black
                                     )
                                     Spacer(modifier = Modifier.height(8.dp))
                                     Row(
@@ -1039,7 +1039,7 @@ fun HackerSettings(navController: NavController){
                                             modifier = Modifier.height(56.dp),
                                             shape = RoundedCornerShape(15),
                                             colors = ButtonDefaults.buttonColors(
-                                                containerColor = if (noOfMatches.value == 3) Color(0xFF0FA6F7)  else Color(0xFFED6A5E),
+                                                containerColor = if(darkLight.value == 1) if (noOfMatches.value == 3) Color(238,111,56) else Color(0xFF7F461B) else if (noOfMatches.value == 3) Color(0xFF0FA6F7)  else Color(0xFFED6A5E),
                                             )
                                         ){
                                             Text(
@@ -1067,7 +1067,7 @@ fun HackerSettings(navController: NavController){
                                             modifier = Modifier.height(56.dp),
                                             shape = RoundedCornerShape(15),
                                             colors = ButtonDefaults.buttonColors(
-                                                containerColor = if (noOfMatches.value == 5) Color(0xFF0FA6F7) else Color(0xFFED6A5E)
+                                                containerColor = if(darkLight.value == 1) if (noOfMatches.value == 5) Color(238,111,56) else Color(0xFF7F461B) else if (noOfMatches.value == 5) Color(0xFF0FA6F7)  else Color(0xFFED6A5E)
                                                 )
                                         ){
                                             Text(
@@ -1090,7 +1090,7 @@ fun HackerSettings(navController: NavController){
                                                 modifier = Modifier.height(56.dp),
                                                 shape = RoundedCornerShape(15),
                                                 colors = ButtonDefaults.buttonColors(
-                                                    containerColor = Color(0xFFED6A5E),
+                                                    containerColor = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E),
                                                     contentColor = Color.White
                                                 )
                                             ){
@@ -1111,7 +1111,7 @@ fun HackerSettings(navController: NavController){
                                                 modifier = Modifier
                                                     .width(64.dp)
                                                     .height(56.dp)
-                                                    .background(Color(0xFFF2D1CD)),
+                                                    .background(if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD)),
                                                 keyboardOptions = KeyboardOptions(
                                                     keyboardType = KeyboardType.Number
                                                 )
@@ -1125,7 +1125,7 @@ fun HackerSettings(navController: NavController){
                                                     .width(80.dp),
                                                 shape = RoundedCornerShape(15),
                                                 colors = ButtonDefaults.buttonColors(
-                                                    containerColor = Color(0xFF0FA6F7),
+                                                    containerColor = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7),
                                                     contentColor = Color.White
                                                 )
                                             ){
@@ -1176,8 +1176,8 @@ fun HackerSettings(navController: NavController){
                                         },
                                         modifier = Modifier.height(44.dp),
                                         colors = ButtonDefaults.buttonColors(
-                                            containerColor = Color(0xFF0FA6F7)
-                                        ),
+                                            containerColor = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7),
+                                            ),
                                         elevation = ButtonDefaults.buttonElevation(
                                             defaultElevation = 12.dp
                                         ),
@@ -1214,7 +1214,7 @@ fun HackerSettings(navController: NavController){
                 ,
             modifier = Modifier.height(70.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFED6A5E)
+                containerColor = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E),
             ),
             elevation = ButtonDefaults.buttonElevation(
                 defaultElevation = 12.dp
@@ -1245,7 +1245,7 @@ fun HackerSettings(navController: NavController){
             },
             modifier = Modifier.height(70.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFED6A5E)
+                containerColor = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E),
             ),
             elevation = ButtonDefaults.buttonElevation(
                 defaultElevation = 12.dp
@@ -1281,7 +1281,7 @@ fun HackerSettings(navController: NavController){
                 onClick = {},
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFF2E6D1)
+                    containerColor = if (darkLight.value == 1) Color(120,120,120) else Color(0xFFF2E6D1)
                 ),
                 elevation = ButtonDefaults.buttonElevation(
                     defaultElevation = 25.dp,
@@ -1312,8 +1312,8 @@ fun HackerSettings(navController: NavController){
                             },
                             modifier = Modifier.height(44.dp),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = Color(0xFF0FA6F7)
-                            ),
+                                containerColor = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7),
+                                ),
                             elevation = ButtonDefaults.buttonElevation(
                                 defaultElevation = 12.dp
                             ),
@@ -1341,7 +1341,7 @@ fun HackerSettings(navController: NavController){
                                 Text(
                                     text = "Handicapped Match? : ",
                                     fontSize = 18.sp,
-                                    color = Color.DarkGray,
+                                    color = if (darkLight.value == 1) Color.White else Color.Black,
                                     fontWeight = FontWeight.Bold
                                 )
                                 Button(
@@ -1357,7 +1357,7 @@ fun HackerSettings(navController: NavController){
                                         .height(40.dp)
                                         .width(96.dp),
                                     colors = ButtonDefaults.buttonColors(
-                                        containerColor = Color(0xFF0FA6F7),
+                                        containerColor = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7),
                                         contentColor = Color(0xFFF2E6D1)
                                     ),
                                     elevation = ButtonDefaults.buttonElevation(
@@ -1390,7 +1390,7 @@ fun HackerSettings(navController: NavController){
                                             text = "Time in minutes : ",
                                             fontSize = 18.sp,
                                             fontWeight = FontWeight.Bold,
-                                            color = Color.Black
+                                            color = if (darkLight.value == 1) Color.White else Color.Black
                                         )
 
                                         Column(
@@ -1410,7 +1410,7 @@ fun HackerSettings(navController: NavController){
                                                     .width(IntrinsicSize.Max),
                                                 shape = RoundedCornerShape(5),
                                                 colors = ButtonDefaults.buttonColors(
-                                                    containerColor = Color(0xFFED6A5E)
+                                                    containerColor = if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E),
                                                 )
                                             ){
                                                 Text(
@@ -1430,7 +1430,7 @@ fun HackerSettings(navController: NavController){
                                                     modifier = Modifier
                                                         .fillMaxWidth()
                                                         .weight(1f)
-                                                        .background(Color(0xFFF2D1CD))
+                                                        .background(if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD))
                                                         .clip(RoundedCornerShape(20))
                                                 ){
                                                     Button(
@@ -1441,7 +1441,7 @@ fun HackerSettings(navController: NavController){
                                                             displayString = displayString(mins.value, secs.value)
                                                         },
                                                         colors = ButtonDefaults.buttonColors(
-                                                            containerColor = Color(0xFFF2D1CD)
+                                                            containerColor = if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD)
                                                         ),
                                                         modifier = Modifier.height(40.dp),
                                                         shape = RoundedCornerShape(5)
@@ -1462,7 +1462,7 @@ fun HackerSettings(navController: NavController){
                                                             displayString = displayString(mins.value, secs.value)
                                                         },
                                                         colors = ButtonDefaults.buttonColors(
-                                                            containerColor = Color(0xFFF2D1CD)
+                                                            containerColor = if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD)
                                                         ),
                                                         modifier = Modifier.height(40.dp),
                                                         shape = RoundedCornerShape(5)
@@ -1482,7 +1482,7 @@ fun HackerSettings(navController: NavController){
                                                             displayString = displayString(mins.value, secs.value)
                                                         },
                                                         colors = ButtonDefaults.buttonColors(
-                                                            containerColor = Color(0xFFF2D1CD)
+                                                            containerColor = if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD)
                                                         ),
                                                         modifier = Modifier.height(40.dp),
                                                         shape = RoundedCornerShape(5),
@@ -1504,7 +1504,7 @@ fun HackerSettings(navController: NavController){
                                                                 showTimerDialog.value = true
                                                             },
                                                             colors = ButtonDefaults.buttonColors(
-                                                                containerColor = Color(0xFFF2D1CD)
+                                                                containerColor = if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD)
                                                             ),
                                                             modifier = Modifier.height(40.dp),
                                                             shape = RoundedCornerShape(5),
@@ -1529,7 +1529,7 @@ fun HackerSettings(navController: NavController){
                                         visible = showTimerDialog.value,
                                         modifier = Modifier
                                             .fillMaxWidth()
-                                            .background(Color(0xFFF2D1CD))
+                                            .background(if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD))
                                             .clip(RoundedCornerShape(20))
                                     ){
                                         Column(
@@ -1580,7 +1580,7 @@ fun HackerSettings(navController: NavController){
                                                     modifier = Modifier
                                                         .height(48.dp)
                                                         .width(60.dp)
-                                                        .background(Color(0xFFC7F1FD)),
+                                                        .background(if (darkLight.value == 1) Color(249,217,187) else Color(0xFFC7F1FD)),
                                                 )
                                                 Text(
                                                     text = " : ",
@@ -1598,7 +1598,7 @@ fun HackerSettings(navController: NavController){
                                                     modifier = Modifier
                                                         .height(48.dp)
                                                         .width(60.dp)
-                                                        .background(Color(0xFFC7F1FD)),
+                                                        .background(if (darkLight.value == 1) Color(249,217,187) else Color(0xFFC7F1FD)),
                                                 )
                                             }
                                             Button(
@@ -1625,8 +1625,8 @@ fun HackerSettings(navController: NavController){
                                                 },
                                                 modifier = Modifier.height(40.dp),
                                                 colors = ButtonDefaults.buttonColors(
-                                                    containerColor = Color(0xFF0FA6F7)
-                                                ),
+                                                    containerColor = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7)
+                                                    ),
                                                 elevation = ButtonDefaults.buttonElevation(
                                                     defaultElevation = 12.dp
                                                 ),
@@ -1662,7 +1662,7 @@ fun HackerSettings(navController: NavController){
                                     visible = chooseHandicap.value,
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .background(Color(0xFFF2D1CD))
+                                        .background(if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD))
                                         .clip(RoundedCornerShape(20))
                                 ){
                                     Column(
@@ -1713,7 +1713,7 @@ fun HackerSettings(navController: NavController){
                                                 modifier = Modifier
                                                     .height(48.dp)
                                                     .width(60.dp)
-                                                    .background(Color(0xFFC7F1FD)),
+                                                    .background(if (darkLight.value == 1) Color(249,217,187) else Color(0xFFC7F1FD)),
                                             )
                                             Text(
                                                 text = " : ",
@@ -1731,7 +1731,7 @@ fun HackerSettings(navController: NavController){
                                                 modifier = Modifier
                                                     .height(48.dp)
                                                     .width(60.dp)
-                                                    .background(Color(0xFFC7F1FD)),
+                                                    .background(if (darkLight.value == 1) Color(249,217,187) else Color(0xFFC7F1FD)),
                                             )
                                         }
                                         Row(
@@ -1756,7 +1756,7 @@ fun HackerSettings(navController: NavController){
                                                 modifier = Modifier
                                                     .height(48.dp)
                                                     .width(60.dp)
-                                                    .background(Color(0xFFC7F1FD)),
+                                                    .background(if (darkLight.value == 1) Color(249,217,187) else Color(0xFFC7F1FD)),
                                             )
                                             Text(
                                                 text = " : ",
@@ -1774,7 +1774,7 @@ fun HackerSettings(navController: NavController){
                                                 modifier = Modifier
                                                     .height(48.dp)
                                                     .width(60.dp)
-                                                    .background(Color(0xFFC7F1FD)),
+                                                    .background(if (darkLight.value == 1) Color(249,217,187) else Color(0xFFC7F1FD)),
                                             )
                                         }
 
@@ -1804,7 +1804,7 @@ fun HackerSettings(navController: NavController){
                                             },
                                             modifier = Modifier.height(40.dp),
                                             colors = ButtonDefaults.buttonColors(
-                                                containerColor = Color(0xFF0FA6F7)
+                                                containerColor = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7)
                                             ),
                                             elevation = ButtonDefaults.buttonElevation(
                                                 defaultElevation = 12.dp
@@ -1861,7 +1861,7 @@ fun HackerSettings(navController: NavController){
             },
             modifier = Modifier.height(50.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF0FA6F7)
+                containerColor = if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7)
             ),
             elevation = ButtonDefaults.buttonElevation(
                 defaultElevation = 12.dp
