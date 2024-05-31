@@ -37,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -122,7 +123,7 @@ fun DisplayWinner(navController: NavController) {
                             pointsTotal[1] = 0
                             for(i in 0 .. 1) {
                                 for (j in 0..<r.value * c.value) {
-                                    colorTile[j] = Color(0xFFF2E6D1)
+                                    colorTile[j] = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1)
                                     playerCover[i][j] = false
                                 }
                             }
@@ -162,7 +163,7 @@ fun DisplayWinner(navController: NavController) {
                             pointsTotal[1] = 0
                             for(i in 0 .. 1) {
                                 for (j in 0..<r.value * c.value) {
-                                    colorTile[j] = Color(0xFFF2E6D1)
+                                    colorTile[j] = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1)
                                     playerCover[i][j] = false
                                 }
                             }
@@ -191,6 +192,7 @@ fun DisplayWinner(navController: NavController) {
                     ){
                         Text(
                             text = "Home",
+                            textAlign = TextAlign.Center,
                             fontWeight = FontWeight.Bold,
                             color = Color.White,
                             fontSize = 25.sp
@@ -438,7 +440,7 @@ fun DisplayWinner(navController: NavController) {
                             pointsTotal[1] = 0
                             for(i in 0 .. 1) {
                                 for (j in 0..<r.value * c.value) {
-                                    colorTile[j] = Color(0xFFF2E6D1)
+                                    colorTile[j] = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1)
                                     playerCover[i][j] = false
                                 }
                             }
@@ -479,7 +481,7 @@ fun DisplayWinner(navController: NavController) {
                             pointsTotal[1] = 0
                             for(i in 0 .. 1) {
                                 for (j in 0..<r.value * c.value) {
-                                    colorTile[j] = Color(0xFFF2E6D1)
+                                    colorTile[j] = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1)
                                     playerCover[i][j] = false
                                 }
                             }
@@ -630,6 +632,7 @@ fun DisplayWinner(navController: NavController) {
                                 Spacer(modifier = Modifier.height(4.dp))
 
                                 Text(
+                                    textAlign = TextAlign.Center,
                                     text = if (player1Name.value != "") player1Name.value.uppercase() else "PLAYER 1",
                                     fontWeight = FontWeight.Bold,
                                     color = Color(0xFFED6A5E),
@@ -783,7 +786,7 @@ fun DisplayWinner(navController: NavController) {
                             pointsTotal[1] = 0
                             for (i in 0..1) {
                                 for (j in 0..<r.value * c.value) {
-                                    colorTile[j] = Color(0xFFF2E6D1)
+                                    colorTile[j] = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1)
                                     playerCover[i][j] = false
                                 }
                             }
@@ -846,7 +849,7 @@ fun DisplayWinner(navController: NavController) {
                                     playerPoints[b][t] = 0
                                 }
                             }
-                            backgroundColor.value = Color(0xFFED6A5E)
+                            backgroundColor.value = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1)
                             pointsTotal[0] = 0
                             pointsTotal[1] = 0
                             for(i in 0 .. 1) {

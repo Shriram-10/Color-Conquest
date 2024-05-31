@@ -69,15 +69,15 @@ fun colorChanger(i: Int){
         colorCircle[i] = ColoringBG[thisPlayer.value]
         colorTile[i] = Coloring[thisPlayer.value]
     } else if (playerPoints[thisPlayer.value][i] > 3){
-        colorTile[i] = if (darkLight.value == 1) Color(150,150,150) else Color(0xFFF2E6D1)
-        colorCircle[i] = if (darkLight.value == 1) Color(150,150,150) else Color(0xFFF2E6D1)
+        colorTile[i] = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1)
+        colorCircle[i] = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1)
     }
 
     for(j in 0..<r.value * c.value) {
         if (playerCover[otherPlayer.value][j]){
             colorTile[j] = Coloring[otherPlayer.value]
         } else {
-            colorTile[j] = if (darkLight.value == 1) Color(150,150,150) else Color(0xFFF2E6D1)
+            colorTile[j] = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1)
         }
     }
 }

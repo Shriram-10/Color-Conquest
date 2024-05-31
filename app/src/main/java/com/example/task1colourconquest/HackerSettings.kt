@@ -21,8 +21,11 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -46,6 +49,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HackerSettings(navController: NavController){
 
@@ -767,7 +771,13 @@ fun HackerSettings(navController: NavController){
                                             visible = showGridChangeDialog.value,
                                             modifier = Modifier
                                                 .fillMaxWidth()
-                                                .background(if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD))
+                                                .background(
+                                                    if (darkLight.value == 1) Color(
+                                                        157,
+                                                        70,
+                                                        99
+                                                    ) else Color(0xFFF2D1CD)
+                                                )
                                                 .clip(RoundedCornerShape(20))
                                         ) {
                                             Column(
@@ -786,7 +796,7 @@ fun HackerSettings(navController: NavController){
                                                         text = "Rows",
                                                         fontSize = 18.sp,
                                                         fontWeight = FontWeight.Bold,
-                                                        color = Color.Black
+                                                        color = if (darkLight.value == 1) Color.White else Color.Black
                                                     )
                                                     Spacer(modifier = Modifier.width(30.dp))
 
@@ -794,7 +804,7 @@ fun HackerSettings(navController: NavController){
                                                         text = "Columns",
                                                         fontSize = 18.sp,
                                                         fontWeight = FontWeight.Bold,
-                                                        color = Color.Black
+                                                        color = if (darkLight.value == 1) Color.White else Color.Black
                                                     )
                                                 }
                                                 Row(
@@ -808,7 +818,7 @@ fun HackerSettings(navController: NavController){
                                                         text = " Size : ",
                                                         fontSize = 18.sp,
                                                         fontWeight = FontWeight.Bold,
-                                                        color = Color.Black
+                                                        color = if (darkLight.value == 1) Color.White else Color.Black
                                                     )
                                                     OutlinedTextField(
                                                         value = rInput.value,
@@ -821,13 +831,15 @@ fun HackerSettings(navController: NavController){
                                                         modifier = Modifier
                                                             .height(48.dp)
                                                             .width(60.dp)
-                                                            .background(if (darkLight.value == 1) Color(249,217,187) else Color(0xFFC7F1FD)),
+                                                            .background(
+                                                                if (darkLight.value == 1) Color(237,212,224) else Color(0xFFC7F1FD)
+                                                            ),
                                                     )
                                                     Text(
                                                         text = " × ",
                                                         fontSize = 18.sp,
                                                         fontWeight = FontWeight.Bold,
-                                                        color = Color.Black
+                                                        color = if (darkLight.value == 1) Color.White else Color.Black
                                                     )
 
                                                     OutlinedTextField(
@@ -841,7 +853,9 @@ fun HackerSettings(navController: NavController){
                                                         modifier = Modifier
                                                             .height(48.dp)
                                                             .width(60.dp)
-                                                            .background(if (darkLight.value == 1) Color(249,217,187) else Color(0xFFC7F1FD)),
+                                                            .background(
+                                                                if (darkLight.value == 1) Color(237,212,224) else Color(0xFFC7F1FD)
+                                                            ),
                                                     )
                                                 }
                                                 Row(
@@ -1108,10 +1122,21 @@ fun HackerSettings(navController: NavController){
                                                 onValueChange = {
                                                     noOfMatchesInput.value = it
                                                 },
+                                                colors = OutlinedTextFieldDefaults.colors(
+                                                    unfocusedTextColor = if (darkLight.value == 1) Color.White else Color.Black,
+                                                    focusedTextColor = if (darkLight.value == 1) Color.White else Color.Black,
+                                                    focusedBorderColor = if (darkLight.value == 1) Color.White else Color.Black
+                                                ),
                                                 modifier = Modifier
                                                     .width(64.dp)
                                                     .height(56.dp)
-                                                    .background(if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD)),
+                                                    .background(
+                                                        if (darkLight.value == 1) Color(
+                                                            157,
+                                                            70,
+                                                            99
+                                                        ) else Color(0xFFF2D1CD)
+                                                    ),
                                                 keyboardOptions = KeyboardOptions(
                                                     keyboardType = KeyboardType.Number
                                                 )
@@ -1430,7 +1455,13 @@ fun HackerSettings(navController: NavController){
                                                     modifier = Modifier
                                                         .fillMaxWidth()
                                                         .weight(1f)
-                                                        .background(if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD))
+                                                        .background(
+                                                            if (darkLight.value == 1) Color(
+                                                                201,
+                                                                178,
+                                                                165
+                                                            ) else Color(0xFFF2D1CD)
+                                                        )
                                                         .clip(RoundedCornerShape(20))
                                                 ){
                                                     Button(
@@ -1529,7 +1560,13 @@ fun HackerSettings(navController: NavController){
                                         visible = showTimerDialog.value,
                                         modifier = Modifier
                                             .fillMaxWidth()
-                                            .background(if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD))
+                                            .background(
+                                                if (darkLight.value == 1) Color(
+                                                    201,
+                                                    178,
+                                                    165
+                                                ) else Color(0xFFF2D1CD)
+                                            )
                                             .clip(RoundedCornerShape(20))
                                     ){
                                         Column(
@@ -1576,11 +1613,22 @@ fun HackerSettings(navController: NavController){
                                                     onValueChange = {
                                                         mins.value = it
                                                     },
+                                                    colors = OutlinedTextFieldDefaults.colors(
+                                                        unfocusedTextColor = if (darkLight.value == 1) Color.White else Color.Black,
+                                                        focusedTextColor = if (darkLight.value == 1) Color.White else Color.Black,
+                                                        focusedBorderColor = if (darkLight.value == 1) Color.White else Color.Black
+                                                    ),
                                                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                                                     modifier = Modifier
                                                         .height(48.dp)
                                                         .width(60.dp)
-                                                        .background(if (darkLight.value == 1) Color(249,217,187) else Color(0xFFC7F1FD)),
+                                                        .background(
+                                                            if (darkLight.value == 1) Color(
+                                                                157,
+                                                                70,
+                                                                99
+                                                            ) else Color(0xFFF2D1CD)
+                                                        ),
                                                 )
                                                 Text(
                                                     text = " : ",
@@ -1594,11 +1642,22 @@ fun HackerSettings(navController: NavController){
                                                     onValueChange = {
                                                         secs.value = it
                                                     },
+                                                    colors = OutlinedTextFieldDefaults.colors(
+                                                        unfocusedTextColor = if (darkLight.value == 1) Color.White else Color.Black,
+                                                        focusedTextColor = if (darkLight.value == 1) Color.White else Color.Black,
+                                                        focusedBorderColor = if (darkLight.value == 1) Color.White else Color.Black
+                                                    ),
                                                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                                                     modifier = Modifier
                                                         .height(48.dp)
                                                         .width(60.dp)
-                                                        .background(if (darkLight.value == 1) Color(249,217,187) else Color(0xFFC7F1FD)),
+                                                        .background(
+                                                            if (darkLight.value == 1) Color(
+                                                                157,
+                                                                70,
+                                                                99
+                                                            ) else Color(0xFFF2D1CD)
+                                                        ),
                                                 )
                                             }
                                             Button(
@@ -1662,7 +1721,9 @@ fun HackerSettings(navController: NavController){
                                     visible = chooseHandicap.value,
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .background(if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD))
+                                        .background(
+                                            if (darkLight.value == 1) Color(237,212,224) else Color(0xFFF2D1CD)
+                                        )
                                         .clip(RoundedCornerShape(20))
                                 ){
                                     Column(
@@ -1709,11 +1770,22 @@ fun HackerSettings(navController: NavController){
                                                 onValueChange = {
                                                     minsh1.value = it
                                                 },
+                                                colors = OutlinedTextFieldDefaults.colors(
+                                                    unfocusedTextColor = if (darkLight.value == 1) Color.White else Color.Black,
+                                                    focusedTextColor = if (darkLight.value == 1) Color.White else Color.Black,
+                                                    focusedBorderColor = if (darkLight.value == 1) Color.White else Color.Black
+                                                ),
                                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                                                 modifier = Modifier
                                                     .height(48.dp)
                                                     .width(60.dp)
-                                                    .background(if (darkLight.value == 1) Color(249,217,187) else Color(0xFFC7F1FD)),
+                                                    .background(
+                                                        if (darkLight.value == 1) Color(
+                                                            157,
+                                                            70,
+                                                            99
+                                                        ) else Color(0xFFF2D1CD)
+                                                    ),
                                             )
                                             Text(
                                                 text = " : ",
@@ -1727,11 +1799,22 @@ fun HackerSettings(navController: NavController){
                                                 onValueChange = {
                                                     secsh1.value = it
                                                 },
+                                                colors = OutlinedTextFieldDefaults.colors(
+                                                    unfocusedTextColor = if (darkLight.value == 1) Color.White else Color.Black,
+                                                    focusedTextColor = if (darkLight.value == 1) Color.White else Color.Black,
+                                                    focusedBorderColor = if (darkLight.value == 1) Color.White else Color.Black
+                                                ),
                                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                                                 modifier = Modifier
                                                     .height(48.dp)
                                                     .width(60.dp)
-                                                    .background(if (darkLight.value == 1) Color(249,217,187) else Color(0xFFC7F1FD)),
+                                                    .background(
+                                                        if (darkLight.value == 1) Color(
+                                                            157,
+                                                            70,
+                                                            99
+                                                        ) else Color(0xFFF2D1CD)
+                                                    ),
                                             )
                                         }
                                         Row(
@@ -1752,11 +1835,22 @@ fun HackerSettings(navController: NavController){
                                                 onValueChange = {
                                                     minsh2.value = it
                                                 },
+                                                colors = OutlinedTextFieldDefaults.colors(
+                                                    unfocusedTextColor = if (darkLight.value == 1) Color.White else Color.Black,
+                                                    focusedTextColor = if (darkLight.value == 1) Color.White else Color.Black,
+                                                    focusedBorderColor = if (darkLight.value == 1) Color.White else Color.Black
+                                                ),
                                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                                                 modifier = Modifier
                                                     .height(48.dp)
                                                     .width(60.dp)
-                                                    .background(if (darkLight.value == 1) Color(249,217,187) else Color(0xFFC7F1FD)),
+                                                    .background(
+                                                        if (darkLight.value == 1) Color(
+                                                            157,
+                                                            70,
+                                                            99
+                                                        ) else Color(0xFFF2D1CD)
+                                                    ),
                                             )
                                             Text(
                                                 text = " : ",
@@ -1770,11 +1864,22 @@ fun HackerSettings(navController: NavController){
                                                 onValueChange = {
                                                     secsh2.value = it
                                                 },
+                                                colors = OutlinedTextFieldDefaults.colors(
+                                                    unfocusedTextColor = if (darkLight.value == 1) Color.White else Color.Black,
+                                                    focusedTextColor = if (darkLight.value == 1) Color.White else Color.Black,
+                                                    focusedBorderColor = if (darkLight.value == 1) Color.White else Color.Black
+                                                ),
                                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                                                 modifier = Modifier
                                                     .height(48.dp)
                                                     .width(60.dp)
-                                                    .background(if (darkLight.value == 1) Color(249,217,187) else Color(0xFFC7F1FD)),
+                                                    .background(
+                                                        if (darkLight.value == 1) Color(
+                                                            157,
+                                                            70,
+                                                            99
+                                                        ) else Color(0xFFF2D1CD)
+                                                    ),
                                             )
                                         }
 

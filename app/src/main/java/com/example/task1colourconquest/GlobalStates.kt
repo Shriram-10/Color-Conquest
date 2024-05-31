@@ -20,11 +20,11 @@ var clicked = mutableStateListOf<Boolean>(
 )
 
 var ColoringBG = mutableStateListOf<Color>(
-    if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7), if (darkLight.value == 1) Color(0xFF7F461B) else Color(0xFFED6A5E)
+    if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7), if (darkLight.value == 1) Color(238,164,223) else Color(0xFFED6A5E)
 )
 
 var Coloring = mutableStateListOf<Color>(
-    if (darkLight.value == 1) Color(249,217,187) else Color(0xFFC7F1FD), if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD)
+    if (darkLight.value == 1) Color(237,212,224) else Color(0xFFC7F1FD), if (darkLight.value == 1) Color(157,70,99) else Color(0xFFF2D1CD)
 )
 
 var colorTile = mutableStateListOf<Color>(
@@ -78,7 +78,7 @@ var playerPoints : SnapshotStateList<SnapshotStateList<Int>> = mutableStateListO
 )
 
 var counter = mutableStateOf(0)
-var backgroundColor = mutableStateOf(if (darkLight.value == 1) Color(238,111,56) else Color(0xFF0FA6F7))
+var backgroundColor = mutableStateOf(if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7))
 var pointsTotal = mutableStateListOf(0,0)
 val thisPlayer = mutableStateOf(1)
 val otherPlayer = mutableStateOf(0)
@@ -148,8 +148,8 @@ var seriesWinnerName = mutableStateOf("")
 fun generateGridSizeList(r: Int, c: Int){
     for (i in 0..r * c - 1 ) {
         clicked.add(false)
-        colorTile.add(if (darkLight.value == 1) Color(150,150,150) else Color(0xFFF2E6D1))
-        colorCircle.add(if (darkLight.value == 1) Color(150,150,150) else Color(0xFFF2E6D1))
+        colorTile.add(if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1))
+        colorCircle.add(if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1))
         playerCover[0].add(false)
         playerCover[1].add(false)
         playerPoints[0].add(0)
