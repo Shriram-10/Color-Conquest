@@ -118,7 +118,7 @@ fun ModesPage(navController: NavController){
                 .height(72.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = if (darkLight.value == 1) Color(185,126,189) else Color(0xFFED6A5E),
-                contentColor = if (darkLight.value == 1) Color(150,150,150) else Color.DarkGray
+                contentColor = Color.DarkGray
             ),
             elevation = ButtonDefaults.buttonElevation(
                 defaultElevation = 16.dp

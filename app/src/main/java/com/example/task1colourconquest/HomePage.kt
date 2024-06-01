@@ -54,6 +54,7 @@ fun HomePage(navController: NavController/*, modifier: Modifier*/) {
 
     if (enterGame) {
         AlertDialog(
+            containerColor = Color(64,64,64),
             onDismissRequest = { enterGame = false },
             confirmButton = {
                 Button(
@@ -81,7 +82,10 @@ fun HomePage(navController: NavController/*, modifier: Modifier*/) {
                 )
             },
             text = {
-                Text(text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit eros at velit vulputate, at sagittis diam pulvinar. Ut sagittis semper orci, fermentum iaculis dui aliquet at. Aenean ut auctor quam. Vivamus lobortis sapien ante, sed suscipit sem consequat id. Maecenas rhoncus, mi quis consequat convallis, tortor lorem bibendum lectus, a congue arcu diam in velit. Fusce in tortor pretium, scelerisque mauris nec, pellentesque odio. Phasellus semper ipsum nec diam egestas, at pretium ante elementum. Donec pulvinar, erat et faucibus interdum, nisl lorem ornare tortor, id suscipit erat est vitae ante. Quisque vel ex aliquet, eleifend augue non, fringilla diam. Phasellus vulputate turpis urna, non gravida nulla rhoncus a. Fusce faucibus nisl nec nibh blandit dignissim. Sed vestibulum, ante at pharetra vestibulum, est mauris pretium ex, vitae posuere sem ante sed turpis. Fusce maximus efficitur mauris at congue. Suspendisse vel suscipit purus, vel ultrices lorem.")
+                Text(
+                    text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit eros at velit vulputate, at sagittis diam pulvinar. Ut sagittis semper orci, fermentum iaculis dui aliquet at. Aenean ut auctor quam. Vivamus lobortis sapien ante, sed suscipit sem consequat id. Maecenas rhoncus, mi quis consequat convallis, tortor lorem bibendum lectus, a congue arcu diam in velit. Fusce in tortor pretium, scelerisque mauris nec, pellentesque odio. Phasellus semper ipsum nec diam egestas, at pretium ante elementum. Donec pulvinar, erat et faucibus interdum, nisl lorem ornare tortor, id suscipit erat est vitae ante. Quisque vel ex aliquet, eleifend augue non, fringilla diam. Phasellus vulputate turpis urna, non gravida nulla rhoncus a. Fusce faucibus nisl nec nibh blandit dignissim. Sed vestibulum, ante at pharetra vestibulum, est mauris pretium ex, vitae posuere sem ante sed turpis. Fusce maximus efficitur mauris at congue. Suspendisse vel suscipit purus, vel ultrices lorem.",
+                    color = if (darkLight.value == 1) Color.White else Color.Black
+                )
             }
         )
     }
@@ -208,7 +212,7 @@ fun HomePage(navController: NavController/*, modifier: Modifier*/) {
         Spacer(modifier = Modifier.height(36.dp))
 
         Text(
-            text = if (darkLight.value == 1) "Made with \uD83D\uDC9A by Shriram Umapathy" else "Made with \u2764\uFE0F by Shriram Umapathy",
+            text = "Made with \uD83D\uDC9A by Shriram Umapathy",
             color = if (darkLight.value == 1) Color.White else Color.Black
         )
     }

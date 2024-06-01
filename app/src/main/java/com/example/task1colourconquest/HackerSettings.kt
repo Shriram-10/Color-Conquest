@@ -55,10 +55,10 @@ fun HackerSettings(navController: NavController){
 
     var isTimerVisible by remember {mutableStateOf(false)}
     var isSeriesVisible by remember {mutableStateOf(false)}
-    var displayString = ""
 
     if (showWarning1.value){
         AlertDialog(
+            containerColor = Color(64,64,64),
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -99,7 +99,7 @@ fun HackerSettings(navController: NavController){
                     textAlign = TextAlign.Center,
                     text = "NOTE:\nMinutes should not exceed 15.\nSeconds should not exceed 59.",
                     fontSize = 18.sp,
-                    color = Color.Black
+                    color = if (darkLight.value == 1) Color.White else Color.Black
                 )
             }
         )
@@ -107,6 +107,7 @@ fun HackerSettings(navController: NavController){
 
     if (showWarning2.value) {
         AlertDialog(
+            containerColor = Color(64,64,64),
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -142,7 +143,7 @@ fun HackerSettings(navController: NavController){
                     textAlign = TextAlign.Center,
                     text = "NOTE:\nMinutes should not exceed 15.\nSeconds should not exceed 59.",
                     fontSize = 18.sp,
-                    color = Color.Black
+                    color = if (darkLight.value == 1) Color.White else Color.Black
                 )
             }
         )
@@ -150,6 +151,7 @@ fun HackerSettings(navController: NavController){
 
     if (showWarning3.value) {
         AlertDialog(
+            containerColor = Color(64,64,64),
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -185,13 +187,14 @@ fun HackerSettings(navController: NavController){
                     textAlign = TextAlign.Center,
                     text = "NOTE:\nPlease enter a valid time.\nMinutes and seconds should be greater than zero.\nMinutes should not exceed 15.\nSeconds should not exceed 59.",
                     fontSize = 18.sp,
-                    color = Color.Black
+                    color = if (darkLight.value == 1) Color.White else Color.Black
                 )
             }
         )
     }
     if (showWarning4.value){
         AlertDialog(
+            containerColor = Color(64,64,64),
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -227,13 +230,14 @@ fun HackerSettings(navController: NavController){
                     textAlign = TextAlign.Center,
                     text = "NOTE:\nPlease enter a valid time.\nMinutes and seconds should be greater than zero.\nMinutes should not exceed 15.\nSeconds should not exceed 59.",
                     fontSize = 18.sp,
-                    color = Color.Black
+                    color = if (darkLight.value == 1) Color.White else Color.Black
                 )
             }
         )
     }
     if (showWarning5.value){
         AlertDialog(
+            containerColor = Color(64,64,64),
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -274,13 +278,14 @@ fun HackerSettings(navController: NavController){
                     textAlign = TextAlign.Center,
                     text = "NOTE:\nNumber of rows and columns should not exceed 10 and should be greater than 2.",
                     fontSize = 18.sp,
-                    color = Color.Black
+                    color = if (darkLight.value == 1) Color.White else Color.Black
                 )
             }
         )
     }
     if (showWarning10.value){
         AlertDialog(
+            containerColor = Color(64,64,64),
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -321,13 +326,14 @@ fun HackerSettings(navController: NavController){
                     textAlign = TextAlign.Center,
                     text = "NOTE:\nNumber of matches should be greater than 1 and should not exceed 10.",
                     fontSize = 18.sp,
-                    color = Color.Black
+                    color = if (darkLight.value == 1) Color.White else Color.Black
                 )
             }
         )
     }
     if (showWarning6.value){
         AlertDialog(
+            containerColor = Color(64,64,64),
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -368,13 +374,14 @@ fun HackerSettings(navController: NavController){
                     textAlign = TextAlign.Center,
                     text = "NOTE:\nNumber of rows and columns should be greater than 2.",
                     fontSize = 18.sp,
-                    color = Color.Black
+                    color = if (darkLight.value == 1) Color.White else Color.Black
                 )
             }
         )
     }
     if (showWarning11.value){
         AlertDialog(
+            containerColor = Color(64,64,64),
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -415,13 +422,14 @@ fun HackerSettings(navController: NavController){
                     textAlign = TextAlign.Center,
                     text = "NOTE:\nAt least two matches are required in a series.",
                     fontSize = 18.sp,
-                    color = Color.Black
+                    color = if (darkLight.value == 1) Color.White else Color.Black
                 )
             }
         )
     }
     if (showWarning7.value){
         AlertDialog(
+            containerColor = Color(64,64,64),
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -462,13 +470,14 @@ fun HackerSettings(navController: NavController){
                     textAlign = TextAlign.Center,
                     text = "NOTE:\nNumber of rows and columns should not exceed 10.",
                     fontSize = 18.sp,
-                    color = Color.Black
+                    color = if (darkLight.value == 1) Color.White else Color.Black
                 )
             }
         )
     }
     if (showWarning12.value){
         AlertDialog(
+            containerColor = Color(64,64,64),
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -509,13 +518,14 @@ fun HackerSettings(navController: NavController){
                     textAlign = TextAlign.Center,
                     text = "NOTE:\nNumber of matches should not exceed 10.",
                     fontSize = 18.sp,
-                    color = Color.Black
+                    color = if (darkLight.value == 1) Color.White else Color.Black
                 )
             }
         )
     }
     if (showWarning8.value){
         AlertDialog(
+            containerColor = Color(64,64,64),
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -556,13 +566,14 @@ fun HackerSettings(navController: NavController){
                     textAlign = TextAlign.Center,
                     text = "NOTE:\nNumber of rows and columns should be greater than 2 and should not exceed 10.",
                     fontSize = 18.sp,
-                    color = Color.Black
+                    color = if (darkLight.value == 1) Color.White else Color.Black
                 )
             }
         )
     }
     if (showWarning13.value){
         AlertDialog(
+            containerColor = Color(64,64,64),
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -603,13 +614,14 @@ fun HackerSettings(navController: NavController){
                     textAlign = TextAlign.Center,
                     text = "NOTE:\nNumber of matches should be greater than 1 and should not exceed 10.",
                     fontSize = 18.sp,
-                    color = Color.Black
+                    color = if (darkLight.value == 1) Color.White else Color.Black
                 )
             }
         )
     }
     if (showWarning9.value){
         AlertDialog(
+            containerColor = Color(64,64,64),
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -651,7 +663,7 @@ fun HackerSettings(navController: NavController){
                     textAlign = TextAlign.Center,
                     text = "Recieved Input is negative!\nNOTE:\nNumber of rows and columns should be greater than 2 and should not exceed 10.",
                     fontSize = 18.sp,
-                    color = Color.Black
+                    color = if (darkLight.value == 1) Color.White else Color.Black
                 )
             }
         )
@@ -688,7 +700,7 @@ fun HackerSettings(navController: NavController){
                 onClick = {},
                 modifier = Modifier.fillMaxSize(),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1)
+                    containerColor = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
                 ),
                 elevation = ButtonDefaults.buttonElevation(
                     defaultElevation = 25.dp,
@@ -760,7 +772,7 @@ fun HackerSettings(navController: NavController){
                                         ) {
                                             Text(
                                                 text = if ((r.value.toString() == "0" && c.value.toString() == "0") && !changeGridSize.value) "Set" else r.value.toString() + " × " + c.value.toString(),
-                                                color = Color.White,
+                                                color = if (darkLight.value == 1) Color.Black else Color.White,
                                                 fontSize = 20.sp,
                                                 fontWeight = FontWeight.Bold
                                             )
@@ -832,7 +844,11 @@ fun HackerSettings(navController: NavController){
                                                             .height(48.dp)
                                                             .width(60.dp)
                                                             .background(
-                                                                if (darkLight.value == 1) Color(237,212,224) else Color(0xFFC7F1FD)
+                                                                if (darkLight.value == 1) Color(
+                                                                    237,
+                                                                    212,
+                                                                    224
+                                                                ) else Color(0xFFC7F1FD)
                                                             ),
                                                     )
                                                     Text(
@@ -854,7 +870,11 @@ fun HackerSettings(navController: NavController){
                                                             .height(48.dp)
                                                             .width(60.dp)
                                                             .background(
-                                                                if (darkLight.value == 1) Color(237,212,224) else Color(0xFFC7F1FD)
+                                                                if (darkLight.value == 1) Color(
+                                                                    237,
+                                                                    212,
+                                                                    224
+                                                                ) else Color(0xFFC7F1FD)
                                                             ),
                                                     )
                                                 }
@@ -955,7 +975,7 @@ fun HackerSettings(navController: NavController){
                     }
                     Text(
                         textAlign = TextAlign.Center,
-                        text = "---------------",
+                        text = "-------------",
                         fontSize = 44.sp,
                         fontWeight = FontWeight.ExtraBold,
                         color = if (darkLight.value == 1) Color.White else Color.Black
@@ -969,6 +989,11 @@ fun HackerSettings(navController: NavController){
                                 onClick = {
                                     showGridChangeDialog.value = false
                                     optionsSeriesDialog.value = !optionsSeriesDialog.value
+                                    if (!confirmCustomSeries.value){
+                                        noOfMatchesInput.value = ""
+                                        customSeries.value = true
+                                        textFieldDisplay.value = false
+                                    }
                                 },
                                 modifier = Modifier.height(48.dp),
                                 colors = ButtonDefaults.buttonColors(
@@ -1013,13 +1038,16 @@ fun HackerSettings(navController: NavController){
                                             colors = ButtonDefaults.buttonColors(
                                                 containerColor = if (darkLight.value == 1) Color(216,172,225) else Color(0xFFED6A5E),
                                                 contentColor = Color.White
+                                            ),
+                                            elevation = ButtonDefaults.buttonElevation(
+                                                defaultElevation = 12.dp
                                             )
                                         ){
                                            Text(
                                                text = if(chooseSeriesHandicap.value) "YES" else "NO",
                                                fontSize = 18.sp,
                                                fontWeight = FontWeight.Bold,
-                                               color = Color.White
+                                               color = if (darkLight.value == 1) Color.Black else Color.White
                                            )
                                         }
                                     }
@@ -1054,13 +1082,16 @@ fun HackerSettings(navController: NavController){
                                             shape = RoundedCornerShape(15),
                                             colors = ButtonDefaults.buttonColors(
                                                 containerColor = if(darkLight.value == 1) if (noOfMatches.value == 3) Color(130,112,167) else Color(216,172,225) else if (noOfMatches.value == 3) Color(0xFF0FA6F7)  else Color(0xFFED6A5E),
+                                            ),
+                                            elevation = ButtonDefaults.buttonElevation(
+                                                defaultElevation = 12.dp
                                             )
                                         ){
                                             Text(
                                                 text = " 3 ",
                                                 fontSize = 26.sp,
                                                 fontWeight = FontWeight.Bold,
-                                                color = Color.White
+                                                color = if (darkLight.value == 1) if (noOfMatches.value == 3) Color.White else Color.Black else Color.White
                                             )
                                         }
                                         Spacer(modifier = Modifier.width(8.dp))
@@ -1088,7 +1119,7 @@ fun HackerSettings(navController: NavController){
                                                 text = " 5 ",
                                                 fontSize = 26.sp,
                                                 fontWeight = FontWeight.Bold,
-                                                color = Color.White
+                                                color = if (darkLight.value == 1) if (noOfMatches.value == 5) Color.White else Color.Black else Color.White
                                             )
                                         }
                                         Spacer(modifier = Modifier.width(8.dp))
@@ -1106,13 +1137,16 @@ fun HackerSettings(navController: NavController){
                                                 colors = ButtonDefaults.buttonColors(
                                                     containerColor = if (darkLight.value == 1) Color(216,172,225) else Color(0xFFED6A5E),
                                                     contentColor = Color.White
+                                                ),
+                                                elevation = ButtonDefaults.buttonElevation(
+                                                    defaultElevation = 12.dp
                                                 )
                                             ){
                                                 Text(
                                                     text = "Custom",
                                                     fontSize = 22.sp,
                                                     fontWeight = FontWeight.Bold,
-                                                    color = Color.White
+                                                    color = if (darkLight.value == 1) Color.Black else Color.White
                                                 )
                                             }
                                         }
@@ -1248,7 +1282,7 @@ fun HackerSettings(navController: NavController){
         ){
             Text(
                 text = "Series Settings",
-                color = Color.White,
+                color = if (darkLight.value == 1) Color.Black else Color.White,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -1279,7 +1313,7 @@ fun HackerSettings(navController: NavController){
         ){
             Text(
                 text = "Timer Settings",
-                color = Color.White,
+                color = if (darkLight.value == 1) Color.Black else Color.White,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -1306,7 +1340,7 @@ fun HackerSettings(navController: NavController){
                 onClick = {},
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1)
+                    containerColor = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
                 ),
                 elevation = ButtonDefaults.buttonElevation(
                     defaultElevation = 25.dp,
@@ -1439,9 +1473,9 @@ fun HackerSettings(navController: NavController){
                                                 )
                                             ){
                                                 Text(
-                                                    text = if(mins.value == "" && secs.value == "" || displayString == "") "Select " else displayString,
+                                                    text = if(/*mins.value == "" && secs.value == "" || */displayString.value == "") "Select " else displayString.value,
                                                     fontWeight = FontWeight.Bold,
-                                                    color = Color.White,
+                                                    color = if (darkLight.value == 1) Color.Black else Color.White,
                                                     fontSize = 18.sp
                                                 )
                                             }
@@ -1457,9 +1491,9 @@ fun HackerSettings(navController: NavController){
                                                         .weight(1f)
                                                         .background(
                                                             if (darkLight.value == 1) Color(
-                                                                201,
-                                                                178,
-                                                                165
+                                                                237,
+                                                                212,
+                                                                224
                                                             ) else Color(0xFFF2D1CD)
                                                         )
                                                         .clip(RoundedCornerShape(20))
@@ -1469,10 +1503,10 @@ fun HackerSettings(navController: NavController){
                                                             mins.value = "1"
                                                             secs.value = "0"
                                                             showDropDown.value = false
-                                                            displayString = displayString(mins.value, secs.value)
+                                                            displayString.value = displayString(mins.value, secs.value)
                                                         },
                                                         colors = ButtonDefaults.buttonColors(
-                                                            containerColor = if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD)
+                                                            containerColor = if (darkLight.value == 1) Color(237,212,224) else Color(0xFFF2D1CD)
                                                         ),
                                                         modifier = Modifier.height(40.dp),
                                                         shape = RoundedCornerShape(5)
@@ -1490,10 +1524,10 @@ fun HackerSettings(navController: NavController){
                                                             mins.value = "2"
                                                             secs.value = "0"
                                                             showDropDown.value = false
-                                                            displayString = displayString(mins.value, secs.value)
+                                                            displayString.value = displayString(mins.value, secs.value)
                                                         },
                                                         colors = ButtonDefaults.buttonColors(
-                                                            containerColor = if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD)
+                                                            containerColor = if (darkLight.value == 1) Color(237,212,224) else Color(0xFFF2D1CD)
                                                         ),
                                                         modifier = Modifier.height(40.dp),
                                                         shape = RoundedCornerShape(5)
@@ -1510,10 +1544,10 @@ fun HackerSettings(navController: NavController){
                                                             mins.value = "3"
                                                             secs.value = "0"
                                                             showDropDown.value = false
-                                                            displayString = displayString(mins.value, secs.value)
+                                                            displayString.value = displayString(mins.value, secs.value)
                                                         },
                                                         colors = ButtonDefaults.buttonColors(
-                                                            containerColor = if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD)
+                                                            containerColor = if (darkLight.value == 1) Color(237,212,224) else Color(0xFFF2D1CD)
                                                         ),
                                                         modifier = Modifier.height(40.dp),
                                                         shape = RoundedCornerShape(5),
@@ -1535,7 +1569,7 @@ fun HackerSettings(navController: NavController){
                                                                 showTimerDialog.value = true
                                                             },
                                                             colors = ButtonDefaults.buttonColors(
-                                                                containerColor = if (darkLight.value == 1) Color(201,178,165) else Color(0xFFF2D1CD)
+                                                                containerColor = if (darkLight.value == 1) Color(237,212,224) else Color(0xFFF2D1CD)
                                                             ),
                                                             modifier = Modifier.height(40.dp),
                                                             shape = RoundedCornerShape(5),
@@ -1562,9 +1596,9 @@ fun HackerSettings(navController: NavController){
                                             .fillMaxWidth()
                                             .background(
                                                 if (darkLight.value == 1) Color(
-                                                    201,
-                                                    178,
-                                                    165
+                                                    237,
+                                                    212,
+                                                    224
                                                 ) else Color(0xFFF2D1CD)
                                             )
                                             .clip(RoundedCornerShape(20))
@@ -1676,7 +1710,7 @@ fun HackerSettings(navController: NavController){
                                                         } else if (mins.value.toInt() > 15 || secs.value.toInt() > 59){
                                                             showWarning2.value = true
                                                         } else {
-                                                            displayString = displayString(mins.value, secs.value)
+                                                            displayString.value = displayString(mins.value, secs.value)
                                                         }
                                                     }
 
@@ -1722,7 +1756,11 @@ fun HackerSettings(navController: NavController){
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .background(
-                                            if (darkLight.value == 1) Color(237,212,224) else Color(0xFFF2D1CD)
+                                            if (darkLight.value == 1) Color(
+                                                237,
+                                                212,
+                                                224
+                                            ) else Color(0xFFF2D1CD)
                                         )
                                         .clip(RoundedCornerShape(20))
                                 ){

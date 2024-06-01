@@ -96,6 +96,7 @@ var sizeOfCircle = playerCover[if (counter.value % 2 == 0) 0 else 1]
 
 var mode = mutableStateOf(0)
 
+var displayString = mutableStateOf("")
 var chooseHandicap = mutableStateOf(false)
 var showDropDown = mutableStateOf(false)
 var showTimerDialog = mutableStateOf(false)
@@ -148,8 +149,8 @@ var seriesWinnerName = mutableStateOf("")
 fun generateGridSizeList(r: Int, c: Int){
     for (i in 0..r * c - 1 ) {
         clicked.add(false)
-        colorTile.add(if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1))
-        colorCircle.add(if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1))
+        colorTile.add(if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1))
+        colorCircle.add(if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1))
         playerCover[0].add(false)
         playerCover[1].add(false)
         playerPoints[0].add(0)

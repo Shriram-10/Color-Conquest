@@ -62,7 +62,7 @@ fun DisplayWinner(navController: NavController) {
                     .height(290.dp),
                 shape = RoundedCornerShape(20.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(62,65,113),
+                    containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(62,65,113),
                     contentColor = Color.Black
                 ),
                 elevation = ButtonDefaults.buttonElevation(
@@ -94,7 +94,7 @@ fun DisplayWinner(navController: NavController) {
                     Spacer(modifier = Modifier.height(8.dp))
 
                     Image(
-                        painter = painterResource(id = R.drawable.winner),
+                        painter = painterResource(id = if (darkLight.value == 1) R.drawable.darkwinner else R.drawable.winner),
                         contentDescription = "winner",
                         modifier = Modifier.aspectRatio(16f/5f)
                     )
@@ -123,7 +123,7 @@ fun DisplayWinner(navController: NavController) {
                             pointsTotal[1] = 0
                             for(i in 0 .. 1) {
                                 for (j in 0..<r.value * c.value) {
-                                    colorTile[j] = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1)
+                                    colorTile[j] = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
                                     playerCover[i][j] = false
                                 }
                             }
@@ -136,7 +136,7 @@ fun DisplayWinner(navController: NavController) {
                         modifier = Modifier
                             .width(275.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(87,190,235),
+                            containerColor = if (darkLight.value == 1) Color(132,105,199) else Color(87,190,235),
                             contentColor = Color.White
                         )
                     ){
@@ -163,7 +163,7 @@ fun DisplayWinner(navController: NavController) {
                             pointsTotal[1] = 0
                             for(i in 0 .. 1) {
                                 for (j in 0..<r.value * c.value) {
-                                    colorTile[j] = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1)
+                                    colorTile[j] = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
                                     playerCover[i][j] = false
                                 }
                             }
@@ -186,7 +186,7 @@ fun DisplayWinner(navController: NavController) {
                         modifier = Modifier
                             .width(275.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(237,106,94),
+                            containerColor = if (darkLight.value == 1) Color(238,164,223) else Color(237,106,94),
                             contentColor = Color.White
                         )
                     ){
@@ -208,7 +208,7 @@ fun DisplayWinner(navController: NavController) {
                     .height(IntrinsicSize.Min),
                 shape = RoundedCornerShape(20.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(62,65,113),
+                    containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(62,65,113),
                     contentColor = Color.Black
                 ),
                 elevation = ButtonDefaults.buttonElevation(
@@ -240,7 +240,7 @@ fun DisplayWinner(navController: NavController) {
                     Spacer(modifier = Modifier.height(8.dp))
 
                     Image(
-                        painter = painterResource(id = R.drawable.winner),
+                        painter = painterResource(id = if (darkLight.value == 1) R.drawable.darkwinner else R.drawable.winner),
                         contentDescription = "winner",
                         modifier = Modifier.aspectRatio(16f/5f)
                     )
@@ -280,7 +280,7 @@ fun DisplayWinner(navController: NavController) {
                                 Icon(
                                     Icons.Filled.Person,
                                     contentDescription = "Person",
-                                    tint = Color(0xFFED6A5E),
+                                    tint = if (darkLight.value == 1) Color(238,164,223) else Color(0xFFED6A5E),
                                     modifier = Modifier.height(50.dp).aspectRatio(1f)
                                 )
 
@@ -289,7 +289,7 @@ fun DisplayWinner(navController: NavController) {
                                 Text(
                                     text = if (player1Name.value != "") player1Name.value.uppercase() else "PLAYER 1",
                                     fontWeight = FontWeight.Bold,
-                                    color = Color(0xFFED6A5E),
+                                    color = if (darkLight.value == 1) Color(238,164,223) else Color(0xFFED6A5E),
                                     fontSize = 13.sp
                                 )
 
@@ -305,7 +305,7 @@ fun DisplayWinner(navController: NavController) {
                                             .fillMaxWidth(0.9f)
                                             .height(70.dp),
                                         colors = ButtonDefaults.buttonColors(
-                                            containerColor = Color(0xFFED6A5E)
+                                            containerColor = if (darkLight.value == 1) Color(238,164,223) else Color(0xFFED6A5E)
                                         ),
                                         shape = RoundedCornerShape(20),
                                         elevation = ButtonDefaults.buttonElevation(
@@ -324,7 +324,7 @@ fun DisplayWinner(navController: NavController) {
                                         Text(
                                             text = "WINS",
                                             fontWeight = FontWeight.Bold,
-                                            color = Color.White,
+                                            color = if (darkLight.value == 1) Color(255,245,166) else Color.White,
                                             fontSize = 12.sp
                                         )
 
@@ -333,7 +333,7 @@ fun DisplayWinner(navController: NavController) {
                                         Text(
                                             text = listOfWins.count{ it == 1 }.toString(),
                                             fontWeight = FontWeight.Bold,
-                                            color = Color.White,
+                                            color = if (darkLight.value == 1) Color(255,245,166) else Color.White,
                                             fontSize = 24.sp
                                         )
                                     }
@@ -363,7 +363,7 @@ fun DisplayWinner(navController: NavController) {
                                 Icon(
                                     Icons.Filled.Person,
                                     contentDescription = "Person",
-                                    tint = Color(0xFF0FA6F7),
+                                    tint = if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7),
                                     modifier = Modifier.height(50.dp).aspectRatio(1f)
                                 )
 
@@ -372,7 +372,7 @@ fun DisplayWinner(navController: NavController) {
                                 Text(
                                     text = if (player2Name.value != "") player2Name.value.uppercase() else "PLAYER 2",
                                     fontWeight = FontWeight.Bold,
-                                    color = Color(0xFF0FA6F7),
+                                    color = if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7),
                                     fontSize = 13.sp
                                 )
 
@@ -388,7 +388,7 @@ fun DisplayWinner(navController: NavController) {
                                             .fillMaxWidth(0.9f)
                                             .height(70.dp),
                                         colors = ButtonDefaults.buttonColors(
-                                            containerColor = Color(0xFF0FA6F7)
+                                            containerColor = if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7)
                                         ),
                                         shape = RoundedCornerShape(20),
                                         elevation = ButtonDefaults.buttonElevation(
@@ -407,7 +407,7 @@ fun DisplayWinner(navController: NavController) {
                                         Text(
                                             text = "WINS",
                                             fontWeight = FontWeight.Bold,
-                                            color = Color.White,
+                                            color = if (darkLight.value == 1) Color(255,245,166) else Color.White,
                                             fontSize = 12.sp
                                         )
 
@@ -416,7 +416,7 @@ fun DisplayWinner(navController: NavController) {
                                         Text(
                                             text = listOfWins.count{ it == 0 }.toString(),
                                             fontWeight = FontWeight.Bold,
-                                            color = Color.White,
+                                            color = if (darkLight.value == 1) Color(255,245,166) else Color.White,
                                             fontSize = 24.sp
                                         )
                                     }
@@ -440,7 +440,7 @@ fun DisplayWinner(navController: NavController) {
                             pointsTotal[1] = 0
                             for(i in 0 .. 1) {
                                 for (j in 0..<r.value * c.value) {
-                                    colorTile[j] = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1)
+                                    colorTile[j] = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
                                     playerCover[i][j] = false
                                 }
                             }
@@ -454,7 +454,7 @@ fun DisplayWinner(navController: NavController) {
                         modifier = Modifier
                             .width(275.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(87,190,235),
+                            containerColor = if (darkLight.value == 1) Color(132,105,199) else Color(87,190,235),
                             contentColor = Color.White
                         )
                     ){
@@ -481,7 +481,7 @@ fun DisplayWinner(navController: NavController) {
                             pointsTotal[1] = 0
                             for(i in 0 .. 1) {
                                 for (j in 0..<r.value * c.value) {
-                                    colorTile[j] = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1)
+                                    colorTile[j] = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
                                     playerCover[i][j] = false
                                 }
                             }
@@ -522,7 +522,7 @@ fun DisplayWinner(navController: NavController) {
                         modifier = Modifier
                             .width(275.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(237,106,94),
+                            containerColor = if (darkLight.value == 1) Color(238,164,223) else Color(237,106,94),
                             contentColor = Color.White
                         )
                     ){
@@ -543,7 +543,7 @@ fun DisplayWinner(navController: NavController) {
                     .height(IntrinsicSize.Min),
                 shape = RoundedCornerShape(20.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(62,65,113),
+                    containerColor = if (darkLight.value == 1) Color(80,80,80) else Color(62,65,113),
                     contentColor = Color.Black
                 ),
                 elevation = ButtonDefaults.buttonElevation(
@@ -575,7 +575,7 @@ fun DisplayWinner(navController: NavController) {
                     Spacer(modifier = Modifier.height(8.dp))
 
                     Image(
-                        painter = painterResource(id = R.drawable.winner),
+                        painter = painterResource(id = if (darkLight.value == 1) R.drawable.darkwinner else R.drawable.winner),
                         contentDescription = "winner",
                         modifier = Modifier.aspectRatio(16f/5f)
                     )
@@ -625,7 +625,7 @@ fun DisplayWinner(navController: NavController) {
                                 Icon(
                                     Icons.Filled.Person,
                                     contentDescription = "Person",
-                                    tint = Color(0xFFED6A5E),
+                                    tint = if (darkLight.value == 1) Color(238,164,223) else Color(0xFFED6A5E),
                                     modifier = Modifier.height(50.dp).aspectRatio(1f)
                                 )
 
@@ -635,7 +635,7 @@ fun DisplayWinner(navController: NavController) {
                                     textAlign = TextAlign.Center,
                                     text = if (player1Name.value != "") player1Name.value.uppercase() else "PLAYER 1",
                                     fontWeight = FontWeight.Bold,
-                                    color = Color(0xFFED6A5E),
+                                    color = if (darkLight.value == 1) Color(238,164,223) else Color(0xFFED6A5E),
                                     fontSize = 13.sp
                                 )
 
@@ -651,7 +651,7 @@ fun DisplayWinner(navController: NavController) {
                                             .fillMaxWidth(0.9f)
                                             .height(70.dp),
                                         colors = ButtonDefaults.buttonColors(
-                                            containerColor = Color(0xFFED6A5E)
+                                            containerColor = if (darkLight.value == 1) Color(238,164,223) else Color(0xFFED6A5E)
                                         ),
                                         shape = RoundedCornerShape(20),
                                         elevation = ButtonDefaults.buttonElevation(
@@ -670,7 +670,7 @@ fun DisplayWinner(navController: NavController) {
                                         Text(
                                             text = "WINS",
                                             fontWeight = FontWeight.Bold,
-                                            color = Color.White,
+                                            color = if (darkLight.value == 1) Color(255,245,166) else Color.White,
                                             fontSize = 12.sp
                                         )
 
@@ -679,7 +679,7 @@ fun DisplayWinner(navController: NavController) {
                                         Text(
                                             text = listOfWins.count{ it == 1 }.toString(),
                                             fontWeight = FontWeight.Bold,
-                                            color = Color.White,
+                                            color = if (darkLight.value == 1) Color(255,245,166) else Color.White,
                                             fontSize = 24.sp
                                         )
                                     }
@@ -709,7 +709,7 @@ fun DisplayWinner(navController: NavController) {
                                 Icon(
                                     Icons.Filled.Person,
                                     contentDescription = "Person",
-                                    tint = Color(0xFF0FA6F7),
+                                    tint = if (darkLight.value == 1) Color(132,105,199) else Color(0xFF0FA6F7),
                                     modifier = Modifier.height(50.dp).aspectRatio(1f)
                                 )
 
@@ -718,7 +718,7 @@ fun DisplayWinner(navController: NavController) {
                                 Text(
                                     text = if (player2Name.value != "") player2Name.value.uppercase() else "PLAYER 2",
                                     fontWeight = FontWeight.Bold,
-                                    color = Color(0xFF0FA6F7),
+                                    color = if (darkLight.value == 1) Color(132,105,199) else Color(0xFF0FA6F7),
                                     fontSize = 13.sp
                                 )
 
@@ -734,7 +734,7 @@ fun DisplayWinner(navController: NavController) {
                                             .fillMaxWidth(0.9f)
                                             .height(70.dp),
                                         colors = ButtonDefaults.buttonColors(
-                                            containerColor = Color(0xFF0FA6F7)
+                                            containerColor = if (darkLight.value == 1) Color(132,105,199) else Color(0xFF0FA6F7)
                                         ),
                                         shape = RoundedCornerShape(20),
                                         elevation = ButtonDefaults.buttonElevation(
@@ -753,7 +753,7 @@ fun DisplayWinner(navController: NavController) {
                                         Text(
                                             text = "WINS",
                                             fontWeight = FontWeight.Bold,
-                                            color = Color.White,
+                                            color = if (darkLight.value == 1) Color(255,245,166) else Color.White,
                                             fontSize = 12.sp
                                         )
 
@@ -762,7 +762,7 @@ fun DisplayWinner(navController: NavController) {
                                         Text(
                                             text = listOfWins.count{ it == 0 }.toString(),
                                             fontWeight = FontWeight.Bold,
-                                            color = Color.White,
+                                            color = if (darkLight.value == 1) Color(255,245,166) else Color.White,
                                             fontSize = 24.sp
                                         )
                                     }
@@ -786,7 +786,7 @@ fun DisplayWinner(navController: NavController) {
                             pointsTotal[1] = 0
                             for (i in 0..1) {
                                 for (j in 0..<r.value * c.value) {
-                                    colorTile[j] = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1)
+                                    colorTile[j] = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
                                     playerCover[i][j] = false
                                 }
                             }
@@ -827,7 +827,7 @@ fun DisplayWinner(navController: NavController) {
                         modifier = Modifier
                             .width(275.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(87, 190, 235),
+                            containerColor = if (darkLight.value == 1) Color(132,105,199) else Color(87, 190, 235),
                             contentColor = Color.White
                         )
                     ) {
@@ -849,7 +849,7 @@ fun DisplayWinner(navController: NavController) {
                                     playerPoints[b][t] = 0
                                 }
                             }
-                            backgroundColor.value = if (darkLight.value == 1) Color(64,64,64) else Color(0xFFF2E6D1)
+                            backgroundColor.value = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
                             pointsTotal[0] = 0
                             pointsTotal[1] = 0
                             for(i in 0 .. 1) {
@@ -895,7 +895,7 @@ fun DisplayWinner(navController: NavController) {
                         modifier = Modifier
                             .width(275.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(237,106,94),
+                            containerColor = if (darkLight.value == 1) Color(238,164,223) else Color(237,106,94),
                             contentColor = Color.White
                         )
                     ){
