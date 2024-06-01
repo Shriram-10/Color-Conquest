@@ -19,13 +19,8 @@ var clicked = mutableStateListOf<Boolean>(
 //    false,false,false,false,false
 )
 
-var ColoringBG = mutableStateListOf<Color>(
-    if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7), if (darkLight.value == 1) Color(238,164,223) else Color(0xFFED6A5E)
-)
-
-var Coloring = mutableStateListOf<Color>(
-    if (darkLight.value == 1) Color(237,212,224) else Color(0xFFC7F1FD), if (darkLight.value == 1) Color(157,70,99) else Color(0xFFF2D1CD)
-)
+var ColoringBG = mutableStateListOf<Color>()
+var Coloring = mutableStateListOf<Color>()
 
 var colorTile = mutableStateListOf<Color>(
 //    Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1), Color(0xFFF2E6D1),

@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -19,6 +20,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -31,8 +34,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -54,7 +59,7 @@ fun HomePage(navController: NavController/*, modifier: Modifier*/) {
 
     if (enterGame) {
         AlertDialog(
-            containerColor = Color(64,64,64),
+            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
             onDismissRequest = { enterGame = false },
             confirmButton = {
                 Button(
@@ -136,7 +141,25 @@ fun HomePage(navController: NavController/*, modifier: Modifier*/) {
         Image(painter = painterResource(id = if (darkLight.value == 1) R.drawable.darkplayers else R.drawable.players),
             contentDescription = "Players")
 
-        Spacer(modifier = Modifier.height(100.dp))
+        Spacer(modifier = Modifier.height(10.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ){
+            Switch(
+                modifier = Modifier
+                    .height(80.dp)
+                    .width(80.dp),
+                checked = darkLight.value == 1,
+                onCheckedChange = {
+                    darkLight.value = if (it) 1 else 0
+                },
+                thumbContent = {}
+            )
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
 
         Row {
             Button(
@@ -166,6 +189,18 @@ fun HomePage(navController: NavController/*, modifier: Modifier*/) {
                     mode.value = 0
                     r.value = 1
                     c.value = 1
+                    if (darkLight.value == 1){
+
+                        ColoringBG.add(Color(130,112,167))
+                        ColoringBG.add(Color(238,164,223))
+                        Coloring.add(Color(237,212,224))
+                        Coloring.add(Color(157,70,99))
+                    } else {
+                        ColoringBG.add(Color(0xFF0FA6F7))
+                        ColoringBG.add(Color(0xFFED6A5E))
+                        Coloring.add(Color(0xFFC7F1FD))
+                        Coloring.add(Color(0xFFF2D1CD))
+                    }
                     navController.navigate(Screen.ModesPage.route)
                 },
                 shape = RoundedCornerShape(

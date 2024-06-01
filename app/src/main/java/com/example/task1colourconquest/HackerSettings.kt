@@ -58,7 +58,7 @@ fun HackerSettings(navController: NavController){
 
     if (showWarning1.value){
         AlertDialog(
-            containerColor = Color(64,64,64),
+            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -107,7 +107,7 @@ fun HackerSettings(navController: NavController){
 
     if (showWarning2.value) {
         AlertDialog(
-            containerColor = Color(64,64,64),
+            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -151,7 +151,7 @@ fun HackerSettings(navController: NavController){
 
     if (showWarning3.value) {
         AlertDialog(
-            containerColor = Color(64,64,64),
+            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -194,7 +194,7 @@ fun HackerSettings(navController: NavController){
     }
     if (showWarning4.value){
         AlertDialog(
-            containerColor = Color(64,64,64),
+            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -237,7 +237,7 @@ fun HackerSettings(navController: NavController){
     }
     if (showWarning5.value){
         AlertDialog(
-            containerColor = Color(64,64,64),
+            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -285,7 +285,7 @@ fun HackerSettings(navController: NavController){
     }
     if (showWarning10.value){
         AlertDialog(
-            containerColor = Color(64,64,64),
+            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -333,7 +333,7 @@ fun HackerSettings(navController: NavController){
     }
     if (showWarning6.value){
         AlertDialog(
-            containerColor = Color(64,64,64),
+            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -381,7 +381,7 @@ fun HackerSettings(navController: NavController){
     }
     if (showWarning11.value){
         AlertDialog(
-            containerColor = Color(64,64,64),
+            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -429,7 +429,7 @@ fun HackerSettings(navController: NavController){
     }
     if (showWarning7.value){
         AlertDialog(
-            containerColor = Color(64,64,64),
+            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -477,7 +477,7 @@ fun HackerSettings(navController: NavController){
     }
     if (showWarning12.value){
         AlertDialog(
-            containerColor = Color(64,64,64),
+            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -525,7 +525,7 @@ fun HackerSettings(navController: NavController){
     }
     if (showWarning8.value){
         AlertDialog(
-            containerColor = Color(64,64,64),
+            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -573,7 +573,7 @@ fun HackerSettings(navController: NavController){
     }
     if (showWarning13.value){
         AlertDialog(
-            containerColor = Color(64,64,64),
+            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -621,7 +621,7 @@ fun HackerSettings(navController: NavController){
     }
     if (showWarning9.value){
         AlertDialog(
-            containerColor = Color(64,64,64),
+            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
             onDismissRequest = {  },
             confirmButton = {
                 Button(
@@ -1661,7 +1661,7 @@ fun HackerSettings(navController: NavController){
                                                                 157,
                                                                 70,
                                                                 99
-                                                            ) else Color(0xFFF2D1CD)
+                                                            ) else Color(0xFFC7F1FD)
                                                         ),
                                                 )
                                                 Text(
@@ -1690,7 +1690,7 @@ fun HackerSettings(navController: NavController){
                                                                 157,
                                                                 70,
                                                                 99
-                                                            ) else Color(0xFFF2D1CD)
+                                                            ) else Color(0xFFC7F1FD)
                                                         ),
                                                 )
                                             }
@@ -1822,7 +1822,7 @@ fun HackerSettings(navController: NavController){
                                                             157,
                                                             70,
                                                             99
-                                                        ) else Color(0xFFF2D1CD)
+                                                        ) else Color(0xFFC7F1FD)
                                                     ),
                                             )
                                             Text(
@@ -1851,7 +1851,7 @@ fun HackerSettings(navController: NavController){
                                                             157,
                                                             70,
                                                             99
-                                                        ) else Color(0xFFF2D1CD)
+                                                        ) else Color(0xFFC7F1FD)
                                                     ),
                                             )
                                         }
@@ -1887,7 +1887,7 @@ fun HackerSettings(navController: NavController){
                                                             157,
                                                             70,
                                                             99
-                                                        ) else Color(0xFFF2D1CD)
+                                                        ) else Color(0xFFC7F1FD)
                                                     ),
                                             )
                                             Text(
@@ -1916,7 +1916,7 @@ fun HackerSettings(navController: NavController){
                                                             157,
                                                             70,
                                                             99
-                                                        ) else Color(0xFFF2D1CD)
+                                                        ) else Color(0xFFC7F1FD)
                                                     ),
                                             )
                                         }
