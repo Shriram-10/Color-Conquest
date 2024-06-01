@@ -175,7 +175,6 @@ fun HomePage(navController: NavController/*, modifier: Modifier*/) {
                     r.value = 1
                     c.value = 1
                     if (darkLight.value == 1){
-
                         ColoringBG.add(Color(130,112,167))
                         ColoringBG.add(Color(238,164,223))
                         Coloring.add(Color(237,212,224))

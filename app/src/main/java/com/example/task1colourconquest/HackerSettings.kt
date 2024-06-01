@@ -2057,6 +2057,17 @@ fun HackerSettings(navController: NavController){
                     }
                     navController.navigate(Screen.PlayerInformation.route)
                 }
+                if (darkLight.value == 1){
+                    ColoringBG[0] = Color(130,112,167)
+                    ColoringBG[1] = Color(238,164,223)
+                    Coloring[0] = Color(237,212,224)
+                    Coloring[1] = Color(157,70,99)
+                } else {
+                    ColoringBG[0] = Color(0xFF0FA6F7)
+                    ColoringBG[1] = Color(0xFFED6A5E)
+                    Coloring[0] = Color(0xFFC7F1FD)
+                    Coloring[1] = Color(0xFFF2D1CD)
+                }
             },
             modifier = Modifier.height(50.dp),
             colors = ButtonDefaults.buttonColors(
