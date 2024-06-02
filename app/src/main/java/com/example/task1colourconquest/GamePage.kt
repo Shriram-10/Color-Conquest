@@ -24,9 +24,13 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -38,6 +42,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -463,12 +468,25 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
             verticalAlignment = Alignment.CenterVertically
         ){
             LazyVerticalGrid(
-                modifier = if (r.value > c.value) Modifier.width((c.value * 375/r.value).dp).padding(4.dp).fillMaxHeight() else if (r.value < c.value) Modifier.height((r.value * 375/c.value + (r.value + 1) * 4).dp).fillMaxWidth(0.95f).padding(8.dp) else Modifier.width(375.dp),
+                modifier = if (r.value > c.value) Modifier
+                    .width((c.value * 375 / r.value).dp)
+                    .padding(4.dp)
+                    .fillMaxHeight() else if (r.value < c.value) Modifier
+                    .height((r.value * 375 / c.value + (r.value + 1) * 4).dp)
+                    .fillMaxWidth(0.95f)
+                    .padding(8.dp) else Modifier.width(375.dp),
                 columns = GridCells.Fixed(c.value),
             ) {
                 items(r.value * c.value){ i->
                     Box(
-                        modifier = if (r.value > c.value)  Modifier.width((375/r.value).dp).padding(4.dp).aspectRatio(1f) else if(r.value < c.value) Modifier.height((375/c.value).dp).padding(4.dp) else Modifier.height((375/r.value).dp).padding(4.dp),
+                        modifier = if (r.value > c.value) Modifier
+                            .width((375 / r.value).dp)
+                            .padding(4.dp)
+                            .aspectRatio(1f) else if(r.value < c.value) Modifier
+                            .height((375 / c.value).dp)
+                            .padding(4.dp) else Modifier
+                            .height((375 / r.value).dp)
+                            .padding(4.dp),
                         contentAlignment = Alignment.Center
                     ) {
                         Box(
@@ -768,13 +786,12 @@ fun TimerClock(
 
     Row{
         if (side == 1){
-
             Column{
                 Spacer(modifier = Modifier.height(22.dp))
                 Box(
                     modifier = Modifier
                         .height(16.dp)
-                        .width(200.dp),
+                        .width(180.dp),
                     contentAlignment = Alignment.Center
                 ){
                     Button(
@@ -789,6 +806,7 @@ fun TimerClock(
                     }
                     Row(
                         modifier = Modifier.fillMaxWidth(0.98f),
+                        horizontalArrangement = Arrangement.End
                     ){
                         Button(
                             modifier = Modifier
@@ -839,7 +857,7 @@ fun TimerClock(
                 Box(
                     modifier = Modifier
                         .height(16.dp)
-                        .width(200.dp),
+                        .width(180.dp),
                     contentAlignment = Alignment.Center
                 ){
                     Button(
@@ -854,6 +872,7 @@ fun TimerClock(
                     }
                     Row(
                         modifier = Modifier.fillMaxWidth(0.98f),
+                        horizontalArrangement = Arrangement.Start
                     ){
                         Button(
                             modifier = Modifier

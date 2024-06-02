@@ -83,6 +83,21 @@ fun colorChanger(i: Int){
 }
 
 fun goNextPlayer(){
+    if (chooseSeriesHandicap.value && handicap.value == 1 && activateAdvantage.value){
+        if (matchCount.value > 1){
+            if (listOfWins[matchCount.value - 2] == otherPlayer.value){
+                if (counter.value % 2 == 1){
+                    thisPlayer.value = 1
+                    otherPlayer.value = 0
+                } else {
+                    thisPlayer.value = 0
+                    otherPlayer.value = 1
+                }
+            }
+        }
+        handicap.value += 1
+        activateAdvantage.value = false
+    }
     if (counter.value % 2 == 1){
         thisPlayer.value = 0
         otherPlayer.value = 1

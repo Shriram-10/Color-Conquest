@@ -1086,13 +1086,12 @@ fun HackerSettings(navController: NavController, highScoreManager: HighScoreMana
                                         Spacer(modifier = Modifier.width(4.dp))
                                         Button(
                                             onClick = {
-                                                chooseSeriesHandicap.value =
-                                                    !chooseSeriesHandicap.value
+                                                chooseSeriesHandicap.value = !chooseSeriesHandicap.value
                                             },
                                             modifier = Modifier.height(44.dp),
                                             shape = RoundedCornerShape(15),
                                             colors = ButtonDefaults.buttonColors(
-                                                containerColor = if (darkLight.value == 1) Color(216,172,225) else Color(0xFFED6A5E),
+                                            containerColor = if (darkLight.value == 1) if (chooseSeriesHandicap.value) Color(130,112,167) else Color(216,172,225) else if (chooseSeriesHandicap.value) Color(0xFF0FA6F7) else Color(0xFFED6A5E),
                                                 contentColor = Color.White
                                             ),
                                             elevation = ButtonDefaults.buttonElevation(
@@ -1103,7 +1102,7 @@ fun HackerSettings(navController: NavController, highScoreManager: HighScoreMana
                                                text = if(chooseSeriesHandicap.value) "YES" else "NO",
                                                fontSize = 18.sp,
                                                fontWeight = FontWeight.Bold,
-                                               color = if (darkLight.value == 1) Color.Black else Color.White
+                                               color = if (darkLight.value == 1) if (chooseSeriesHandicap.value) Color.White else Color.Black else Color.White
                                            )
                                         }
                                     }
@@ -1472,7 +1471,7 @@ fun HackerSettings(navController: NavController, highScoreManager: HighScoreMana
                                         .height(40.dp)
                                         .width(96.dp),
                                     colors = ButtonDefaults.buttonColors(
-                                        containerColor = if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7),
+                                        containerColor = if (darkLight.value == 1) if (chooseHandicap.value) Color(130,112,167) else Color(216,172,225) else if (chooseHandicap.value) Color(0xFF0FA6F7) else Color(0xFFED6A5E),
                                         contentColor = Color(0xFFF2E6D1)
                                     ),
                                     elevation = ButtonDefaults.buttonElevation(
@@ -1483,7 +1482,8 @@ fun HackerSettings(navController: NavController, highScoreManager: HighScoreMana
                                     Text(
                                         text = if(chooseHandicap.value) "YES" else "NO",
                                         fontSize = 18.sp,
-                                        fontWeight = FontWeight.Bold
+                                        fontWeight = FontWeight.Bold,
+                                        color = if (darkLight.value == 1) if (chooseHandicap.value) Color.White else Color.Black else Color.White
                                     )
                                 }
                             }
@@ -1529,7 +1529,7 @@ fun HackerSettings(navController: NavController, highScoreManager: HighScoreMana
                                                 )
                                             ){
                                                 Text(
-                                                    text = if(/*mins.value == "" && secs.value == "" || */displayString.value == "") "Select " else displayString.value,
+                                                    text = if(/*mins.value == "" && secs.value == "" || */displayString.value == "") "Select " else displayString(mins.value, secs.value),
                                                     fontWeight = FontWeight.Bold,
                                                     color = if (darkLight.value == 1) Color.Black else Color.White,
                                                     fontSize = 18.sp
@@ -2031,6 +2031,9 @@ fun HackerSettings(navController: NavController, highScoreManager: HighScoreMana
 
         Button(
             onClick = {
+                if (chooseSeriesHandicap.value){
+                    handicap.value = 1
+                }
                 if (timedOrNot.value){
                     if (!chooseHandicap.value){
                         if (mins.value == "" || secs.value == ""){
