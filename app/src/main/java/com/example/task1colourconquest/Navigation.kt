@@ -29,6 +29,11 @@ fun Navigation() {
             HomePage(navController = navController/*, modifier = modifier*/)
         }
         composable(
+            route = Screen.HighScorePage.route,
+        ) {
+            HighScorePage(navController = navController, /*modifier = Modifier*/)
+        }
+        composable(
             route = Screen.ModesPage.route,
             enterTransition = {slideInHorizontally { it }},
 //            exitTransition = {slideOutHorizontally { it }},

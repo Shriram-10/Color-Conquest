@@ -1,5 +1,7 @@
 package com.example.task1colourconquest
 
+import android.content.SharedPreferences
+import android.graphics.drawable.Icon
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -8,17 +10,23 @@ import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -28,6 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -38,6 +47,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.task1colourconquest.ui.theme.fontFamily
 import kotlinx.coroutines.delay
 
@@ -45,7 +55,7 @@ import kotlinx.coroutines.delay
 @Composable
 fun HomePage(navController: NavController/*, modifier: Modifier*/) {
 
-
+    val highScoreManager = HighScoreManager(LocalContext.current)
     var enterGame by remember { mutableStateOf(false) }
     var trueAsEntering by remember { mutableStateOf(false) }
     LaunchedEffect(key1 = Unit) {
@@ -139,7 +149,40 @@ fun HomePage(navController: NavController/*, modifier: Modifier*/) {
 
         Spacer(modifier = Modifier.height(110.dp))
 
-        Row {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Box(
+                modifier = Modifier
+                    .height(56.dp)
+                    .width(56.dp),
+                contentAlignment = Alignment.Center
+            ){
+                Button(
+                    modifier = Modifier.fillMaxSize(),
+                    onClick = {
+                        displayHS.value = true
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = if (darkLight.value == 1) Color(126,86,62) else Color(0xFF3E4171)
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 8.dp
+                    )
+                ){
+                    Icon(
+                        Icons.Default.Star,
+                        contentDescription = "High Scores",
+                        tint = if (darkLight.value == 1) Color(255,255,255) else Color(255,245,166),
+                        modifier = Modifier.fillMaxSize().scale(3.5f)
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.width(40.dp))
+
             Button(
                 modifier = Modifier
                     .height(64.dp)
@@ -193,16 +236,13 @@ fun HomePage(navController: NavController/*, modifier: Modifier*/) {
                     fontSize = 24.sp)
             }
 
+            Spacer(modifier = Modifier.width(40.dp))
+
             Button(
                 onClick = {
                     enterGame = true
                 },
                 modifier = Modifier
-                    .padding(
-                        start = 75.dp,
-                        top = 4.dp,
-                        end = 0.dp
-                    )
                     .height(56.dp)
                     .width(56.dp),
                 enabled = true,
@@ -227,6 +267,9 @@ fun HomePage(navController: NavController/*, modifier: Modifier*/) {
             text = "Made with \uD83D\uDC9A by Shriram Umapathy",
             color = if (darkLight.value == 1) Color.White else Color.Black
         )
+    }
+    if (displayHS.value){
+        HighScorePage(navController = navController)
     }
 }
 

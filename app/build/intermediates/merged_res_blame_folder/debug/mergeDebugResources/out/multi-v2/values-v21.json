@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.task1colourconquest.app-mergeDebugResources-49:/values-v21/values-v21.xml",
+            "outputFile": "com.example.task1colourconquest.app-mergeDebugResources-50:/values-v21/values-v21.xml",
             "map": [
                 {
-                    "source": "/Users/shriramumapathy/.gradle/caches/transforms-4/6ba26c54bbb020524578b3621cf82849/transformed/core-1.13.1/res/values-v21/values-v21.xml",
+                    "source": "/Users/shriramumapathy/.gradle/caches/transforms-4/8f3d7a3d7f9d1513f80cf6b95c2eeec5/transformed/core-1.13.1/res/values-v21/values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
