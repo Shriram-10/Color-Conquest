@@ -206,6 +206,10 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                                 player2Wins.value = 0
                                 seriesWinner.value = -1
                                 seriesWinnerName.value = ""
+                                handicap.value = 0
+                                chooseSeriesHandicap.value = false
+                                activateAdvantage[0] = false
+                                activateAdvantage[1] = false
                                 showGridChangeDialog.value = false
                                 optionsSeriesDialog.value = false
                                 timedOrNot.value = false
@@ -247,49 +251,99 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
 
                     Spacer(modifier = Modifier.height(8.dp))
 
-                    Button(
-                        onClick = {
-                            counter.value = 0
-                            for(b in 0..1){
-                                for(t in 0..<r.value * c.value){
-                                    playerPoints[b][t] = 0
+                    if (noOfMatches.value > 1 && chooseSeriesHandicap.value){
+                        Button(
+                            onClick = {
+                                counter.value = 0
+                                for(b in 0..1){
+                                    for(t in 0..<r.value * c.value){
+                                        playerPoints[b][t] = 0
+                                    }
                                 }
-                            }
-                            backgroundColor.value = if (darkLight.value == 1) Color(216,172,225) else Color(0xFFED6A5E)
-                            pointsTotal[0] = 0
-                            pointsTotal[1] = 0
-                            for(i in 0 .. 1) {
-                                for (j in 0..<r.value * c.value) {
-                                    colorTile[j] = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
-                                    playerCover[i][j] = false
+                                backgroundColor.value = if (darkLight.value == 1) Color(216,172,225) else Color(0xFFED6A5E)
+                                pointsTotal[0] = 0
+                                pointsTotal[1] = 0
+                                for(i in 0 .. 1) {
+                                    for (j in 0..<r.value * c.value) {
+                                        colorTile[j] = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
+                                        playerCover[i][j] = false
+                                    }
                                 }
-                            }
-                            thisPlayer.value = 1
-                            otherPlayer.value = 0
-                            resetTimer[0] = true
-                            resetTimer[1] = true
-                            exitDialog = false
-                        },
-                        modifier = Modifier
-                            .height(40.dp)
-                            .width(150.dp),
-                        enabled = true,
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFFED6A5E),
-                            contentColor = Color.White
-                        ),
-                        elevation = ButtonDefaults.buttonElevation(
-                            defaultElevation = 8.dp,
-                            pressedElevation = 12.dp
-                        ),
-                        shape = RoundedCornerShape(10)
-                    ) {
-                        Text(
-                            text = "Reset Grid",
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 16.sp,
-                            color = Color.White
-                        )
+                                thisPlayer.value = 1
+                                otherPlayer.value = 0
+                                handicap.value = 1
+                                activateAdvantage[0] = false
+                                activateAdvantage[1] = false
+                                resetTimer[0] = true
+                                resetTimer[1] = true
+                                exitDialog = false
+                            },
+                            modifier = Modifier
+                                .height(40.dp)
+                                .width(150.dp),
+                            enabled = true,
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(0xFFED6A5E),
+                                contentColor = Color.White
+                            ),
+                            elevation = ButtonDefaults.buttonElevation(
+                                defaultElevation = 8.dp,
+                                pressedElevation = 12.dp
+                            ),
+                            shape = RoundedCornerShape(10)
+                        ) {
+                            Text(
+                                text = "Reset Grid",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 16.sp,
+                                color = Color.White
+                            )
+                        }
+                    } else {
+                        Button(
+                            onClick = {
+                                counter.value = 0
+                                for(b in 0..1){
+                                    for(t in 0..<r.value * c.value){
+                                        playerPoints[b][t] = 0
+                                    }
+                                }
+                                backgroundColor.value = if (darkLight.value == 1) Color(216,172,225) else Color(0xFFED6A5E)
+                                pointsTotal[0] = 0
+                                pointsTotal[1] = 0
+                                for(i in 0 .. 1) {
+                                    for (j in 0..<r.value * c.value) {
+                                        colorTile[j] = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
+                                        playerCover[i][j] = false
+                                    }
+                                }
+                                thisPlayer.value = 1
+                                otherPlayer.value = 0
+                                resetTimer[0] = true
+                                resetTimer[1] = true
+                                exitDialog = false
+                            },
+                            modifier = Modifier
+                                .height(40.dp)
+                                .width(150.dp),
+                            enabled = true,
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(0xFFED6A5E),
+                                contentColor = Color.White
+                            ),
+                            elevation = ButtonDefaults.buttonElevation(
+                                defaultElevation = 8.dp,
+                                pressedElevation = 12.dp
+                            ),
+                            shape = RoundedCornerShape(10)
+                        ) {
+                            Text(
+                                text = "Reset Grid",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 16.sp,
+                                color = Color.White
+                            )
+                        }
                     }
                 }
             },
@@ -456,6 +510,37 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
             } else {
                 Spacer(modifier = Modifier.height(60.dp))
             }
+            if (!activateAdvantage[0] && handicap.value == 1 && matchCount.value > 1){
+                if (listOfWins[matchCount.value - 2] == 1){
+                    if (mode.value == 2 && timedOrNot.value){
+                        Spacer(modifier = Modifier.width(16.dp))
+                    }
+                    Box(
+                        modifier = Modifier.size(60.dp),
+                        contentAlignment = Alignment.Center
+                    ){
+                        Button(
+                            onClick = {
+                                if (counter.value % 2 == 1){
+                                    activateAdvantage[0] = true
+                                }
+                            },
+                            modifier = Modifier.fillMaxSize(),
+                            shape = RoundedCornerShape(percent = 50),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(253,245,166)
+                            )
+                        ){
+                            Icon(
+                                Icons.Default.Refresh,
+                                contentDescription = "Another",
+                                tint = if (darkLight.value == 1) Color(253,245,166) else Color.Black,
+                                modifier = Modifier.scale(3.0f)
+                            )
+                        }
+                    }
+                }
+            }
         }
 
         Spacer(modifier = Modifier.height(40.dp))
@@ -592,6 +677,37 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.End
         ){
+            if (!activateAdvantage[1] && handicap.value == 1 && matchCount.value > 1){
+                if (listOfWins[matchCount.value - 2] == 0){
+                    Box(
+                        modifier = Modifier.size(60.dp),
+                        contentAlignment = Alignment.Center
+                    ){
+                        Button(
+                            onClick = {
+                                if (counter.value % 2 == 0){
+                                    activateAdvantage[1] = true
+                                }
+                            },
+                            modifier = Modifier.fillMaxSize(),
+                            shape = RoundedCornerShape(percent = 50),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(253,245,166)
+                            )
+                        ){
+                            Icon(
+                                Icons.Default.Refresh,
+                                contentDescription = "Another",
+                                tint = if (darkLight.value == 1) Color(253,245,166) else Color.Black,
+                                modifier = Modifier.scale(3.0f)
+                            )
+                        }
+                    }
+                    if (mode.value == 2 && timedOrNot.value){
+                        Spacer(modifier = Modifier.width(16.dp))
+                    }
+                }
+            }
             if (mode.value == 2 && timedOrNot.value){
                 if (!chooseHandicap.value){
                     TimerClock(mins.value.toLong(),secs.value.toLong(), rotate = false, runnerController = isRunning1.value, oppId = 0, side = 1)

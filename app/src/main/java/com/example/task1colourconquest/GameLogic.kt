@@ -8,9 +8,12 @@ import kotlin.concurrent.fixedRateTimer
 import kotlin.time.Duration
 
 fun allowClick(i: Int){
-    if (((counter.value == 0 || counter.value == 1 ) && !playerCover[otherPlayer.value][i]) || playerCover[thisPlayer.value][i]){
+    if ((((counter.value == 0 || counter.value == 1 ) && !playerCover[otherPlayer.value][i]) || playerCover[thisPlayer.value][i]) && handicap.value != 2){
         counter.value++
         increment(i, 0)
+    } else if (handicap.value == 2 && (!playerCover[otherPlayer.value][i] || playerCover[thisPlayer.value][i])){
+        increment(i, 0)
+        handicap.value += 1
     }
 }
 
@@ -66,8 +69,8 @@ fun coverTracker(i: Int){
 
 fun colorChanger(i: Int){
     if (playerPoints[thisPlayer.value][i] in 0..3) {
-        colorCircle[i] = ColoringBG[thisPlayer.value]
         colorTile[i] = Coloring[thisPlayer.value]
+        colorCircle[i] = ColoringBG[thisPlayer.value]
     } else if (playerPoints[thisPlayer.value][i] > 3){
         colorTile[i] = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
         colorCircle[i] = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
@@ -83,27 +86,35 @@ fun colorChanger(i: Int){
 }
 
 fun goNextPlayer(){
-    if (chooseSeriesHandicap.value && handicap.value == 1 && activateAdvantage.value){
-        if (matchCount.value > 1){
-            if (listOfWins[matchCount.value - 2] == otherPlayer.value){
-                if (counter.value % 2 == 1){
-                    thisPlayer.value = 1
-                    otherPlayer.value = 0
-                } else {
-                    thisPlayer.value = 0
-                    otherPlayer.value = 1
-                }
+    if (chooseSeriesHandicap.value && handicap.value == 1 && ((activateAdvantage[1] && counter.value % 2 == 1) || (activateAdvantage[0] && counter.value % 2 == 0))){
+        if (counter.value % 2 == 1){
+            thisPlayer.value = 1
+            otherPlayer.value = 0
+        } else {
+            thisPlayer.value = 0
+            otherPlayer.value = 1
+        }
+        for (j in 0..r.value * c.value - 1){
+            if (playerCover[thisPlayer.value][j]){
+                colorTile[j] = Coloring[thisPlayer.value]
+            } else {
+                colorTile[j] = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
             }
         }
+        if (activateAdvantage[0]){
+            activateAdvantage[0] = false
+        } else {
+            activateAdvantage[1] = false
+        }
         handicap.value += 1
-        activateAdvantage.value = false
-    }
-    if (counter.value % 2 == 1){
-        thisPlayer.value = 0
-        otherPlayer.value = 1
     } else {
-        thisPlayer.value = 1
-        otherPlayer.value = 0
+        if (counter.value % 2 == 1){
+            thisPlayer.value = 0
+            otherPlayer.value = 1
+        } else {
+            thisPlayer.value = 1
+            otherPlayer.value = 0
+        }
     }
 }
 

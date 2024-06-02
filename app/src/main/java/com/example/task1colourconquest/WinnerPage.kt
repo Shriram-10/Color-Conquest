@@ -517,6 +517,10 @@ fun DisplayWinner(navController: NavController) {
                                 mins.value = "00"
                                 secs.value = "00"
                             }
+                            handicap.value = 0
+                            chooseSeriesHandicap.value = false
+                            activateAdvantage[0] = false
+                            activateAdvantage[1] = false
                             navController.popBackStack(Screen.HomePage.route, false)
                         },
                         modifier = Modifier
@@ -808,6 +812,10 @@ fun DisplayWinner(navController: NavController) {
                             player2Wins.value = 0
                             seriesWinner.value = -1
                             seriesWinnerName.value = ""
+                            handicap.value = 0
+                            chooseSeriesHandicap.value = false
+                            activateAdvantage[0] = false
+                            activateAdvantage[1] = false
                             showGridChangeDialog.value = false
                             optionsSeriesDialog.value = false
                             timedOrNot.value = false
@@ -890,6 +898,10 @@ fun DisplayWinner(navController: NavController) {
                                 mins.value = "00"
                                 secs.value = "00"
                             }
+                            handicap.value = 0
+                            chooseSeriesHandicap.value = false
+                            activateAdvantage[0] = false
+                            activateAdvantage[1] = false
                             navController.popBackStack(Screen.HomePage.route,false)
                         },
                         modifier = Modifier

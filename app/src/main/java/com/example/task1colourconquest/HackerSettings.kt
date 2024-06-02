@@ -1422,6 +1422,7 @@ fun HackerSettings(navController: NavController, highScoreManager: HighScoreMana
                                 secsh1.value = ""
                                 minsh2.value = ""
                                 secsh2.value = ""
+                                displayString.value = ""
                                 showDropDown.value = false
                             },
                             modifier = Modifier.height(44.dp),

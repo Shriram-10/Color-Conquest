@@ -137,7 +137,7 @@ var changeGridSize = mutableStateOf(false)
 var showGridChangeDialog = mutableStateOf(false)
 
 var handicap = mutableStateOf(0)
-var activateAdvantage = mutableStateOf(false)
+var activateAdvantage = mutableStateListOf(false,false)
 var chooseSeriesHandicap = mutableStateOf(false)
 var optionsSeriesDialog = mutableStateOf(false)
 var customSeries = mutableStateOf(true)
