@@ -39,6 +39,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -49,9 +50,10 @@ import com.example.task1colourconquest.ui.theme.fontFamily2
 import kotlinx.coroutines.delay
 
 @Composable
-fun GamePage(navController: NavController) {
+fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
 
     var exitDialog by remember { mutableStateOf(false) }
+    var PreviousHS : List<String> = highScoreManager.getData("name", "", "score", "", "mins", "", "secs", "")
 
     if(exitDialog) {
         if (counter.value % 2 == 0){
@@ -131,13 +133,13 @@ fun GamePage(navController: NavController) {
                                 player1Name.value = ""
                                 player2Name.value = ""
                                 if (chooseHandicap.value){
-                                    minsh1.value = ""
-                                    minsh2.value = ""
-                                    secsh1.value = ""
-                                    secsh2.value = ""
+                                    minsh1.value = "00"
+                                    minsh2.value = "00"
+                                    secsh1.value = "00"
+                                    secsh2.value = "00"
                                 } else {
-                                    mins.value = ""
-                                    secs.value = ""
+                                    mins.value = "00"
+                                    secs.value = "00"
                                 }
                                 navController.popBackStack(Screen.HomePage.route, false)
                             },
@@ -204,14 +206,14 @@ fun GamePage(navController: NavController) {
                                 timedOrNot.value = false
                                 displayChooseTime.value = false
                                 if (chooseHandicap.value){
-                                    minsh1.value = ""
-                                    minsh2.value = ""
-                                    secsh1.value = ""
-                                    secsh2.value = ""
+                                    minsh1.value = "00"
+                                    minsh2.value = "00"
+                                    secsh1.value = "00"
+                                    secsh2.value = "00"
                                     chooseHandicap.value = false
                                 } else {
-                                    mins.value = ""
-                                    secs.value = ""
+                                    mins.value = "00"
+                                    secs.value = "00"
                                 }
                                 navController.popBackStack(Screen.HomePage.route,false)
                             },
@@ -670,6 +672,35 @@ fun GamePage(navController: NavController) {
         Spacer(modifier = Modifier.height(24.dp))
     }
     if (winner.value != -1) {
+        previousHSName.value = PreviousHS[0]
+        if (PreviousHS[1] != ""){
+            previousHS.value = PreviousHS[1].toInt()
+        }
+        if (PreviousHS[2] != ""){
+            previousHSTime[0] = PreviousHS[2].toInt()
+        }
+        if (PreviousHS[3] != ""){
+            previousHSTime[1] = PreviousHS[3].toInt()
+        }
+        currentHS.value = pointsTotal[winner.value]
+        currentHSName.value = winnerName.value
+        if (!chooseHandicap.value && timedOrNot.value){
+            currentHSTime[0] = mins.value.toInt()
+            currentHSTime[1] = secs.value.toInt()
+        } else if (chooseHandicap.value && timedOrNot.value){
+            if (winner.value == 1){
+                currentHSTime[0] = minsh1.value.toInt()
+                currentHSTime[1] = secsh1.value.toInt()
+            } else {
+                currentHSTime[0] = minsh2.value.toInt()
+                currentHSTime[1] = secsh2.value.toInt()
+            }
+        }
+        if (timedOrNot.value){
+            if ((currentHS.value > previousHS.value) || (currentHS.value == previousHS.value && currentHSTime[0] < previousHSTime[0]) || (currentHS.value == previousHS.value && currentHSTime[0] == previousHSTime[0] && currentHSTime[1] < previousHSTime[1])){
+                highScoreManager.saveData("name", winnerName.value, "score", currentHS.value.toString(), "mins", currentHSTime[0].toString(), "secs", currentHSTime[1].toString())
+            }
+        }
         if (winner.value == 0) {
             DisplayWinner(navController = navController)
         } else if (winner.value == 1) {
@@ -681,7 +712,7 @@ fun GamePage(navController: NavController) {
 @Preview(showBackground = true)
 @Composable
 fun GamePagePreview() {
-    GamePage(navController = rememberNavController())
+    GamePage(navController = rememberNavController(), highScoreManager = HighScoreManager(LocalContext.current))
 }
 
 @Composable

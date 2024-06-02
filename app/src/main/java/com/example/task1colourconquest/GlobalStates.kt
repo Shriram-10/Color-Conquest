@@ -7,8 +7,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.graphics.Color
-
+import androidx.compose.ui.platform.LocalContext
+var causeDelay = mutableStateOf(false)
+var previousHS = mutableStateOf(0)
+var previousHSTime = mutableStateListOf(15,60)
+var previousHSName = mutableStateOf("")
+var currentHS = mutableStateOf(0)
+var currentHSTime = mutableStateListOf(0,0)
+var currentHSName = mutableStateOf("")
 var displayHS = mutableStateOf(false)
+
 var darkLight = mutableStateOf(0)
 var winner = mutableStateOf(-1)
 

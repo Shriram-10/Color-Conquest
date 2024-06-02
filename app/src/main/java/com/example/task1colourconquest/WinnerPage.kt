@@ -173,13 +173,13 @@ fun DisplayWinner(navController: NavController) {
                             player2Name.value = ""
                             winner.value = -1
                             if (chooseHandicap.value){
-                                minsh1.value = ""
-                                minsh2.value = ""
-                                secsh1.value = ""
-                                secsh2.value = ""
+                                minsh1.value = "00"
+                                minsh2.value = "00"
+                                secsh1.value = "00"
+                                secsh2.value = "00"
                             } else {
-                                mins.value = ""
-                                secs.value = ""
+                                mins.value = "00"
+                                secs.value = "00"
                             }
                             navController.popBackStack(Screen.HomePage.route,false)
                         },
@@ -508,14 +508,14 @@ fun DisplayWinner(navController: NavController) {
                             timedOrNot.value = false
                             displayChooseTime.value = false
                             if (chooseHandicap.value){
-                                minsh1.value = ""
-                                minsh2.value = ""
-                                secsh1.value = ""
-                                secsh2.value = ""
+                                minsh1.value = "00"
+                                minsh2.value = "00"
+                                secsh1.value = "00"
+                                secsh2.value = "00"
                                 chooseHandicap.value = false
                             } else {
-                                mins.value = ""
-                                secs.value = ""
+                                mins.value = "00"
+                                secs.value = "00"
                             }
                             navController.popBackStack(Screen.HomePage.route, false)
                         },
@@ -813,14 +813,14 @@ fun DisplayWinner(navController: NavController) {
                             timedOrNot.value = false
                             displayChooseTime.value = false
                             if (chooseHandicap.value){
-                                minsh1.value = ""
-                                minsh2.value = ""
-                                secsh1.value = ""
-                                secsh2.value = ""
+                                minsh1.value = "00"
+                                minsh2.value = "00"
+                                secsh1.value = "00"
+                                secsh2.value = "00"
                                 chooseHandicap.value = false
                             } else {
-                                mins.value = ""
-                                secs.value = ""
+                                mins.value = "00"
+                                secs.value = "00"
                             }
                             navController.popBackStack(Screen.HackerSettings.route, false)
                         },
@@ -881,14 +881,14 @@ fun DisplayWinner(navController: NavController) {
                             showGridChangeDialog.value = false
                             optionsSeriesDialog.value = false
                             if (chooseHandicap.value){
-                                minsh1.value = ""
-                                minsh2.value = ""
-                                secsh1.value = ""
-                                secsh2.value = ""
+                                minsh1.value = "00"
+                                minsh2.value = "00"
+                                secsh1.value = "00"
+                                secsh2.value = "00"
                                 chooseHandicap.value = false
                             } else {
-                                mins.value = ""
-                                secs.value = ""
+                                mins.value = "00"
+                                secs.value = "00"
                             }
                             navController.popBackStack(Screen.HomePage.route,false)
                         },

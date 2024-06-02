@@ -56,7 +56,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HackerSettings(navController: NavController){
+fun HackerSettings(navController: NavController, highScoreManager: HighScoreManager){
 
     var isTimerVisible by remember {mutableStateOf(false)}
     var isSeriesVisible by remember {mutableStateOf(false)}
@@ -2091,7 +2091,8 @@ fun HackerSettings(navController: NavController){
 @Preview(showBackground = true)
 @Composable
 fun HackerSettingsPreview(){
-    HackerSettings(navController = NavController(LocalContext.current))
+    val highScoreManager = HighScoreManager(LocalContext.current)
+    HackerSettings(navController = NavController(LocalContext.current), highScoreManager = highScoreManager)
 }
 
 fun displayString(mins: String,secs: String): String{

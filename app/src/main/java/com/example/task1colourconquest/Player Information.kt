@@ -38,6 +38,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -50,7 +51,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun PlayerPage(navController: NavController) {
+fun PlayerPage(navController: NavController, highScoreManager: HighScoreManager) {
 
     Column (
         modifier = Modifier
@@ -303,5 +304,5 @@ fun PlayerPage(navController: NavController) {
 @Preview(showBackground = true)
 @Composable
 fun PlayerPagePreview(){
-    PlayerPage(navController = rememberNavController())
+    PlayerPage(navController = rememberNavController(), highScoreManager = HighScoreManager(LocalContext.current))
 }

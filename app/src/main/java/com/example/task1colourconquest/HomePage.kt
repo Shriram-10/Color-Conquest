@@ -221,6 +221,7 @@ fun HomePage(navController: NavController/*, modifier: Modifier*/) {
                         Coloring.add(Color(0xFFC7F1FD))
                         Coloring.add(Color(0xFFF2D1CD))
                     }
+                    displayHS.value = false
                     navController.navigate(Screen.ModesPage.route)
                 },
                 shape = RoundedCornerShape(
@@ -240,6 +241,7 @@ fun HomePage(navController: NavController/*, modifier: Modifier*/) {
 
             Button(
                 onClick = {
+                    displayHS.value = false
                     enterGame = true
                 },
                 modifier = Modifier
@@ -269,7 +271,7 @@ fun HomePage(navController: NavController/*, modifier: Modifier*/) {
         )
     }
     if (displayHS.value){
-        HighScorePage(navController = navController)
+        HighScorePage(navController = navController, highScoreManager = highScoreManager)
     }
 }
 

@@ -24,6 +24,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,7 +35,7 @@ import com.example.task1colourconquest.Screen.GamePage.route
 import com.example.task1colourconquest.ui.theme.fontFamily2
 
 @Composable
-fun ModesPage(navController: NavController){
+fun ModesPage(navController: NavController, highScoreManager: HighScoreManager){
 
     Column(
         modifier = Modifier
@@ -157,5 +158,6 @@ fun ModesPage(navController: NavController){
 @Preview(showBackground = true)
 @Composable
 fun ModesPagePreview(){
-    ModesPage(navController = rememberNavController())
+    val highScoreManager = HighScoreManager(LocalContext.current)
+    ModesPage(navController = rememberNavController(), highScoreManager = highScoreManager)
 }
