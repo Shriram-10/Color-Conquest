@@ -673,6 +673,54 @@ fun HackerSettings(navController: NavController, highScoreManager: HighScoreMana
             }
         )
     }
+    if (showWarning14.value){
+        AlertDialog(
+            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
+            onDismissRequest = {  },
+            confirmButton = {
+                Button(
+                    onClick = { showWarning14.value = false },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFED6A5E),
+                        contentColor = Color.White
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 12.dp
+                    ),
+                    shape = RoundedCornerShape(
+                        topStartPercent = 20,
+                        topEndPercent = 0,
+                        bottomStartPercent = 0,
+                        bottomEndPercent = 20
+                    )
+                ) {
+                    Text(text = "OK")
+                }
+            },
+            title = {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Text(
+                        text = "Too less Matches!",
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color(0xFFED6A5E)
+                    )
+                }
+            },
+            text = {
+                Text(
+                    textAlign = TextAlign.Center,
+                    text = "NOTE:\nNumber of matches should be greater than 1 and should not exceed 10 for handicapped series.",
+                    fontSize = 18.sp,
+                    color = if (darkLight.value == 1) Color.White else Color.Black
+                )
+            }
+        )
+    }
 
     Column(
         modifier = Modifier
@@ -1255,6 +1303,9 @@ fun HackerSettings(navController: NavController, highScoreManager: HighScoreMana
                                     Spacer(modifier = Modifier.height(10.dp))
                                     Button(
                                         onClick = {
+                                            if (noOfMatches.value == 1 && noOfMatchesInput.value == ""){
+                                                showWarning13.value = true
+                                            }
                                             if (!confirmButton.value){
                                                 if (textFieldDisplay.value && noOfMatchesInput.value == ""){
                                                     showWarning13.value = true
@@ -1275,7 +1326,7 @@ fun HackerSettings(navController: NavController, highScoreManager: HighScoreMana
                                                             customSeries.value = true
                                                             textFieldDisplay.value = false
                                                             confirmCustomSeries.value = false
-                                                        } else {
+                                                        } else if (noOfMatches.value != 1 || noOfMatchesInput.value != ""){
                                                             textFieldDisplay.value = false
                                                             confirmCustomSeries.value = true
                                                             confirmButton.value = true
@@ -2032,35 +2083,40 @@ fun HackerSettings(navController: NavController, highScoreManager: HighScoreMana
 
         Button(
             onClick = {
-                if (chooseSeriesHandicap.value){
-                    handicap.value = 1
-                }
-                if (timedOrNot.value){
-                    if (!chooseHandicap.value){
-                        if (mins.value == "" || secs.value == ""){
-                            showWarning4.value = true
-                        } else {
-                            if (noOfMatches.value > 1){
-                                generateResultList()
+                if (chooseSeriesHandicap.value && noOfMatches.value == 1){
+                    showWarning14.value = true
+                } else {
+                    if (chooseSeriesHandicap.value){
+                        handicap.value = 1
+                    }
+                    if (timedOrNot.value){
+                        if (!chooseHandicap.value){
+                            if (mins.value == "" || secs.value == ""){
+                                showWarning4.value = true
+                            } else {
+                                if (noOfMatches.value > 1){
+                                    generateResultList()
+                                }
+                                navController.navigate(Screen.PlayerInformation.route)
                             }
-                            navController.navigate(Screen.PlayerInformation.route)
+                        } else {
+                            if (minsh1.value == "" || secsh1.value == "" || minsh2.value == "" || secsh2.value == ""){
+                                showWarning4.value = true
+                            } else {
+                                if (noOfMatches.value > 1){
+                                    generateResultList()
+                                }
+                                navController.navigate(Screen.PlayerInformation.route)
+                            }
                         }
                     } else {
-                        if (minsh1.value == "" || secsh1.value == "" || minsh2.value == "" || secsh2.value == ""){
-                            showWarning4.value = true
-                        } else {
-                            if (noOfMatches.value > 1){
-                                generateResultList()
-                            }
-                            navController.navigate(Screen.PlayerInformation.route)
+                        if (noOfMatches.value > 1){
+                            generateResultList()
                         }
+                        navController.navigate(Screen.PlayerInformation.route)
                     }
-                } else {
-                    if (noOfMatches.value > 1){
-                        generateResultList()
-                    }
-                    navController.navigate(Screen.PlayerInformation.route)
                 }
+
                 if (darkLight.value == 1){
                     ColoringBG[0] = Color(130,112,167)
                     ColoringBG[1] = Color(238,164,223)

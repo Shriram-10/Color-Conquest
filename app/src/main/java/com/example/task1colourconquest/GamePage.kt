@@ -207,6 +207,7 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                                 seriesWinner.value = -1
                                 seriesWinnerName.value = ""
                                 handicap.value = 0
+                                useHandicap.value = false
                                 chooseSeriesHandicap.value = false
                                 activateAdvantage[0] = false
                                 activateAdvantage[1] = false
@@ -272,6 +273,7 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                                 thisPlayer.value = 1
                                 otherPlayer.value = 0
                                 handicap.value = 1
+                                useHandicap.value = false
                                 activateAdvantage[0] = false
                                 activateAdvantage[1] = false
                                 resetTimer[0] = true
@@ -540,6 +542,35 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                         }
                     }
                 }
+            } else if (handicap.value == 4 && matchCount.value > 1 && !useHandicap.value && timedOrNot.value){
+                if (listOfWins[matchCount.value - 2] == 1){
+                    if (mode.value == 2 && timedOrNot.value){
+                        Spacer(modifier = Modifier.width(16.dp))
+                    }
+                    Box(
+                        modifier = Modifier.size(60.dp),
+                        contentAlignment = Alignment.Center
+                    ){
+                        Button(
+                            onClick = {
+
+                            },
+                            modifier = Modifier.fillMaxSize(),
+                            shape = RoundedCornerShape(percent = 50),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(253,245,166)
+                            )
+                        ){
+
+                        }
+                        Text(
+                            text = "+ 20s",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 14.sp,
+                            color = if (darkLight.value == 1) Color(253,245,166) else Color.Black
+                        )
+                    }
+                }
             }
         }
 
@@ -707,6 +738,34 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                         Spacer(modifier = Modifier.width(16.dp))
                     }
                 }
+            } else if (handicap.value == 4 && matchCount.value > 1 && !useHandicap.value && timedOrNot.value){
+                if (listOfWins[matchCount.value - 2] == 0){
+                    Box(
+                        modifier = Modifier.size(60.dp),
+                        contentAlignment = Alignment.Center
+                    ){
+                        Button(
+                            onClick = {
+                            },
+                            modifier = Modifier.fillMaxSize(),
+                            shape = RoundedCornerShape(percent = 50),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(253,245,166)
+                            )
+                        ){
+
+                        }
+                        Text(
+                            text = "+ 20s",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 16.sp,
+                            color = if (darkLight.value == 1) Color(253,245,166) else Color.Black
+                        )
+                    }
+                    if (mode.value == 2 && timedOrNot.value){
+                        Spacer(modifier = Modifier.width(16.dp))
+                    }
+                }
             }
             if (mode.value == 2 && timedOrNot.value){
                 if (!chooseHandicap.value){
@@ -859,7 +918,8 @@ fun TimerClock(
     oppId: Int,
     side: Int = 0
 ){
-    var totalTime = totalMins * 60 + totalSecs
+    var totalTime = totalSecs + totalMins * 60
+
     var currentMins by remember {
         mutableStateOf(totalMins)
     }

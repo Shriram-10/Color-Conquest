@@ -201,6 +201,55 @@ fun DisplayWinner(navController: NavController) {
                 }
             }
         } else if (noOfMatches.value > 1 && matchCount.value < noOfMatches.value){
+            if (useHandicap2.value && !useHandicap.value && handicap.value == 4){
+                if (timedOrNot.value){
+                    if (!chooseHandicap.value){
+                        if (winner.value == 0){
+                            if (secs.value.toInt() >= 40){
+                                mins1.value = (mins.value.toInt() + 1).toString()
+                                secs1.value = (secs.value.toInt() - 40).toString()
+                            } else {
+                                mins1.value = mins.value
+                                secs1.value = (secs.value.toInt() + 20).toString()
+                            }
+                        } else {
+                            if (winner.value == 1){
+                                if (secs.value.toInt() >= 40){
+                                    mins2.value = (mins.value.toInt() + 1).toString()
+                                    secs2.value = (secs.value.toInt() - 40).toString()
+                                } else {
+                                    mins2.value = mins.value
+                                    secs2.value = (secs.value.toInt() + 20).toString()
+                                }
+                            }
+                        }
+                    } else {
+                        if (winner.value == 0){
+                            if (secs.value.toInt() >= 40){
+                                mins1.value = (minsh2.value.toInt() + 1).toString()
+                                secs1.value = (secsh2.value.toInt() - 40).toString()
+                            } else {
+                                mins1.value = minsh2.value
+                                secs1.value = (secsh2.value.toInt() + 20).toString()
+                            }
+                        } else {
+                            if (winner.value == 1){
+                                if (secs.value.toInt() >= 40){
+                                    mins2.value = (minsh2.value.toInt() + 1).toString()
+                                    secs2.value = (secsh2.value.toInt() - 40).toString()
+                                } else {
+                                    mins2.value = minsh2.value
+                                    secs2.value = (secsh2.value.toInt() + 20).toString()
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    handicap.value += 1
+                    useHandicap2.value = true
+                }
+                handicap.value += 1
+            }
             Button(
                 onClick = { /*TODO*/ },
                 modifier = Modifier
@@ -446,6 +495,7 @@ fun DisplayWinner(navController: NavController) {
                             }
                             thisPlayer.value = 1
                             otherPlayer.value = 0
+                            useHandicap.value = false
                             resetTimer[0] = true
                             resetTimer[1] = true
                             winner.value = -1
@@ -518,9 +568,11 @@ fun DisplayWinner(navController: NavController) {
                                 secs.value = "00"
                             }
                             handicap.value = 0
+                            useHandicap2.value = false
                             chooseSeriesHandicap.value = false
                             activateAdvantage[0] = false
                             activateAdvantage[1] = false
+                            useHandicap.value = false
                             navController.popBackStack(Screen.HomePage.route, false)
                         },
                         modifier = Modifier
@@ -816,6 +868,8 @@ fun DisplayWinner(navController: NavController) {
                             chooseSeriesHandicap.value = false
                             activateAdvantage[0] = false
                             activateAdvantage[1] = false
+                            useHandicap2.value = false
+                            useHandicap.value = false
                             showGridChangeDialog.value = false
                             optionsSeriesDialog.value = false
                             timedOrNot.value = false
@@ -902,6 +956,8 @@ fun DisplayWinner(navController: NavController) {
                             chooseSeriesHandicap.value = false
                             activateAdvantage[0] = false
                             activateAdvantage[1] = false
+                            useHandicap.value = false
+                            useHandicap2.value = false
                             navController.popBackStack(Screen.HomePage.route,false)
                         },
                         modifier = Modifier

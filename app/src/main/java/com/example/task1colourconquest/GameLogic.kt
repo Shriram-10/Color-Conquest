@@ -14,6 +14,10 @@ fun allowClick(i: Int){
     } else if (handicap.value == 2 && (!playerCover[otherPlayer.value][i] || playerCover[thisPlayer.value][i])){
         increment(i, 0)
         handicap.value += 1
+        if (handicap.value == 3){
+            useHandicap.value = true
+            handicap.value += 1
+        }
     }
 }
 
