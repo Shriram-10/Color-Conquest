@@ -543,7 +543,7 @@ fun DisplayWinner(navController: NavController) {
                     .height(IntrinsicSize.Min),
                 shape = RoundedCornerShape(20.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = if (darkLight.value == 1) Color(80,80,80) else Color(62,65,113),
+                    containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(62,65,113),
                     contentColor = Color.Black
                 ),
                 elevation = ButtonDefaults.buttonElevation(
