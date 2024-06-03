@@ -4,7 +4,7 @@
             "outputFile": "com.example.task1colourconquest.test.app-mergeDebugAndroidTestResources-32:/values-fr-rCA/values-fr-rCA.xml",
             "map": [
                 {
-                    "source": "/Users/shriramumapathy/.gradle/caches/transforms-4/6ba26c54bbb020524578b3621cf82849/transformed/core-1.13.1/res/values-fr-rCA/values-fr-rCA.xml",
+                    "source": "/Users/shriramumapathy/.gradle/caches/transforms-4/8f3d7a3d7f9d1513f80cf6b95c2eeec5/transformed/core-1.13.1/res/values-fr-rCA/values-fr-rCA.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/Users/shriramumapathy/.gradle/caches/transforms-4/0907e1bb5fc17a9c14db18c3b3d50a2d/transformed/ui-release/res/values-fr-rCA/values-fr-rCA.xml",
+                    "source": "/Users/shriramumapathy/.gradle/caches/transforms-4/d728aa2eaa2aff7b344eeaa8e706e538/transformed/ui-release/res/values-fr-rCA/values-fr-rCA.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

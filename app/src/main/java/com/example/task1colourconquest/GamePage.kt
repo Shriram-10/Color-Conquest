@@ -802,7 +802,7 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
         }
         currentHS.value = pointsTotal[winner.value]
         currentHSName.value = winnerName.value
-        if (!chooseHandicap.value && timedOrNot.value){
+        if (!chooseHandicap.value && timedOrNot.value && noOfMatches.value == 1){
             currentHSTime[0] = mins.value.toInt()
             currentHSTime[1] = secs.value.toInt()
         } else if (chooseHandicap.value && timedOrNot.value){
@@ -966,7 +966,7 @@ fun TimerClock(
                         onClick = {},
                         shape = RoundedCornerShape(30),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(50,50,50)
+                            containerColor = if (darkLight.value == 1) Color(100,100,100) else Color(50,50,50)
                         )
                     ){
 
