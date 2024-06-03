@@ -146,6 +146,8 @@ var setCustomGrid = mutableStateOf(false)
 var changeGridSize = mutableStateOf(false)
 var showGridChangeDialog = mutableStateOf(false)
 
+var handicapValue1 = mutableStateOf(0)
+var handicapValue2 = mutableStateOf(0)
 var chooseSeriesHandicap = mutableStateOf(false)
 var optionsSeriesDialog = mutableStateOf(false)
 var customSeries = mutableStateOf(true)

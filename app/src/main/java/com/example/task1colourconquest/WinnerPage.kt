@@ -221,6 +221,10 @@ fun DisplayWinner(navController: NavController) {
                         .padding(0.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    Text(
+                        text = handicapValue1.value.toString() + " " + handicapValue2.value.toString() + "\n" + listOfWins.toString(),
+                        color = Color.White
+                    )
                     Button(
                         modifier = Modifier.width(275.dp),
                         onClick = { /*TODO*/ },
@@ -448,8 +452,15 @@ fun DisplayWinner(navController: NavController) {
                             otherPlayer.value = 0
                             resetTimer[0] = true
                             resetTimer[1] = true
-                            winner.value = -1
                             matchCount.value += 1
+                            if (chooseSeriesHandicap.value && matchCount.value > 1){
+                                if (listOfWins[matchCount.value - 2] == 0 && handicapValue1.value == 0){
+                                    handicapValue1.value += 1
+                                } else if (listOfWins[matchCount.value - 2] == 1 && handicapValue2.value == 0){
+                                    handicapValue2.value += 1
+                                }
+                            }
+                            winner.value = -1
                         },
                         modifier = Modifier
                             .width(275.dp),

@@ -553,7 +553,41 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                 } else {
                     TimerClock(minsh2.value.toLong(),secsh2.value.toLong(), rotate = true, runnerController = isRunning2.value, oppId = 1)
                 }
-            } else {
+            }
+            if (chooseSeriesHandicap.value && handicapValue2.value == 1 && matchCount.value > 1 && listOfWins[matchCount.value - 2] == 1){
+                if (mode.value == 2 && timedOrNot.value){
+                    Spacer(modifier = Modifier.width(14.dp))
+                }
+                Box(
+                    modifier = Modifier.size(60.dp),
+                    contentAlignment = Alignment.Center
+                ){
+                    Button(
+                        onClick = {
+                            if (counter.value % 2 == 1){
+                                handicapValue2.value += 1
+                            }
+                        },
+                        modifier = Modifier.fillMaxSize(),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(253,245,166)
+                        ),
+                        elevation = ButtonDefaults.buttonElevation(
+                            defaultElevation = 8.dp
+                        )
+                    ){
+
+                    }
+                    Icon(
+                        Icons.Default.Refresh,
+                        contentDescription = "Another Move",
+                        tint = if (darkLight.value == 1) Color.White else Color.Black,
+                        modifier = Modifier.scale(2f)
+                    )
+
+                }
+            }
+            if (handicapValue2.value != 1 && (!timedOrNot.value || mode.value != 2)) {
                 Spacer(modifier = Modifier.height(60.dp))
             }
         }
@@ -692,16 +726,49 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.End
         ){
+            if (chooseSeriesHandicap.value && handicapValue1.value == 1 && matchCount.value > 1 && listOfWins[matchCount.value - 2] == 0){
+                Box(
+                    modifier = Modifier.size(60.dp),
+                    contentAlignment = Alignment.Center
+                ){
+                    Button(
+                        onClick = {
+                            if (counter.value % 2 == 0){
+                                handicapValue1.value += 1
+                            }
+                        },
+                        modifier = Modifier.fillMaxSize(),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(253,245,166)
+                        ),
+                        elevation = ButtonDefaults.buttonElevation(
+                            defaultElevation = 8.dp
+                        )
+                    ){
+
+                    }
+                    Icon(
+                        Icons.Default.Refresh,
+                        contentDescription = "Another Move",
+                        tint = if (darkLight.value == 1) Color.White else Color.Black,
+                        modifier = Modifier.scale(2f)
+                    )
+
+                }
+                if (mode.value == 2 && timedOrNot.value){
+                    Spacer(modifier = Modifier.width(14.dp))
+                }
+            }
             if (mode.value == 2 && timedOrNot.value){
                 if (!chooseHandicap.value){
                     TimerClock(mins.value.toLong(),secs.value.toLong(), rotate = false, runnerController = isRunning1.value, oppId = 0, side = 1)
                 } else {
                     TimerClock(minsh1.value.toLong(),secsh1.value.toLong(), rotate = false, runnerController = isRunning1.value, oppId = 0, side = 1)
                 }
-            } else {
+            }
+            if (handicapValue1.value != 1 && (!timedOrNot.value || mode.value != 2)) {
                 Spacer(modifier = Modifier.height(60.dp))
             }
-
             Spacer(modifier = Modifier.width(20.dp))
         }
 
@@ -969,7 +1036,7 @@ fun TimerClock(
                     }
                 }
             }
-            Spacer(modifier = Modifier.width(20.dp))
+            Spacer(modifier = Modifier.width(14.dp))
         }
         Button(
             onClick = {},
@@ -997,7 +1064,7 @@ fun TimerClock(
             )
         }
         if (side == 0){
-            Spacer(modifier = Modifier.width(20.dp))
+            Spacer(modifier = Modifier.width(14.dp))
             Column{
                 Spacer(modifier = Modifier.height(22.dp))
                 Box(
