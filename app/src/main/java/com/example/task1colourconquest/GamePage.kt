@@ -803,9 +803,14 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
         currentHS.value = pointsTotal[winner.value]
         currentHSName.value = winnerName.value
         if (!chooseHandicap.value && timedOrNot.value && noOfMatches.value == 1){
-            currentHSTime[0] = mins.value.toInt()
-            currentHSTime[1] = secs.value.toInt()
-        } else if (chooseHandicap.value && timedOrNot.value){
+            if (winner.value == 0){
+                currentHSTime[0] = takenTime2[0]
+                currentHSTime[1] = takenTime2[1]
+            } else if (winner.value == 1){
+                currentHSTime[0] = takenTime1[0]
+                currentHSTime[1] = takenTime1[1]
+            }
+        } else if (chooseHandicap.value && timedOrNot.value && noOfMatches.value == 1){
             if (winner.value == 1){
                 currentHSTime[0] = minsh1.value.toInt()
                 currentHSTime[1] = secsh1.value.toInt()
@@ -814,7 +819,7 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                 currentHSTime[1] = secsh2.value.toInt()
             }
         }
-        if (timedOrNot.value){
+        if (timedOrNot.value && noOfMatches.value == 1){
             if ((currentHS.value > previousHS.value) || (currentHS.value == previousHS.value && currentHSTime[0] < previousHSTime[0]) || (currentHS.value == previousHS.value && currentHSTime[0] == previousHSTime[0] && currentHSTime[1] < previousHSTime[1])){
                 highScoreManager.saveData("name", winnerName.value, "score", currentHS.value.toString(), "mins", currentHSTime[0].toString(), "secs", currentHSTime[1].toString())
             }
@@ -863,15 +868,55 @@ fun TimerClock(
     } else {
         isRunning = false
     }
+    if (oppId == 0 && !addTime1.value){
+        takenTime1.add(0)
+        takenTime1.add(0)
+        addTime1.value = true
+    } else if (oppId == 1 && !addTime2.value){
+        takenTime2.add(0)
+        takenTime2.add(0)
+        addTime2.value = true
+    }
     LaunchedEffect(key1 = currentSecs, key2 = currentMins, key3 = isRunning) {
         if (currentSecs > 0 && isRunning) {
             delay(1000)
             currentSecs -= 1
             value = currentTime / totalTime.toFloat()
+            if (oppId == 0){
+                takenTime1[0] = totalMins.toInt() - currentMins.toInt()
+                takenTime1[1] = totalSecs.toInt() - currentSecs.toInt()
+                if (takenTime1[1] < 0){
+                    takenTime1[0] = takenTime1[0] - 1
+                    takenTime1[1] = 60 + takenTime1[1]
+                }
+            } else if (oppId == 1){
+                takenTime2[0] = totalMins.toInt() - currentMins.toInt()
+                takenTime2[1] = totalSecs.toInt() - currentSecs.toInt()
+                if (takenTime2[1] < 0){
+                    takenTime2[0] = takenTime2[0] - 1
+                    takenTime2[1] = 60 + takenTime2[1]
+                }
+            }
         } else if (currentSecs == 0L && currentTime > 0 && isRunning){
             delay(1000)
             currentSecs = 59
             currentMins -= 1
+            value = currentTime / totalTime.toFloat()
+            if (oppId == 0){
+                takenTime1[0] = totalMins.toInt() - currentMins.toInt()
+                takenTime1[1] = totalSecs.toInt() - currentSecs.toInt()
+                if (takenTime1[1] < 0){
+                    takenTime1[0] = takenTime1[0] - 1
+                    takenTime1[1] = 60 + takenTime1[1]
+                }
+            } else if (oppId == 1){
+                takenTime2[0] = totalMins.toInt() - currentMins.toInt()
+                takenTime2[1] = totalSecs.toInt() - currentSecs.toInt()
+                if (takenTime2[1] < 0){
+                    takenTime2[0] = takenTime2[0] - 1
+                    takenTime2[1] = 60 + takenTime2[1]
+                }
+            }
         }
     }
     if (currentTime == 0L){

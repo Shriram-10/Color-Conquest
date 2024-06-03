@@ -137,6 +137,10 @@ var secsh2 = mutableStateOf("")
 var isRunning1 = mutableStateOf(false)
 var isRunning2 = mutableStateOf(false)
 var resetTimer = mutableStateListOf(false,false)
+var takenTime1 = mutableListOf<Int>()
+var takenTime2 = mutableListOf<Int>()
+var addTime1 = mutableStateOf(false)
+var addTime2 = mutableStateOf(false)
 
 var setCustomGrid = mutableStateOf(false)
 var changeGridSize = mutableStateOf(false)
@@ -183,13 +187,15 @@ fun emptyResultList(){
 }
 
 fun removeListItems(r: Int, c:Int){
-    for (i in 0..r * c - 1){
-        clicked.removeAt(r * c - i - 1)
-        colorTile.removeAt(r * c - i - 1)
-        colorCircle.removeAt(r * c - i - 1)
-        playerCover[0].removeAt(r * c - i - 1)
-        playerCover[1].removeAt(r * c - i - 1)
-        playerPoints[0].removeAt(r * c - i - 1)
-        playerPoints[1].removeAt(r * c - i - 1)
+    if (colorTile.size > 0){
+        for (i in 0..r * c - 1){
+            clicked.removeAt(r * c - i - 1)
+            colorTile.removeAt(r * c - i - 1)
+            colorCircle.removeAt(r * c - i - 1)
+            playerCover[0].removeAt(r * c - i - 1)
+            playerCover[1].removeAt(r * c - i - 1)
+            playerPoints[0].removeAt(r * c - i - 1)
+            playerPoints[1].removeAt(r * c - i - 1)
+        }
     }
 }
