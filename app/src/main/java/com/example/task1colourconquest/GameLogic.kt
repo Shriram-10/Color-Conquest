@@ -9,14 +9,23 @@ import kotlin.time.Duration
 
 fun allowClick(i: Int){
     if(((counter.value == 0 || counter.value == 1) && !playerCover[otherPlayer.value][i]) || playerCover[thisPlayer.value][i]){
-        counter.value++
-        increment(i,0)
+        if (!((counter.value % 2 == 1 && handicapValue2.value == 2) || (counter.value % 2 == 0 && handicapValue1.value == 2))) {
+            counter.value++
+            increment(i,0)
+        } else {
+            if (handicapValue1.value == 2){
+                handicapValue1.value += 1
+            } else if (handicapValue2.value == 2){
+                handicapValue2.value += 1
+            }
+            increment(i,0)
+        }
     }
 }
 
 fun increment(i: Int, caller: Int){
 
-    if (counter.value == 1 || counter.value == 2){
+    if (counter.value == 1 || (counter.value == 2 && handicapValue1.value != 3)){
         playerPoints[thisPlayer.value][i] = 3
     } else{
         if (caller == 0){
@@ -73,11 +82,18 @@ fun colorChanger(i: Int){
         colorCircle[i] = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
     }
 
-    for(j in 0..<r.value * c.value) {
-        if (playerCover[otherPlayer.value][j]){
-            colorTile[j] = Coloring[otherPlayer.value]
-        } else {
-            colorTile[j] = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
+    if (!((counter.value % 2 == 1 && handicapValue2.value == 3) || (counter.value % 2 == 0 && handicapValue1.value == 3))){
+        for(j in 0..<r.value * c.value) {
+            if (playerCover[otherPlayer.value][j]){
+                colorTile[j] = Coloring[otherPlayer.value]
+            } else {
+                colorTile[j] = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
+            }
+        }
+        if (handicapValue1.value == 3){
+            handicapValue1.value += 1
+        } else if (handicapValue2.value == 3){
+            handicapValue2.value += 1
         }
     }
 }

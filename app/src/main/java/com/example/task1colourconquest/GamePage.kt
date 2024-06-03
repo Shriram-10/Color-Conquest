@@ -63,6 +63,7 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
 
     if (showWarning15.value){
         AlertDialog(
+            modifier = Modifier.rotate(if(counter.value == 1) 180f else 0f),
             containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
             onDismissRequest = {  },
             confirmButton = {
@@ -93,7 +94,7 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                 ){
                     Text(
                         textAlign = TextAlign.Center,
-                        text = "Powerup Not Available!",
+                        text = "PowerUp Not Available!",
                         fontSize = 28.sp,
                         fontWeight = FontWeight.ExtraBold,
                         color = Color(0xFFED6A5E)
@@ -103,7 +104,7 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
             text = {
                 Text(
                     textAlign = TextAlign.Center,
-                    text = "The Powerup cannot be used in the first turn of any match!\nWait until second move.",
+                    text = "The PowerUp cannot be used in the first turn of any match!\nWait until second move.",
                     fontSize = 18.sp,
                     color = if (darkLight.value == 1) Color.White else Color.Black
                 )
@@ -257,8 +258,11 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                                 player2Wins.value = 0
                                 seriesWinner.value = -1
                                 seriesWinnerName.value = ""
-                                chooseSeriesHandicap.value = false
-
+                                if (chooseSeriesHandicap.value){
+                                    handicapValue1.value = 0
+                                    handicapValue2.value = 0
+                                    chooseSeriesHandicap.value = false
+                                }
                                 showGridChangeDialog.value = false
                                 optionsSeriesDialog.value = false
                                 timedOrNot.value = false
@@ -322,6 +326,13 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                                 otherPlayer.value = 0
                                 resetTimer[0] = true
                                 resetTimer[1] = true
+                                if (chooseSeriesHandicap.value && matchCount.value > 1 && (listOfWins[matchCount.value - 2] == 1 || listOfWins[matchCount.value - 2] == 0)){
+                                    if (listOfWins[matchCount.value - 2] == 0 && handicapValue1.value > 1){
+                                        handicapValue1.value = 1
+                                    } else if (listOfWins[matchCount.value - 2] == 1 && handicapValue2.value > 1){
+                                        handicapValue2.value = 1
+                                    }
+                                }
                                 exitDialog = false
                             },
                             modifier = Modifier
@@ -564,8 +575,10 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                 ){
                     Button(
                         onClick = {
-                            if (counter.value % 2 == 1){
+                            if (counter.value % 2 == 1 && counter.value != 1){
                                 handicapValue2.value += 1
+                            } else if (counter.value == 1){
+                                showWarning15.value = true
                             }
                         },
                         modifier = Modifier.fillMaxSize(),
@@ -733,8 +746,10 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                 ){
                     Button(
                         onClick = {
-                            if (counter.value % 2 == 0){
+                            if (counter.value % 2 == 0 && counter.value != 0){
                                 handicapValue1.value += 1
+                            } else if (counter.value == 0){
+                                showWarning15.value = true
                             }
                         },
                         modifier = Modifier.fillMaxSize(),

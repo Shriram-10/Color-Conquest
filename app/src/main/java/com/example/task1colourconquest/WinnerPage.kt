@@ -131,6 +131,12 @@ fun DisplayWinner(navController: NavController) {
                             otherPlayer.value = 0
                             resetTimer[0] = true
                             resetTimer[1] = true
+                            takenTime1.removeAt(1)
+                            takenTime1.removeAt(0)
+                            takenTime2.removeAt(1)
+                            takenTime2.removeAt(0)
+                            addTime1.value = false
+                            addTime2.value = false
                             winner.value = -1
                         },
                         modifier = Modifier
@@ -181,6 +187,12 @@ fun DisplayWinner(navController: NavController) {
                                 mins.value = "00"
                                 secs.value = "00"
                             }
+                            takenTime1.removeAt(1)
+                            takenTime1.removeAt(0)
+                            takenTime2.removeAt(1)
+                            takenTime2.removeAt(0)
+                            addTime1.value = false
+                            addTime2.value = false
                             navController.popBackStack(Screen.HomePage.route,false)
                         },
                         modifier = Modifier
@@ -528,7 +540,11 @@ fun DisplayWinner(navController: NavController) {
                                 mins.value = "00"
                                 secs.value = "00"
                             }
-                            chooseSeriesHandicap.value = false
+                            if (chooseSeriesHandicap.value){
+                                handicapValue1.value = 0
+                                handicapValue2.value = 0
+                                chooseSeriesHandicap.value = false
+                            }
                             navController.popBackStack(Screen.HomePage.route, false)
                         },
                         modifier = Modifier
@@ -820,7 +836,11 @@ fun DisplayWinner(navController: NavController) {
                             player2Wins.value = 0
                             seriesWinner.value = -1
                             seriesWinnerName.value = ""
-                            chooseSeriesHandicap.value = false
+                            if (chooseSeriesHandicap.value){
+                                handicapValue1.value = 0
+                                handicapValue2.value = 0
+                                chooseSeriesHandicap.value = false
+                            }
                             showGridChangeDialog.value = false
                             optionsSeriesDialog.value = false
                             timedOrNot.value = false
@@ -903,7 +923,11 @@ fun DisplayWinner(navController: NavController) {
                                 mins.value = "00"
                                 secs.value = "00"
                             }
-                            chooseSeriesHandicap.value = false
+                            if (chooseSeriesHandicap.value){
+                                handicapValue1.value = 0
+                                handicapValue2.value = 0
+                                chooseSeriesHandicap.value = false
+                            }
                             navController.popBackStack(Screen.HomePage.route,false)
                         },
                         modifier = Modifier
