@@ -233,10 +233,6 @@ fun DisplayWinner(navController: NavController) {
                         .padding(0.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(
-                        text = handicapValue1.value.toString() + " " + handicapValue2.value.toString() + "\n" + listOfWins.toString(),
-                        color = Color.White
-                    )
                     Button(
                         modifier = Modifier.width(275.dp),
                         onClick = { /*TODO*/ },
@@ -469,6 +465,11 @@ fun DisplayWinner(navController: NavController) {
                                 if (listOfWins[matchCount.value - 2] == 0 && handicapValue1.value == 0){
                                     handicapValue1.value += 1
                                 } else if (listOfWins[matchCount.value - 2] == 1 && handicapValue2.value == 0){
+                                    handicapValue2.value += 1
+                                }
+                                if (listOfWins[matchCount.value - 2] == 0 && handicapValue1.value == 4){
+                                    handicapValue1.value += 1
+                                } else if (listOfWins[matchCount.value - 2] == 1 && handicapValue2.value == 4){
                                     handicapValue2.value += 1
                                 }
                             }

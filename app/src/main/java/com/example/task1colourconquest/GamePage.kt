@@ -597,7 +597,36 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                         tint = if (darkLight.value == 1) Color.White else Color.Black,
                         modifier = Modifier.scale(2f)
                     )
+                }
+            }
+            if (handicapValue2.value == 5 && timedOrNot.value && matchCount.value > 1 && listOfWins[matchCount.value - 2] == 1){
+                if (mode.value == 2 && timedOrNot.value){
+                    Spacer(modifier = Modifier.width(14.dp))
+                }
+                Box(
+                    modifier = Modifier.size(60.dp),
+                    contentAlignment = Alignment.Center
+                ){
+                    Button(
+                        onClick = {
 
+                        },
+                        modifier = Modifier.fillMaxSize(),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(253,245,166)
+                        ),
+                        elevation = ButtonDefaults.buttonElevation(
+                            defaultElevation = 8.dp
+                        )
+                    ){
+
+                    }
+                    Text(
+                        text = "+ 30s",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,
+                        color = if (darkLight.value == 1) Color(253,245,166) else Color(64,64,64)
+                    )
                 }
             }
             if (handicapValue2.value != 1 && (!timedOrNot.value || mode.value != 2)) {
@@ -769,6 +798,36 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                         modifier = Modifier.scale(2f)
                     )
 
+                }
+                if (mode.value == 2 && timedOrNot.value){
+                    Spacer(modifier = Modifier.width(14.dp))
+                }
+            }
+            if (handicapValue1.value == 5 && timedOrNot.value && matchCount.value > 1 && listOfWins[matchCount.value - 2] == 0){
+                Box(
+                    modifier = Modifier.size(60.dp),
+                    contentAlignment = Alignment.Center
+                ){
+                    Button(
+                        onClick = {
+
+                        },
+                        modifier = Modifier.fillMaxSize(),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(253,245,166)
+                        ),
+                        elevation = ButtonDefaults.buttonElevation(
+                            defaultElevation = 8.dp
+                        )
+                    ){
+
+                    }
+                    Text(
+                        text = "+ 30s",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,
+                        color = if (darkLight.value == 1) Color(253,245,166) else Color(64,64,64)
+                    )
                 }
                 if (mode.value == 2 && timedOrNot.value){
                     Spacer(modifier = Modifier.width(14.dp))
