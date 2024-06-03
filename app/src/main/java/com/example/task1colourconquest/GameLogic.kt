@@ -8,16 +8,9 @@ import kotlin.concurrent.fixedRateTimer
 import kotlin.time.Duration
 
 fun allowClick(i: Int){
-    if ((((counter.value == 0 || counter.value == 1 ) && !playerCover[otherPlayer.value][i]) || playerCover[thisPlayer.value][i]) && handicap.value != 2){
+    if(((counter.value == 0 || counter.value == 1) && !playerCover[otherPlayer.value][i]) || playerCover[thisPlayer.value][i]){
         counter.value++
-        increment(i, 0)
-    } else if (handicap.value == 2 && (!playerCover[otherPlayer.value][i] || playerCover[thisPlayer.value][i])){
-        increment(i, 0)
-        handicap.value += 1
-        if (handicap.value == 3){
-            useHandicap.value = true
-            handicap.value += 1
-        }
+        increment(i,0)
     }
 }
 
@@ -44,9 +37,9 @@ fun increment(i: Int, caller: Int){
     coverTracker(i)
 
     if (playerPoints[thisPlayer.value][i] > 3){
-            coverTracker(i)
-            playerPoints[thisPlayer.value][i] = 0
-            genList(i)
+        coverTracker(i)
+        playerPoints[thisPlayer.value][i] = 0
+        genList(i)
     }
 
     pointsSum()
@@ -90,35 +83,12 @@ fun colorChanger(i: Int){
 }
 
 fun goNextPlayer(){
-    if (chooseSeriesHandicap.value && handicap.value == 1 && ((activateAdvantage[1] && counter.value % 2 == 1) || (activateAdvantage[0] && counter.value % 2 == 0))){
-        if (counter.value % 2 == 1){
-            thisPlayer.value = 1
-            otherPlayer.value = 0
-        } else {
-            thisPlayer.value = 0
-            otherPlayer.value = 1
-        }
-        for (j in 0..r.value * c.value - 1){
-            if (playerCover[thisPlayer.value][j]){
-                colorTile[j] = Coloring[thisPlayer.value]
-            } else {
-                colorTile[j] = if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1)
-            }
-        }
-        if (activateAdvantage[0]){
-            activateAdvantage[0] = false
-        } else {
-            activateAdvantage[1] = false
-        }
-        handicap.value += 1
+    if (counter.value % 2 == 1){
+        thisPlayer.value = 0
+        otherPlayer.value = 1
     } else {
-        if (counter.value % 2 == 1){
-            thisPlayer.value = 0
-            otherPlayer.value = 1
-        } else {
-            thisPlayer.value = 1
-            otherPlayer.value = 0
-        }
+        thisPlayer.value = 1
+        otherPlayer.value = 0
     }
 }
 
@@ -157,8 +127,8 @@ fun pointsSum(){
     pointsTotal[1] = 0
 
     for(i in 0..<r.value * c.value){
-            pointsTotal[0] += playerPoints[0][i]
-            pointsTotal[1] += playerPoints[1][i]
+        pointsTotal[0] += playerPoints[0][i]
+        pointsTotal[1] += playerPoints[1][i]
     }
 }
 

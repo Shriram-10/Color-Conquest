@@ -46,6 +46,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -59,6 +60,56 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
 
     var exitDialog by remember { mutableStateOf(false) }
     var PreviousHS : List<String> = highScoreManager.getData("name", "", "score", "", "mins", "", "secs", "")
+
+    if (showWarning15.value){
+        AlertDialog(
+            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
+            onDismissRequest = {  },
+            confirmButton = {
+                Button(
+                    onClick = { showWarning15.value = false },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFED6A5E),
+                        contentColor = Color.White
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 12.dp
+                    ),
+                    shape = RoundedCornerShape(
+                        topStartPercent = 20,
+                        topEndPercent = 0,
+                        bottomStartPercent = 0,
+                        bottomEndPercent = 20
+                    )
+                ) {
+                    Text(text = "OK")
+                }
+            },
+            title = {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Text(
+                        textAlign = TextAlign.Center,
+                        text = "Powerup Not Available!",
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color(0xFFED6A5E)
+                    )
+                }
+            },
+            text = {
+                Text(
+                    textAlign = TextAlign.Center,
+                    text = "The Powerup cannot be used in the first turn of any match!\nWait until second move.",
+                    fontSize = 18.sp,
+                    color = if (darkLight.value == 1) Color.White else Color.Black
+                )
+            }
+        )
+    }
 
     if(exitDialog) {
         if (counter.value % 2 == 0){
@@ -206,11 +257,8 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                                 player2Wins.value = 0
                                 seriesWinner.value = -1
                                 seriesWinnerName.value = ""
-                                handicap.value = 0
-                                useHandicap.value = false
                                 chooseSeriesHandicap.value = false
-                                activateAdvantage[0] = false
-                                activateAdvantage[1] = false
+
                                 showGridChangeDialog.value = false
                                 optionsSeriesDialog.value = false
                                 timedOrNot.value = false
@@ -272,10 +320,6 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                                 }
                                 thisPlayer.value = 1
                                 otherPlayer.value = 0
-                                handicap.value = 1
-                                useHandicap.value = false
-                                activateAdvantage[0] = false
-                                activateAdvantage[1] = false
                                 resetTimer[0] = true
                                 resetTimer[1] = true
                                 exitDialog = false
@@ -512,66 +556,6 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
             } else {
                 Spacer(modifier = Modifier.height(60.dp))
             }
-            if (!activateAdvantage[0] && handicap.value == 1 && matchCount.value > 1){
-                if (listOfWins[matchCount.value - 2] == 1){
-                    if (mode.value == 2 && timedOrNot.value){
-                        Spacer(modifier = Modifier.width(16.dp))
-                    }
-                    Box(
-                        modifier = Modifier.size(60.dp),
-                        contentAlignment = Alignment.Center
-                    ){
-                        Button(
-                            onClick = {
-                                if (counter.value % 2 == 1){
-                                    activateAdvantage[0] = true
-                                }
-                            },
-                            modifier = Modifier.fillMaxSize(),
-                            shape = RoundedCornerShape(percent = 50),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(253,245,166)
-                            )
-                        ){
-                            Icon(
-                                Icons.Default.Refresh,
-                                contentDescription = "Another",
-                                tint = if (darkLight.value == 1) Color(253,245,166) else Color.Black,
-                                modifier = Modifier.scale(3.0f)
-                            )
-                        }
-                    }
-                }
-            } else if (handicap.value == 4 && matchCount.value > 1 && !useHandicap.value && timedOrNot.value){
-                if (listOfWins[matchCount.value - 2] == 1){
-                    if (mode.value == 2 && timedOrNot.value){
-                        Spacer(modifier = Modifier.width(16.dp))
-                    }
-                    Box(
-                        modifier = Modifier.size(60.dp),
-                        contentAlignment = Alignment.Center
-                    ){
-                        Button(
-                            onClick = {
-
-                            },
-                            modifier = Modifier.fillMaxSize(),
-                            shape = RoundedCornerShape(percent = 50),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(253,245,166)
-                            )
-                        ){
-
-                        }
-                        Text(
-                            text = "+ 20s",
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 14.sp,
-                            color = if (darkLight.value == 1) Color(253,245,166) else Color.Black
-                        )
-                    }
-                }
-            }
         }
 
         Spacer(modifier = Modifier.height(40.dp))
@@ -708,65 +692,6 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.End
         ){
-            if (!activateAdvantage[1] && handicap.value == 1 && matchCount.value > 1){
-                if (listOfWins[matchCount.value - 2] == 0){
-                    Box(
-                        modifier = Modifier.size(60.dp),
-                        contentAlignment = Alignment.Center
-                    ){
-                        Button(
-                            onClick = {
-                                if (counter.value % 2 == 0){
-                                    activateAdvantage[1] = true
-                                }
-                            },
-                            modifier = Modifier.fillMaxSize(),
-                            shape = RoundedCornerShape(percent = 50),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(253,245,166)
-                            )
-                        ){
-                            Icon(
-                                Icons.Default.Refresh,
-                                contentDescription = "Another",
-                                tint = if (darkLight.value == 1) Color(253,245,166) else Color.Black,
-                                modifier = Modifier.scale(3.0f)
-                            )
-                        }
-                    }
-                    if (mode.value == 2 && timedOrNot.value){
-                        Spacer(modifier = Modifier.width(16.dp))
-                    }
-                }
-            } else if (handicap.value == 4 && matchCount.value > 1 && !useHandicap.value && timedOrNot.value){
-                if (listOfWins[matchCount.value - 2] == 0){
-                    Box(
-                        modifier = Modifier.size(60.dp),
-                        contentAlignment = Alignment.Center
-                    ){
-                        Button(
-                            onClick = {
-                            },
-                            modifier = Modifier.fillMaxSize(),
-                            shape = RoundedCornerShape(percent = 50),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(253,245,166)
-                            )
-                        ){
-
-                        }
-                        Text(
-                            text = "+ 20s",
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 16.sp,
-                            color = if (darkLight.value == 1) Color(253,245,166) else Color.Black
-                        )
-                    }
-                    if (mode.value == 2 && timedOrNot.value){
-                        Spacer(modifier = Modifier.width(16.dp))
-                    }
-                }
-            }
             if (mode.value == 2 && timedOrNot.value){
                 if (!chooseHandicap.value){
                     TimerClock(mins.value.toLong(),secs.value.toLong(), rotate = false, runnerController = isRunning1.value, oppId = 0, side = 1)

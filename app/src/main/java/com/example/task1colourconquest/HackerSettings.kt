@@ -2086,9 +2086,6 @@ fun HackerSettings(navController: NavController, highScoreManager: HighScoreMana
                 if (chooseSeriesHandicap.value && noOfMatches.value == 1){
                     showWarning14.value = true
                 } else {
-                    if (chooseSeriesHandicap.value){
-                        handicap.value = 1
-                    }
                     if (timedOrNot.value){
                         if (!chooseHandicap.value){
                             if (mins.value == "" || secs.value == ""){
@@ -2118,11 +2115,13 @@ fun HackerSettings(navController: NavController, highScoreManager: HighScoreMana
                 }
 
                 if (darkLight.value == 1){
+
                     ColoringBG[0] = Color(130,112,167)
                     ColoringBG[1] = Color(238,164,223)
                     Coloring[0] = Color(237,212,224)
                     Coloring[1] = Color(157,70,99)
                 } else {
+
                     ColoringBG[0] = Color(0xFF0FA6F7)
                     ColoringBG[1] = Color(0xFFED6A5E)
                     Coloring[0] = Color(0xFFC7F1FD)

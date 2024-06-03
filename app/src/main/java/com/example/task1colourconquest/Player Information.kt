@@ -276,6 +276,25 @@ fun PlayerPage(navController: NavController, highScoreManager: HighScoreManager)
                     r.value = 5
                     c.value = 5
                     generateGridSizeList(r.value,c.value)
+                    if (darkLight.value == 1){
+                        for (i in 0..r.value * c.value - 1){
+                            colorTile[i] = Color(80,80,80)
+                        }
+                    }else{
+                        for (i in 0..r.value * c.value - 1){
+                            colorTile[i] = Color(0xFFF2E6D1)
+                        }
+                    }
+                } else if (r.value == rInput.value.toInt() && c.value == cInput.value.toInt()){
+                    if (darkLight.value == 1){
+                        for (i in 0..r.value * c.value - 1){
+                            colorTile[i] = Color(80,80,80)
+                        }
+                    }else{
+                        for (i in 0..r.value * c.value - 1){
+                            colorTile[i] = Color(0xFFF2E6D1)
+                        }
+                    }
                 }
                 navController.navigate(Screen.GamePage.route)
             },
