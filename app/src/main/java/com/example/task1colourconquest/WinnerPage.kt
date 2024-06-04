@@ -527,6 +527,11 @@ fun DisplayWinner(navController: NavController) {
                             } else if (handicapValue2.value == 10) {
                                 handicapValue2.value += 1
                             }
+                            if (handicapValue1.value == -1){
+                                handicapValue1.value = 1
+                            } else if (handicapValue2.value == -1) {
+                                handicapValue2.value = 1
+                            }
                             winner.value = -1
                         },
                         modifier = Modifier

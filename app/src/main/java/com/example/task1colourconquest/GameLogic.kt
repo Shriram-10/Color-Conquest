@@ -8,7 +8,7 @@ import kotlin.concurrent.fixedRateTimer
 import kotlin.time.Duration
 
 fun allowClick(i: Int){
-    if(((counter.value == 0 || counter.value == 1) && !playerCover[otherPlayer.value][i]) || playerCover[thisPlayer.value][i]){
+    if(((counter.value == 0 || counter.value == 1) && !playerCover[otherPlayer.value][i]) || playerCover[thisPlayer.value][i] || handicapValue1.value == 12 || handicapValue2.value == 12){
         if (!((counter.value % 2 == 1 && handicapValue2.value == 2) || (counter.value % 2 == 0 && handicapValue1.value == 2))) {
             counter.value++
             increment(i,0)
@@ -19,6 +19,11 @@ fun allowClick(i: Int){
                 handicapValue2.value += 1
             }
             increment(i,0)
+        }
+        if (handicapValue1.value == 12){
+            handicapValue1.value = -1
+        } else if (handicapValue2.value == 12){
+            handicapValue2.value = -1
         }
     }
 }

@@ -4,6 +4,7 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,6 +26,8 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.AlertDialog
@@ -413,6 +416,12 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                                     if (listOfWins[matchCount.value - 2] == 1 && handicapValue2.value > 8 && handicapValue2.value < 11){
                                         handicapValue2.value = 8
                                     }
+                                    if (listOfWins[matchCount.value - 2] == 0 && handicapValue1.value > 11 && handicapValue1.value != -1){
+                                        handicapValue1.value = 11
+                                    }
+                                    if (listOfWins[matchCount.value - 2] == 1 && handicapValue2.value > 11 && handicapValue2.value != -1){
+                                        handicapValue2.value = 11
+                                    }
                                 }
                                 exitDialog = false
                             },
@@ -750,6 +759,41 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                     )
                 }
             }
+            if (handicapValue2.value == 11 && matchCount.value > 1 && listOfWins[matchCount.value - 2] == 1){
+                if (mode.value == 2 && timedOrNot.value){
+                    Spacer(modifier = Modifier.width(14.dp))
+                }
+                Box(
+                    modifier = Modifier.size(60.dp),
+                    contentAlignment = Alignment.Center
+                ){
+                    Button(
+                        onClick = {
+                            if (counter.value % 2 == 1 && counter.value != 1){
+                                handicapValue2.value += 1
+                            } else if (counter.value == 1){
+                                showWarning15.value = true
+                            }
+                        },
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(253,245,166)
+                        ),
+                        elevation = ButtonDefaults.buttonElevation(
+                            defaultElevation = 8.dp
+                        )
+                    ){
+
+                    }
+                    Icon(
+                        Icons.Filled.Lock,
+                        contentDescription = "Unlock",
+                        tint = if (darkLight.value == 1) Color(253,245,166) else Color(64,64,64),
+                        modifier = Modifier.rotate(180f)
+                    )
+                }
+            }
             if ((handicapValue2.value != 1 || handicapValue2.value != 6 || handicapValue2.value != 8)  && (!timedOrNot.value || mode.value != 2)) {
                 Spacer(modifier = Modifier.height(60.dp))
             }
@@ -990,6 +1034,39 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp,
                         color = if (darkLight.value == 1) Color(253,245,166) else Color(64,64,64)
+                    )
+                }
+                if (mode.value == 2 && timedOrNot.value){
+                    Spacer(modifier = Modifier.width(14.dp))
+                }
+            }
+            if (handicapValue1.value == 11 && matchCount.value > 1 && listOfWins[matchCount.value - 2] == 0){
+                Box(
+                    modifier = Modifier.size(60.dp),
+                    contentAlignment = Alignment.Center
+                ){
+                    Button(
+                        onClick = {
+                            if (counter.value % 2 == 0 && counter.value != 0){
+                                handicapValue1.value += 1
+                            } else if (counter.value == 0){
+                                showWarning15.value = true
+                            }
+                        },
+                        modifier = Modifier.fillMaxSize(),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(253,245,166)
+                        ),
+                        elevation = ButtonDefaults.buttonElevation(
+                            defaultElevation = 8.dp
+                        )
+                    ){
+
+                    }
+                    Icon(
+                        Icons.Filled.Lock,
+                        contentDescription = "Unlock",
+                        tint = if (darkLight.value == 1) Color(253,245,166) else Color(64,64,64)
                     )
                 }
                 if (mode.value == 2 && timedOrNot.value){
