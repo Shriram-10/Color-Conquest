@@ -135,7 +135,10 @@ fun ModesPage(navController: NavController, highScoreManager: HighScoreManager){
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+                mode.value = 3
+                navController.navigate(route = Screen.HackerPlusSettings.route)
+            },
             modifier = Modifier
                 .height(72.dp),
             colors = ButtonDefaults.buttonColors(

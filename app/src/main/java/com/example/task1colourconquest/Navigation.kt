@@ -44,6 +44,13 @@ fun Navigation() {
                 ModesPage(navController = navController, /*modifier = Modifier*/ highScoreManager = HighScoreManager(LocalContext.current))
         }
         composable(
+            route = Screen.HackerPlusSettings.route,
+            enterTransition = { slideInHorizontally { it }},
+            popEnterTransition = { slideInHorizontally { it }}
+        ){
+            HackerPlusSettings(navController = navController, /*modifier = Modifier*/ highScoreManager = HighScoreManager(LocalContext.current))
+        }
+        composable(
             route = Screen.HackerSettings.route,
             enterTransition = { slideInHorizontally { it }},
             popEnterTransition = { slideInHorizontally { it }}

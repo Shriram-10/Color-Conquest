@@ -26,6 +26,8 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -239,6 +241,43 @@ fun PlayerPage(navController: NavController, highScoreManager: HighScoreManager)
                                 letterSpacing = 1.sp
                             )
                         )
+
+                        /*OutlinedTextField(
+                            value = player2Name.value,
+                            onValueChange = {
+                                player2Name.value = it
+                            },
+                            label = {
+                                Text(
+                                    text = "Enter Player-2 Name",
+                                    *//* color = if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7)*//*
+                                    fontSize = 12.sp
+                                )
+                            },
+                            placeholder = {
+                                Text(
+                                    textAlign = TextAlign.Center,
+                                    text = "Enter Player-2 Name",
+                                    color = if (darkLight.value == 1) Color.LightGray else Color.LightGray,
+                                    fontSize = 12.sp
+                                )
+                            },
+                            singleLine = true,
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            colors = OutlinedTextFieldDefaults.colors(
+                                focusedTextColor = if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7),
+                                unfocusedTextColor = if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7),
+                                focusedBorderColor = if (darkLight.value == 1) Color(64,64,64) else Color(0xFF3E4171),
+                                unfocusedBorderColor = if (darkLight.value == 1) Color(64,64,64) else Color(0xFF3E4171),
+                                focusedLabelColor = if (darkLight.value == 1) Color.LightGray else Color.LightGray,
+                                unfocusedLabelColor = if (darkLight.value == 1) Color.LightGray else Color.LightGray,
+                                cursorColor = if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7),
+                                unfocusedContainerColor = if (darkLight.value == 1) Color(64,64,64) else Color(0xFF3E4171),
+                                focusedContainerColor = if (darkLight.value == 1) Color(64,64,64) else Color(0xFF3E4171)
+                            )
+                        )*/
+
                         if (player2Name.value == ""){
                             Text(
                                 text = "Enter Player-2 Name",
