@@ -130,7 +130,7 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
             isRunning2.value = false
         }
         AlertDialog(
-            modifier = Modifier.rotate(if(counter.value == 1) 180f else 0f),
+            modifier = Modifier.rotate(if(counter.value % 2 == 1) 180f else if (counter.value % 2 == 0) 0f else 0f),
             containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
             onDismissRequest = {  },
             confirmButton = {
@@ -678,7 +678,9 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                         Icons.Default.Refresh,
                         contentDescription = "Another Move",
                         tint = if (darkLight.value == 1) Color.White else Color.Black,
-                        modifier = Modifier.scale(2f)
+                        modifier = Modifier
+                            .scale(2f)
+                            .rotate(180f)
                     )
                 }
             }
@@ -705,6 +707,7 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
 
                     }
                     Text(
+                        modifier = Modifier.rotate(180f),
                         text = "+ 30s",
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp,
@@ -739,6 +742,7 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
 
                     }
                     Text(
+                        modifier = Modifier.rotate(180f),
                         text = "➯ 3",
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp,
