@@ -467,11 +467,65 @@ fun DisplayWinner(navController: NavController) {
                                 } else if (listOfWins[matchCount.value - 2] == 1 && handicapValue2.value == 0){
                                     handicapValue2.value += 1
                                 }
-                                if (listOfWins[matchCount.value - 2] == 0 && handicapValue1.value == 4){
+                                if (listOfWins[matchCount.value - 2] == 0 && handicapValue1.value == 4 && timedOrNot.value){
                                     handicapValue1.value += 1
-                                } else if (listOfWins[matchCount.value - 2] == 1 && handicapValue2.value == 4){
+                                } else if (listOfWins[matchCount.value - 2] == 0 && handicapValue1.value == 4 && !timedOrNot.value){
+                                    handicapValue1.value += 3
+                                } else if (listOfWins[matchCount.value - 2] == 1 && handicapValue2.value == 4 && timedOrNot.value){
                                     handicapValue2.value += 1
+                                } else if (listOfWins[matchCount.value - 2] == 1 && handicapValue2.value == 4 && !timedOrNot.value){
+                                    handicapValue2.value += 3
                                 }
+                            }
+                            if (handicapValue2.value == 5){
+                                if (!chooseHandicap.value){
+                                    if (secs.value.toInt() >= 30){
+                                        secs2.value = (secs.value.toInt() - 30).toString()
+                                        mins2.value = (mins.value.toInt() + 1).toString()
+                                    } else {
+                                        secs2.value = (secs.value.toInt() + 30).toString()
+                                        mins2.value = mins.value
+                                    }
+                                } else if (chooseHandicap.value){
+                                    if (secsh2.value.toInt() >= 30){
+                                        secs2.value = (secsh2.value.toInt() - 30).toString()
+                                        mins2.value = (minsh2.value.toInt() + 1).toString()
+                                    } else {
+                                        secs2.value = (secsh2.value.toInt() + 30).toString()
+                                        mins2.value = minsh2.value
+                                    }
+                                }
+                                handicapValue2.value += 1
+                            }
+                            if (handicapValue1.value == 5){
+                                if (!chooseHandicap.value){
+                                    if (secs.value.toInt() >= 30){
+                                        secs1.value = (secs.value.toInt() - 30).toString()
+                                        mins1.value = (mins.value.toInt() + 1).toString()
+                                    } else {
+                                        secs1.value = (secs.value.toInt() + 30).toString()
+                                        mins1.value = mins.value
+                                    }
+                                } else if (chooseHandicap.value){
+                                    if (secsh1.value.toInt() >= 30){
+                                        secs1.value = (secsh1.value.toInt() - 30).toString()
+                                        mins1.value = (minsh1.value.toInt() + 1).toString()
+                                    } else {
+                                        secs1.value = (secsh1.value.toInt() + 30).toString()
+                                        mins1.value = minsh1.value
+                                    }
+                                }
+                                handicapValue1.value += 1
+                            }
+                            if (handicapValue1.value == 7){
+                                handicapValue1.value += 1
+                            } else if (handicapValue2.value == 7) {
+                                handicapValue2.value += 1
+                            }
+                            if (handicapValue1.value == 10){
+                                handicapValue1.value += 1
+                            } else if (handicapValue2.value == 10) {
+                                handicapValue2.value += 1
                             }
                             winner.value = -1
                         },

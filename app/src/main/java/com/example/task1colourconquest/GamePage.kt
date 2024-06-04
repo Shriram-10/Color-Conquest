@@ -62,13 +62,25 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
     var PreviousHS : List<String> = highScoreManager.getData("name", "", "score", "", "mins", "", "secs", "")
 
     if (showWarning15.value){
+        if (counter.value % 2 == 0){
+            isRunning1.value = false
+        } else {
+            isRunning2.value = false
+        }
         AlertDialog(
             modifier = Modifier.rotate(if(counter.value == 1) 180f else 0f),
             containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
             onDismissRequest = {  },
             confirmButton = {
                 Button(
-                    onClick = { showWarning15.value = false },
+                    onClick = {
+                        showWarning15.value = false
+                        if (counter.value % 2 == 0){
+                            isRunning1.value = true
+                        } else {
+                            isRunning2.value = true
+                        }
+                    },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFFED6A5E),
                         contentColor = Color.White
@@ -105,6 +117,68 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                 Text(
                     textAlign = TextAlign.Center,
                     text = "The PowerUp cannot be used in the first turn of any match!\nWait until second move.",
+                    fontSize = 18.sp,
+                    color = if (darkLight.value == 1) Color.White else Color.Black
+                )
+            }
+        )
+    }
+    if (showWarning16.value){
+        if (counter.value % 2 == 0){
+            isRunning1.value = false
+        } else {
+            isRunning2.value = false
+        }
+        AlertDialog(
+            modifier = Modifier.rotate(if(counter.value == 1) 180f else 0f),
+            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color.White,
+            onDismissRequest = {  },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        showWarning16.value = false
+                        if (counter.value % 2 == 0){
+                            isRunning1.value = true
+                        } else {
+                            isRunning2.value = true
+                        }
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFED6A5E),
+                        contentColor = Color.White
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 12.dp
+                    ),
+                    shape = RoundedCornerShape(
+                        topStartPercent = 20,
+                        topEndPercent = 0,
+                        bottomStartPercent = 0,
+                        bottomEndPercent = 20
+                    )
+                ) {
+                    Text(text = "OK")
+                }
+            },
+            title = {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Text(
+                        textAlign = TextAlign.Center,
+                        text = "PowerUp Not Available!",
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color(0xFFED6A5E)
+                    )
+                }
+            },
+            text = {
+                Text(
+                    textAlign = TextAlign.Center,
+                    text = "The PowerUp cannot be used on tiles which contain 3 points.\nActivate PowerUp by clicking on it and use it by clicking a tile in possession that has less than 3 points.",
                     fontSize = 18.sp,
                     color = if (darkLight.value == 1) Color.White else Color.Black
                 )
@@ -327,10 +401,17 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                                 resetTimer[0] = true
                                 resetTimer[1] = true
                                 if (chooseSeriesHandicap.value && matchCount.value > 1 && (listOfWins[matchCount.value - 2] == 1 || listOfWins[matchCount.value - 2] == 0)){
-                                    if (listOfWins[matchCount.value - 2] == 0 && handicapValue1.value > 1){
+                                    if (listOfWins[matchCount.value - 2] == 0 && handicapValue1.value > 1 && handicapValue1.value < 5){
                                         handicapValue1.value = 1
-                                    } else if (listOfWins[matchCount.value - 2] == 1 && handicapValue2.value > 1){
+                                    }
+                                    if (listOfWins[matchCount.value - 2] == 1 && handicapValue2.value > 1 && handicapValue2.value < 5){
                                         handicapValue2.value = 1
+                                    }
+                                    if (listOfWins[matchCount.value - 2] == 0 && handicapValue1.value > 8 && handicapValue1.value < 11){
+                                        handicapValue1.value = 8
+                                    }
+                                    if (listOfWins[matchCount.value - 2] == 1 && handicapValue2.value > 8 && handicapValue2.value < 11){
+                                        handicapValue2.value = 8
                                     }
                                 }
                                 exitDialog = false
@@ -560,9 +641,11 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
             Spacer(modifier = Modifier.width(20.dp))
             if (mode.value == 2 && timedOrNot.value) {
                 if (!chooseHandicap.value){
-                    TimerClock(mins.value.toLong(),secs.value.toLong(), rotate = true, runnerController = isRunning2.value, oppId = 1)
+                    if (handicapValue2.value != 6) TimerClock(mins.value.toLong(),secs.value.toLong(), rotate = true, runnerController = isRunning2.value, oppId = 1)
+                    else TimerClock(mins2.value.toLong(),secs2.value.toLong(), rotate = true, runnerController = isRunning2.value, oppId = 1)
                 } else {
-                    TimerClock(minsh2.value.toLong(),secsh2.value.toLong(), rotate = true, runnerController = isRunning2.value, oppId = 1)
+                    if (handicapValue2.value != 6) TimerClock(minsh2.value.toLong(),secsh2.value.toLong(), rotate = true, runnerController = isRunning2.value, oppId = 1)
+                    else TimerClock(mins2.value.toLong(),secs2.value.toLong(), rotate = true, runnerController = isRunning2.value, oppId = 1)
                 }
             }
             if (chooseSeriesHandicap.value && handicapValue2.value == 1 && matchCount.value > 1 && listOfWins[matchCount.value - 2] == 1){
@@ -599,7 +682,7 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                     )
                 }
             }
-            if (handicapValue2.value == 5 && timedOrNot.value && matchCount.value > 1 && listOfWins[matchCount.value - 2] == 1){
+            if (handicapValue2.value == 6 && timedOrNot.value && matchCount.value > 1 && listOfWins[matchCount.value - 2] == 1){
                 if (mode.value == 2 && timedOrNot.value){
                     Spacer(modifier = Modifier.width(14.dp))
                 }
@@ -629,7 +712,41 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                     )
                 }
             }
-            if (handicapValue2.value != 1 && (!timedOrNot.value || mode.value != 2)) {
+            if (handicapValue2.value == 8 && matchCount.value > 1 && listOfWins[matchCount.value - 2] == 1){
+                if (mode.value == 2 && timedOrNot.value){
+                    Spacer(modifier = Modifier.width(14.dp))
+                }
+                Box(
+                    modifier = Modifier.size(60.dp),
+                    contentAlignment = Alignment.Center
+                ){
+                    Button(
+                        onClick = {
+                            if (counter.value % 2 == 1 && counter.value != 1){
+                                handicapValue2.value += 1
+                            } else if (counter.value == 1){
+                                showWarning15.value = true
+                            }
+                        },
+                        modifier = Modifier.fillMaxSize(),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(253,245,166)
+                        ),
+                        elevation = ButtonDefaults.buttonElevation(
+                            defaultElevation = 8.dp
+                        )
+                    ){
+
+                    }
+                    Text(
+                        text = "➯ 3",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,
+                        color = if (darkLight.value == 1) Color(253,245,166) else Color(64,64,64)
+                    )
+                }
+            }
+            if ((handicapValue2.value != 1 || handicapValue2.value != 6 || handicapValue2.value != 8)  && (!timedOrNot.value || mode.value != 2)) {
                 Spacer(modifier = Modifier.height(60.dp))
             }
         }
@@ -737,16 +854,24 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                     }
 
                     if(clicked[i]) {
-                        allowClick(i)
-                        if (counter.value % 2 == 1){
-                            isRunning1.value = false
-                            isRunning2.value = true
+                        if ((handicapValue2.value != 9 && handicapValue1.value != 9) || ((handicapValue1.value == 9 || handicapValue2.value == 9) && playerPoints[thisPlayer.value][i] < 3)){
+                            allowClick(i)
+                            if (counter.value % 2 == 1){
+                                isRunning1.value = false
+                                isRunning2.value = true
+                            }
+                            else {
+                                isRunning2.value = false
+                                isRunning1.value = true
+                            }
+                        } else if (playerPoints[thisPlayer.value][i] >= 3){
+                            showWarning16.value = true
+                            if (handicapValue1.value == 9){
+                                handicapValue1.value -= 1
+                            } else if (handicapValue2.value == 9){
+                                handicapValue2.value -= 1
+                            }
                         }
-                        else {
-                            isRunning2.value = false
-                            isRunning1.value = true
-                        }
-
                         clicked[i] = false
                     }
                     if (winner.value != -1){
@@ -803,7 +928,7 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                     Spacer(modifier = Modifier.width(14.dp))
                 }
             }
-            if (handicapValue1.value == 5 && timedOrNot.value && matchCount.value > 1 && listOfWins[matchCount.value - 2] == 0){
+            if (handicapValue1.value == 6 && timedOrNot.value && matchCount.value > 1 && listOfWins[matchCount.value - 2] == 0){
                 Box(
                     modifier = Modifier.size(60.dp),
                     contentAlignment = Alignment.Center
@@ -833,14 +958,50 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
                     Spacer(modifier = Modifier.width(14.dp))
                 }
             }
-            if (mode.value == 2 && timedOrNot.value){
-                if (!chooseHandicap.value){
-                    TimerClock(mins.value.toLong(),secs.value.toLong(), rotate = false, runnerController = isRunning1.value, oppId = 0, side = 1)
-                } else {
-                    TimerClock(minsh1.value.toLong(),secsh1.value.toLong(), rotate = false, runnerController = isRunning1.value, oppId = 0, side = 1)
+            if (handicapValue1.value == 8 && matchCount.value > 1 && listOfWins[matchCount.value - 2] == 0){
+                Box(
+                    modifier = Modifier.size(60.dp),
+                    contentAlignment = Alignment.Center
+                ){
+                    Button(
+                        onClick = {
+                            if (counter.value % 2 == 0 && counter.value != 0){
+                                handicapValue1.value += 1
+                            } else if (counter.value == 0){
+                                showWarning15.value = true
+                            }
+                        },
+                        modifier = Modifier.fillMaxSize(),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (darkLight.value == 1) Color(64,64,64) else Color(253,245,166)
+                        ),
+                        elevation = ButtonDefaults.buttonElevation(
+                            defaultElevation = 8.dp
+                        )
+                    ){
+
+                    }
+                    Text(
+                        text = "➯ 3",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,
+                        color = if (darkLight.value == 1) Color(253,245,166) else Color(64,64,64)
+                    )
+                }
+                if (mode.value == 2 && timedOrNot.value){
+                    Spacer(modifier = Modifier.width(14.dp))
                 }
             }
-            if (handicapValue1.value != 1 && (!timedOrNot.value || mode.value != 2)) {
+            if (mode.value == 2 && timedOrNot.value){
+                if (!chooseHandicap.value){
+                    if (handicapValue1.value != 6) TimerClock(mins.value.toLong(),secs.value.toLong(), rotate = false, runnerController = isRunning1.value, oppId = 0, side = 1)
+                    else TimerClock(mins1.value.toLong(),secs1.value.toLong(), rotate = false, runnerController = isRunning1.value, oppId = 0, side = 1)
+                } else {
+                    if (handicapValue1.value != 6) TimerClock(minsh1.value.toLong(),secsh1.value.toLong(), rotate = false, runnerController = isRunning1.value, oppId = 0, side = 1)
+                    else TimerClock(mins1.value.toLong(),secs1.value.toLong(), rotate = false, runnerController = isRunning1.value, oppId = 0, side = 1)
+                }
+            }
+            if ((handicapValue2.value != 1 || handicapValue2.value != 6 || handicapValue2.value != 8) && (!timedOrNot.value || mode.value != 2)) {
                 Spacer(modifier = Modifier.height(60.dp))
             }
             Spacer(modifier = Modifier.width(20.dp))
@@ -931,6 +1092,12 @@ fun GamePage(navController: NavController, highScoreManager: HighScoreManager) {
         Spacer(modifier = Modifier.height(24.dp))
     }
     if (winner.value != -1) {
+        if (handicapValue1.value == 6){
+            handicapValue1.value += 1
+        }
+        if (handicapValue2.value == 6){
+            handicapValue2.value += 1
+        }
         previousHSName.value = PreviousHS[0]
         if (PreviousHS[1] != ""){
             previousHS.value = PreviousHS[1].toInt()

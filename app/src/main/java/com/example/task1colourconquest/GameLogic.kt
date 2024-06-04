@@ -28,17 +28,44 @@ fun increment(i: Int, caller: Int){
     if (counter.value == 1 || (counter.value == 2 && handicapValue1.value != 3)){
         playerPoints[thisPlayer.value][i] = 3
     } else{
-        if (caller == 0){
-            playerPoints[thisPlayer.value][i] += 1
-        } else {
-            if (!playerCover[thisPlayer.value][i] && !playerCover[otherPlayer.value][i]){
+        if (handicapValue1.value != 9 && handicapValue2.value != 9){
+            if (caller == 0){
                 playerPoints[thisPlayer.value][i] += 1
-            } else if (playerCover[otherPlayer.value][i]){
-                sizeOfCircle[i] = !sizeOfCircle[i]
-                playerPoints[thisPlayer.value][i] = playerPoints[otherPlayer.value][i] + 1
-                playerPoints[otherPlayer.value][i] = 0
-            } else if (playerCover[thisPlayer.value][i]){
-                playerPoints[thisPlayer.value][i] += 1
+            } else {
+                if (!playerCover[thisPlayer.value][i] && !playerCover[otherPlayer.value][i]){
+                    playerPoints[thisPlayer.value][i] += 1
+                } else if (playerCover[otherPlayer.value][i]){
+                    sizeOfCircle[i] = !sizeOfCircle[i]
+                    playerPoints[thisPlayer.value][i] = playerPoints[otherPlayer.value][i] + 1
+                    playerPoints[otherPlayer.value][i] = 0
+                } else if (playerCover[thisPlayer.value][i]){
+                    playerPoints[thisPlayer.value][i] += 1
+                }
+            }
+        } else if ((handicapValue2.value == 9 && counter.value % 2 == 0) || (handicapValue1.value == 9 && counter.value % 2 == 1)){
+            if (caller == 0){
+                if (playerPoints[thisPlayer.value][i] == 0){
+                    playerPoints[thisPlayer.value][i] += 4
+                } else if (playerPoints[thisPlayer.value][i] == 1){
+                    playerPoints[thisPlayer.value][i] += 3
+                } else if (playerPoints[thisPlayer.value][i] == 2){
+                    playerPoints[thisPlayer.value][i] += 2
+                }
+            } else {
+                if (!playerCover[thisPlayer.value][i] && !playerCover[otherPlayer.value][i]){
+                    playerPoints[thisPlayer.value][i] += 1
+                } else if (playerCover[otherPlayer.value][i]){
+                    sizeOfCircle[i] = !sizeOfCircle[i]
+                    playerPoints[thisPlayer.value][i] = playerPoints[otherPlayer.value][i] + 1
+                    playerPoints[otherPlayer.value][i] = 0
+                } else if (playerCover[thisPlayer.value][i]){
+                    playerPoints[thisPlayer.value][i] += 1
+                }
+            }
+            if (handicapValue1.value == 9){
+                handicapValue1.value += 1
+            } else if (handicapValue2.value == 9){
+                handicapValue2.value += 1
             }
         }
     }
