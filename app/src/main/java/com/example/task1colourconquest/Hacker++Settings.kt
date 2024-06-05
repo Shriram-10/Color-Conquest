@@ -4,8 +4,11 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideIn
 import androidx.compose.animation.slideOut
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,15 +18,20 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -72,6 +80,12 @@ fun HackerPlusSettings(navController: NavController, highScoreManager: HighScore
         var choosePlayersDialog by remember { mutableStateOf(true) }
         var chooseColorsDialog by remember { mutableStateOf(true) }
         var selectColors by remember { mutableStateOf(false) }
+        var chooseColor1 by remember { mutableStateOf(false) }
+        var chooseColor2 by remember { mutableStateOf(false) }
+        var chooseColor3 by remember { mutableStateOf(false) }
+        var chooseColor4 by remember { mutableStateOf(false) }
+        var chooseColor5 by remember { mutableStateOf(false) }
+
 
         var showNote1 by remember { mutableStateOf(false) }
         var showNote2 by remember { mutableStateOf(false) }
@@ -346,7 +360,7 @@ fun HackerPlusSettings(navController: NavController, highScoreManager: HighScore
                                                 Icon(
                                                     Icons.Outlined.Info,
                                                     contentDescription = "Info",
-                                                    tint = if (darkLight.value == 1) Color.LightGray else Color.Gray
+                                                    tint = if (darkLight.value == 1) Color.DarkGray else Color.Gray
                                                 )
                                             }
                                         }
@@ -447,7 +461,7 @@ fun HackerPlusSettings(navController: NavController, highScoreManager: HighScore
                                                 Icon(
                                                     Icons.Outlined.Info,
                                                     contentDescription = "Info",
-                                                    tint = if (darkLight.value == 1) Color.LightGray else Color.Gray
+                                                    tint = if (darkLight.value == 1) Color.DarkGray else Color.Gray
                                                 )
                                             }
                                         }
@@ -490,7 +504,7 @@ fun HackerPlusSettings(navController: NavController, highScoreManager: HighScore
                                                             212,
                                                             224
                                                         ) else Color(0xFFF2D1CD),
-                                                        contentColor = if (darkLight.value == 1) Color.LightGray else Color.Black
+                                                        contentColor = if (darkLight.value == 1) Color.DarkGray else Color.Black
                                                     ),
                                                     modifier = Modifier
                                                         .width(50.dp)
@@ -501,7 +515,7 @@ fun HackerPlusSettings(navController: NavController, highScoreManager: HighScore
                                                 Icon(
                                                     Icons.Outlined.Info,
                                                     contentDescription = "Info",
-                                                    tint = if (darkLight.value == 1) Color.LightGray else Color.Gray
+                                                    tint = if (darkLight.value == 1) Color.DarkGray else Color.Gray
                                                 )
                                             }
                                         }
@@ -529,60 +543,207 @@ fun HackerPlusSettings(navController: NavController, highScoreManager: HighScore
                     AnimatedVisibility(
                         visible = chooseColorsDialog && noOfPlayers.value > 2
                     ) {
-                        Button(
-                            onClick = {
-                                choosePlayersDialog = !choosePlayersDialog
-                                selectColors = !selectColors
-                            },
-                            modifier = Modifier
-                                .height(44.dp),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = if (darkLight.value == 1) Color(
-                                    130,
-                                    112,
-                                    167
-                                ) else Color(0xFF0FA6F7),
-                            )
-                        ) {
-                            Text(
-                                text = "Choose Color",
-                                color = Color.White,
-                                fontSize = 20.sp,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
+                        Column(
+                            modifier = Modifier.fillMaxSize(),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ){
+                            Button(
+                                onClick = {
+                                    choosePlayersDialog = !choosePlayersDialog
+                                    selectColors = !selectColors
+                                },
+                                modifier = Modifier
+                                    .height(44.dp),
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = if (darkLight.value == 1) Color(
+                                        130,
+                                        112,
+                                        167
+                                    ) else Color(0xFF0FA6F7),
+                                )
+                            ) {
+                                Text(
+                                    text = "Choose Color",
+                                    color = Color.White,
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
 
-                        Column{
+                            Spacer(modifier = Modifier.height(16.dp))
+
                             AnimatedVisibility(
                                 visible = selectColors
-                            ) {
-                                Spacer(modifier = Modifier.height(16.dp))
-
-                                LazyColumn(
+                            ){
+                                LazyRow(
+                                    horizontalArrangement = Arrangement.spacedBy(8.dp),
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .offset(0.dp, 60.dp)
-                                        .height(210.dp)
-                                        .background(
-                                            if (darkLight.value == 1) Color(
-                                                237,
-                                                212,
-                                                224
-                                            ) else Color(0xFFF2D1CD)
-                                        ),
-                                    contentPadding = PaddingValues(16.dp),
-                                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                                    horizontalAlignment = Alignment.CenterHorizontally,
-                                    reverseLayout = false,
+                                        .height(254.dp)
+                                        .background(if (darkLight.value == 1) Color(237,212,224) else Color(0xFFF2D1CD)),
                                     state = rememberLazyListState(),
-                                    userScrollEnabled = true,
+                                    userScrollEnabled = false,
                                     content = {
                                         items(noOfPlayers.value - 2){
                                             Column(
-                                                /*modifier = Modifier.fillMaxSize(),*/
-                                                horizontalAlignment = Alignment.CenterHorizontally
+                                                modifier = Modifier
+                                                    .width(322.dp)
+                                                    .height(212.dp),
+                                                horizontalAlignment = Alignment.CenterHorizontally,
                                             ){
+                                                Spacer(modifier = Modifier.height(36.dp))
 
+                                                Button(
+                                                    onClick = { },
+                                                    modifier = Modifier
+                                                        .height(50.dp),
+                                                    shape = RoundedCornerShape(20),
+                                                    colors = ButtonDefaults.buttonColors(
+                                                        containerColor = if (darkLight.value == 1) Color(216,172,225) else Color(0xFFED6A5E),
+                                                    )
+                                                ){
+                                                    Text(
+                                                        text = "Player ${it + 3}",
+                                                        color = if (darkLight.value == 1) Color.White else Color.White,
+                                                        fontSize = 22.sp,
+                                                        fontWeight = FontWeight.Bold
+                                                    )
+                                                }
+
+                                                Spacer(modifier = Modifier.height(60.dp))
+
+                                                Row{
+                                                    Box(
+                                                        contentAlignment = Alignment.Center
+                                                    ) {
+                                                        Button(
+                                                            onClick = {
+                                                                chooseColor1 = !chooseColor1
+                                                                if (chooseColor1) {
+                                                                    color3.value =
+                                                                        Color(114, 197, 127)
+                                                                }
+                                                            },
+                                                            modifier = Modifier
+                                                                .width(50.dp)
+                                                                .height(50.dp)
+                                                                .border(
+                                                                    BorderStroke(
+                                                                        if (chooseColor1) 4.dp else 0.dp,
+                                                                        if (darkLight.value == 1) Color(
+                                                                            64,
+                                                                            64,
+                                                                            64
+                                                                        ) else Color.White
+                                                                    ),
+                                                                    CircleShape
+                                                                ),
+                                                            colors = ButtonDefaults.buttonColors(
+                                                                containerColor = Color(
+                                                                    114,
+                                                                    197,
+                                                                    127
+                                                                )
+                                                            ),
+                                                        ) {
+
+                                                        }
+                                                        if(chooseColor1) {
+                                                            Box(
+                                                                contentAlignment = Alignment.Center,
+                                                            ) {
+                                                                Button(
+                                                                    onClick = {
+                                                                        if (chooseColor1) {
+                                                                            chooseColor1 = false
+                                                                        }
+                                                                    },
+                                                                    modifier = Modifier
+                                                                        .width(50.dp)
+                                                                        .height(50.dp),
+                                                                    colors = ButtonDefaults.buttonColors(
+                                                                        containerColor = if (darkLight.value == 1) Color.Black.copy(
+                                                                            alpha = 0.2f
+                                                                        ) else Color.White.copy(
+                                                                            alpha = 0.2f
+                                                                        )
+                                                                    )
+                                                                ){
+
+                                                                }
+                                                                Icon(
+                                                                    Icons.Outlined.Check,
+                                                                    contentDescription = "Check",
+                                                                    tint = if (darkLight.value == 1) Color.White else Color.White
+                                                                )
+                                                            }
+                                                        }
+                                                    }
+
+                                                    Spacer(modifier = Modifier.width(8.dp))
+
+                                                    Button(
+                                                        onClick = {
+                                                            chooseColor2 = !chooseColor2
+                                                        },
+                                                        modifier = Modifier
+                                                            .width(50.dp)
+                                                            .height(50.dp),
+                                                        colors = ButtonDefaults.buttonColors(
+                                                            containerColor = Color(240,169,62)
+                                                        )
+                                                    ){
+
+                                                    }
+
+                                                    Spacer(modifier = Modifier.width(8.dp))
+
+                                                    Button(
+                                                        onClick = {
+                                                            chooseColor3 = !chooseColor3
+                                                        },
+                                                        modifier = Modifier
+                                                            .width(50.dp)
+                                                            .height(50.dp),
+                                                        colors = ButtonDefaults.buttonColors(
+                                                            containerColor = Color(130,112,167)
+                                                        )
+                                                    ){
+
+                                                    }
+
+                                                    Spacer(modifier = Modifier.width(8.dp))
+
+                                                    Button(
+                                                        onClick = {
+                                                            chooseColor4 = !chooseColor4
+                                                        },
+                                                        modifier = Modifier
+                                                            .width(50.dp)
+                                                            .height(50.dp),
+                                                        colors = ButtonDefaults.buttonColors(
+                                                            containerColor = Color(216,172,225)
+                                                        )
+                                                    ){
+
+                                                    }
+
+                                                    Spacer(modifier = Modifier.width(8.dp))
+
+                                                    Button(
+                                                        onClick = {
+                                                            chooseColor5 = !chooseColor5
+                                                        },
+                                                        modifier = Modifier
+                                                            .width(50.dp)
+                                                            .height(50.dp),
+                                                        colors = ButtonDefaults.buttonColors(
+                                                            containerColor = Color(159,194,213)
+                                                        )
+                                                    ){
+
+                                                    }
+                                                }
                                             }
                                         }
                                     }

@@ -166,6 +166,10 @@ var seriesWinner = mutableStateOf(-1)
 var seriesWinnerName = mutableStateOf("")
 
 var noOfPlayers = mutableStateOf(2)
+var color3 = mutableStateOf(if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1))
+var color4 = mutableStateOf(if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1))
+var color5 = mutableStateOf(if (darkLight.value == 1) Color(80,80,80) else Color(0xFFF2E6D1))
+
 fun generateGridSizeList(r: Int, c: Int){
     for (i in 0..r * c - 1 ) {
         clicked.add(false)
