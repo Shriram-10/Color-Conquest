@@ -5,6 +5,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideIn
 import androidx.compose.animation.slideOut
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -39,6 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -1077,13 +1079,22 @@ fun HackerSettings(navController: NavController, highScoreManager: HighScoreMana
                             }
                         }
                     }
-                    Text(
-                        textAlign = TextAlign.Center,
-                        text = "-------------",
-                        fontSize = 44.sp,
-                        fontWeight = FontWeight.ExtraBold,
-                        color = if (darkLight.value == 1) Color.White else Color.Black
-                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Canvas(
+                        modifier = Modifier.fillMaxWidth(0.9f)
+                    ){
+                        drawLine(
+                            color = if (darkLight.value == 1) Color.White else Color.Black,
+                            start = Offset(0f, size.height),
+                            end = Offset(size.width, size.height),
+                            strokeWidth = 2f
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(18.dp))
+
                     AnimatedVisibility(visible = !showGridChangeDialog.value) {
                         Column(
                             modifier = Modifier.fillMaxWidth(),
@@ -1181,7 +1192,9 @@ fun HackerSettings(navController: NavController, highScoreManager: HighScoreMana
                                                     confirmButton.value = false
                                                 }
                                             },
-                                            modifier = Modifier.height(56.dp),
+                                            modifier = Modifier
+                                                .height(56.dp)
+                                                .width(70.dp),
                                             shape = RoundedCornerShape(15),
                                             colors = ButtonDefaults.buttonColors(
                                                 containerColor = if(darkLight.value == 1) if (noOfMatches.value == 3) Color(130,112,167) else Color(216,172,225) else if (noOfMatches.value == 3) Color(0xFF0FA6F7)  else Color(0xFFED6A5E),
@@ -1212,7 +1225,9 @@ fun HackerSettings(navController: NavController, highScoreManager: HighScoreMana
                                                     confirmButton.value = false
                                                 }
                                             },
-                                            modifier = Modifier.height(56.dp),
+                                            modifier = Modifier
+                                                .height(56.dp)
+                                                .width(70.dp),
                                             shape = RoundedCornerShape(15),
                                             colors = ButtonDefaults.buttonColors(
                                                 containerColor = if(darkLight.value == 1) if (noOfMatches.value == 5) Color(130,112,167) else Color(216,172,225) else if (noOfMatches.value == 5) Color(0xFF0FA6F7)  else Color(0xFFED6A5E)
@@ -1284,7 +1299,7 @@ fun HackerSettings(navController: NavController, highScoreManager: HighScoreMana
                                                 onClick = {},
                                                 modifier = Modifier
                                                     .height(56.dp)
-                                                    .width(80.dp),
+                                                    .width(70.dp),
                                                 shape = RoundedCornerShape(15),
                                                 colors = ButtonDefaults.buttonColors(
                                                     containerColor = if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7),

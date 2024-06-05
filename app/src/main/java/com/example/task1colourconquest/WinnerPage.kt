@@ -131,12 +131,6 @@ fun DisplayWinner(navController: NavController) {
                             otherPlayer.value = 0
                             resetTimer[0] = true
                             resetTimer[1] = true
-                            takenTime1.removeAt(1)
-                            takenTime1.removeAt(0)
-                            takenTime2.removeAt(1)
-                            takenTime2.removeAt(0)
-                            addTime1.value = false
-                            addTime2.value = false
                             winner.value = -1
                         },
                         modifier = Modifier
@@ -187,12 +181,6 @@ fun DisplayWinner(navController: NavController) {
                                 mins.value = "00"
                                 secs.value = "00"
                             }
-                            takenTime1.removeAt(1)
-                            takenTime1.removeAt(0)
-                            takenTime2.removeAt(1)
-                            takenTime2.removeAt(0)
-                            addTime1.value = false
-                            addTime2.value = false
                             navController.popBackStack(Screen.HomePage.route,false)
                         },
                         modifier = Modifier
