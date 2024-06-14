@@ -141,6 +141,7 @@ fun ModesPage(navController: NavController, highScoreManager: HighScoreManager){
             },
             modifier = Modifier
                 .height(72.dp),
+            enabled = false,
             colors = ButtonDefaults.buttonColors(
                 containerColor = if (darkLight.value == 1) Color(130,112,167) else Color(0xFF0FA6F7),
                 contentColor = Color.Black
